@@ -3,26 +3,10 @@ npm install @react-navigation/native @react-navigation/stack
 expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCgBLecv8Prt262KoQXh_ntyp1jMEHPMnQ",
-    authDomain: "travel-app-963dc.firebaseapp.com",
-    projectId: "travel-app-963dc",
-    storageBucket: "travel-app-963dc.appspot.com",
-    messagingSenderId: "933961659260",
-    appId: "1:933961659260:web:3284a16d6403087243eaf9"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
 
 1. Do npm uninstall firebase
 2. npm cache clear
 3. npm i firebase@^4.8.0 --save
+
+expo install firebase

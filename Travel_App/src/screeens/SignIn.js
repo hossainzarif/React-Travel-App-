@@ -5,7 +5,6 @@ import CurvedButtons from "../Reusable/CurvedButtons"
 import ClearButton from "../Reusable/ClearButton"
 import InputTaker from "../Reusable/InputTaker"
 import { AntDesign } from '@expo/vector-icons';
-import { Icon } from "react-native-elements"
 import OutlineButton from "../Reusable/OutlineButton"
 import { AuthContext } from "../Providers/AuthProvider"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -25,9 +24,17 @@ const SignIn = (props) => {
 
         <AuthContext.Consumer>
             {  (auth) => (<View>
-                <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: "center", marginTop: 70 }}>Welcome To Myblog</Text>
+
+
 
                 <Text style={styles.LogoText}>Sign In</Text>
+
+                <View>
+                    <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
+                        Welcome!
+            </Text>
+                </View>
+
                 <InputTaker
                     leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
                     placeholder=" Email-address"
@@ -82,7 +89,7 @@ const SignIn = (props) => {
                                 }
                             }
                         }
-                        color='black'
+                        color='#db5e40'
                         bgcolor='white'
                         widthpass={300}
                         heightpass={45}
@@ -90,23 +97,18 @@ const SignIn = (props) => {
                     </CurvedButtons>
 
                 </View>
-
-                {/* <Button
-                        title="Already have an account?"
-                        type="clear"
-                    /> */}
-
-
                 <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
+
+
+                    <Text style={styles.TextStyle}>Already Have an Account?</Text>
                     <ClearButton
-                        title="Don't have an account?"
+                        title=" Sign In"
                         onPress={
                             function () {
-                                props.navigation.navigate("SignUp")
+                                props.navigation.navigate("SignIn")
                             }
                         }
                     >
-
                     </ClearButton>
                 </View>
             </View>)}
@@ -146,6 +148,14 @@ const styles = StyleSheet.create(
         },
         inputStyle: {
             flex: 1,
+        },
+        TextStyle: {
+            fontSize: 16,
+            justifyContent: "center",
+            alignSelf: "center",
+            elevation: 10,
+            color: "dimgray"
+
         },
 
 

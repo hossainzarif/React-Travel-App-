@@ -22,7 +22,8 @@ const styles = StyleSheet.create(
             justifyContent: "center",
             alignSelf: "center",
             elevation: 10,
-
+            color:'#db5e40',
+            fontWeight:"bold"        
         },
 
 

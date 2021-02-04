@@ -20,7 +20,7 @@ const CurvedButtons = (props) => {
 const styles = StyleSheet.create(
     {
         text: {
-            fontSize: 25,
+            fontSize: 22,
         },
         buttonView: {            
             borderRadius:10,

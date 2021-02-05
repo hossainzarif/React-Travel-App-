@@ -23,7 +23,7 @@ const styles = StyleSheet.create(
             fontSize: 22,
         },
         buttonView: {            
-            borderRadius:10,
+            borderRadius:15,
             elevation: 5,
             margin:5,
             alignSelf:"center"
@@ -32,7 +32,7 @@ const styles = StyleSheet.create(
           Button: {
             //backgroundColor:'white',
             height: 40,
-            borderRadius: 10,
+            borderRadius: 15,
             width:200,
             alignItems: 'center',
             justifyContent: 'center',

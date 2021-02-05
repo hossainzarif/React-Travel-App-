@@ -10,3 +10,7 @@ expo install react-native-reanimated react-native-gesture-handler react-native-s
 3. npm i firebase@^4.8.0 --save
 
 expo install firebase
+npm i react-native-vector-icons
+npm i react-native-gesture-handler
+npm install entypo
+npm i @react-navigation/bottom-tabs

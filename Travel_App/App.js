@@ -1,16 +1,26 @@
 
 import React from "react"
+import { Text, StyleSheet,} from "react-native"
+
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
-
+import colors from './assets/colors/colors';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AppLoading from 'expo-app-loading';
+import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
 import * as firebase from 'firebase' 
 import HomePage from "./src/screeens/HomePage"
-
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import PlaceDetails from "./src/screeens/PlaceDetails"
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
+
+Entypo.loadFont();
+MaterialCommunityIcons.loadFont();
 
 var firebaseConfig = {
   apiKey: "AIzaSyCgBLecv8Prt262KoQXh_ntyp1jMEHPMnQ",
@@ -24,12 +34,61 @@ if(!firebase.apps.length)
 {
   firebase.initializeApp(firebaseConfig)
 }
+
+
+
+const Tab = createBottomTabNavigator();
+
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        style: styles.tabBar,
+        activeTintColor: colors.orange,
+        inactiveTintColor: colors.gray,
+        showLabel: false,
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={HomePage}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Entypo name="home" size={32} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Liked"
+        component={PostPage}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Entypo name="heart" size={32} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={HomePage}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="account" size={32} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+
+
 const HomeStack = () =>{
   return(
     <stack.Navigator initialRouteName ="HomePage">
 
-    <stack.Screen name="HomePage" component={HomePage} />
-    
+    <stack.Screen name="HomePage" component={TabNavigator} options={{
+        headerShown: false}}/>
+    <stack.Screen name ="PlaceDetails" component = {PlaceDetails} options={{
+        headerShown: false}} />
 
   </stack.Navigator>
   )
@@ -70,4 +129,11 @@ function App() {
   )
 }
 
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: colors.white,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+});
 export default App

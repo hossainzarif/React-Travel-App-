@@ -3,23 +3,24 @@ import { Text, StyleSheet, View } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { AntDesign } from '@expo/vector-icons';
 
-const InputTaker = (props) => {
+const PostTaker = (props) => {
     return (
 
         <View style={[styles.inputstyle, { width: props.widthpass, height: props.heightpass}]}>
 
-            <View style={{paddingTop:7}}>
+            <View >
             {props.leftIcon}
             </View>
 
             <TextInput
-                //multiline={true}
+               multiline={true}
                style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20,fontSize:17}}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
-                secureTextEntry={props.bool}
                 keyboardType= {props.keyboardType}
                 numberOfLines={20}
+                textAlignVertical="top"
+                textAlign="left"
                 textBreakStrategy="balanced"
                                // maxLength = {20}
             >
@@ -49,4 +50,4 @@ const styles = StyleSheet.create(
 )
 
 
-export default InputTaker
+export default PostTaker

@@ -7,15 +7,14 @@ import ClearButton from "../Reusable/ClearButton"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 //import firebase from 'firebase'
-import * as firebase from 'firebase' 
-import 'firebase/firestore' 
+import * as firebase from 'firebase'
+import 'firebase/firestore'
 const iconsize = 17
 const colorcode = "#606361"
 
 const SignUp = (props) => {
 
     const [Name, setName] = useState("")
-    const [SID, setsId] = useState("")
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
 
@@ -28,8 +27,8 @@ const SignUp = (props) => {
             <Text style={styles.LogoText}>Sign Up</Text>
 
             <View>
-            <Text style={{alignSelf:"flex-start",fontSize:20,color:'dimgray',fontWeight:"bold",marginLeft:30,marginBottom:10}}>
-                Register Now!
+                <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
+                    Register Now!
             </Text>
             </View>
 
@@ -86,38 +85,39 @@ const SignUp = (props) => {
 
                             if (Name && Email && Password) {
                                 firebase
-                                  .auth()
-                                  .createUserWithEmailAndPassword(Email, Password)
-                                  .then((userCreds) => {
-                                    alert(userCreds)
-                                    userCreds.user.updateProfile({ displayName: Name })
-                                    console.log(userCreds)
+                                    .auth()
+                                    .createUserWithEmailAndPassword(Email, Password)
+                                    .then((userCreds) => {
+                                        alert(userCreds)
+                                        userCreds.user.updateProfile({ displayName: Name })
+                                        console.log(userCreds)
 
-                                    firebase
-                                      .firestore()
-                                      .collection("users")
-                                      .doc(userCreds.user.uid)
-                                      .set({
-                                        name: Name,
-                                        email: Email,
-                                      })
-                                      .then(() => {
-                                        
-                                        console.log(userCreds.user);
-                                        props.navigation.navigate("SignIn");
-                                      })
-                                      .catch((error) => {
+                                        firebase
+                                            .firestore()
+                                            .collection("users")
+                                            .doc(userCreds.user.uid)
+                                            .set({
+                                                name: Name,
+                                                email: Email,
+                                            })
+                                            .then(() => {
+
+                                                console.log(userCreds.user);
+                                                props.navigation.navigate("SignIn");
+                                            })
+                                            .catch((error) => {
+                                                alert(error);
+                                            });
+                                    })
+                                    .catch((error) => {
                                         alert(error);
-                                      });
-                                  })
-                                  .catch((error) => {
-                                    alert(error);
-                                  });
-                              } else {
+                                    });
+                            } else {
                                 alert("Fields can not be empty!");
-                              }} 
+                            }
                         }
-                    
+                    }
+
                     color='#db5e40'
                     bgcolor='white'
                     widthpass={300}
@@ -127,9 +127,9 @@ const SignUp = (props) => {
 
             </View>
             <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
-               
-               
-                 <Text style={styles.TextStyle}>Already Have an Account?</Text> 
+
+
+                <Text style={styles.TextStyle}>Already Have an Account?</Text>
                 <ClearButton
                     title=" Sign In"
                     onPress={
@@ -184,7 +184,7 @@ const styles = StyleSheet.create(
             justifyContent: "center",
             alignSelf: "center",
             elevation: 10,
-            color:"dimgray"
+            color: "dimgray"
 
         },
 

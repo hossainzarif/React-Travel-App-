@@ -40,6 +40,7 @@ const SignIn = (props) => {
                     placeholder=" Email-address"
                     widthpass={300}
                     heightpass={50}
+                    bool = {false}
                     keyboardType="email-address"
                     onChangeText={
                         function (currentInput) {
@@ -102,10 +103,10 @@ const SignIn = (props) => {
 
                     <Text style={styles.TextStyle}>Already Have an Account?</Text>
                     <ClearButton
-                        title=" Sign In"
+                        title=" Sign Up"
                         onPress={
                             function () {
-                                props.navigation.navigate("SignIn")
+                                props.navigation.navigate("SignUp")
                             }
                         }
                     >

@@ -131,7 +131,7 @@ const HomePage = ({ navigation }) => {
 
                     {/* Activities */}
                     <View style={styles.activitiesWrapper}>
-                        <Text style={styles.activitiesTitle}>Activities</Text>
+                        <Text style={styles.activitiesTitle}>Popular Categories</Text>
                         <View style={styles.activitiesItemsWrapper}>
                             <FlatList
                                 data={activitiesData}

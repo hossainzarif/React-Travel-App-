@@ -1,11 +1,13 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
     StyleSheet,
     ImageBackground,
     Dimensions,
+    TouchableOpacity
 } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Input, Button, Card, Tile } from 'react-native-elements';
 import CurvedButtons from '../Reusable/CurvedButtons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -14,15 +16,15 @@ import * as ImagePicker from 'expo-image-picker';
 import InputTaker from '../Reusable/InputTaker';
 import PostTaker from '../Reusable/PostTaker';
 import PhotoComponent from '../Reusable/PhotoComponent';
-
-const PostPage = () => {
+import LocationPicker from '../screeens/LocationPicker'
+const PostPage = (props) => {
 
     const colorcode = "#606361"
 
 
 
-    const [image, setImage] = useState( 'https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
-
+    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
+    const org = "#db5e40"
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -60,9 +62,25 @@ const PostPage = () => {
                         Post!
             </Text>
                 </View>
+
                 <PostTaker
                     leftIcon={<Entypo name="location-pin" size={22} color={colorcode} />}
-                    placeholder="Share your recent adventure.."
+                    placeholder="Headline of blog."
+                    widthpass={300}
+                    heightpass={50}
+                    keyboardType="default"
+                // onChangeText={
+                //     // function (currentInput) {
+                //     //     setName(currentInput)
+                //     // }
+                // }
+                >
+                </PostTaker>
+
+
+                <PostTaker
+                    leftIcon={<Entypo name="location-pin" size={22} color={colorcode} />}
+                    placeholder="Share your recent adventure."
                     widthpass={300}
                     heightpass={160}
                     keyboardType="default"
@@ -74,7 +92,45 @@ const PostPage = () => {
                 >
                 </PostTaker>
 
-                <View style={{ marginTop: 10 }}>
+
+
+                <View style={{ marginTop: 10, height: 30, flexDirection: 'row'}}>
+                    <Button
+                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, }}
+                        icon={{
+                            name: "list",
+                            size: 20,
+                            color: "gray"
+                        }}
+                        title="Category"
+                        titleStyle={{ color: "#db5e40" }}
+                        type="outline"
+
+                        onPress={pickImage}
+                    />
+                        
+                        <Button
+                            buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org,marginLeft:35 }}
+                            icon={{
+                                name: "location-pin",
+                                size: 20,
+                                color: "gray"
+                            }}
+                            title="Location"
+                            titleStyle={{ color: "#db5e40" }}
+                            type="outline"
+
+                            onPress={
+                                function () {
+                                    props.navigation.navigate("LocationPicker")
+                                }
+                            }
+                        />
+                    
+                </View>
+
+
+                <View style={{ marginTop: 20 }}>
                     <Button
                         buttonStyle={{ borderRadius: 15, backgroundColor: '#db5e40' }}
                         icon={{
@@ -89,10 +145,12 @@ const PostPage = () => {
                 </View>
 
 
-            </Card>
-           
 
-            <View style={{ marginTop: 30 }}>
+
+            </Card>
+
+
+            <View style={{ marginTop: 40 }}>
                 <CurvedButtons
                     title="Post"
                     // style={styles.container}
@@ -141,8 +199,8 @@ const styles = StyleSheet.create(
             // justifyContent: 'center',
             borderRadius: 20,
             elevation: 5,
-            marginTop: 150,
-            height: 300,
+            marginTop: 100,
+            height: 410,
             width: 330
 
 

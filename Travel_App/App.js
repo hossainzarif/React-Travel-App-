@@ -1,21 +1,29 @@
 
 import React from "react"
-import { Text, StyleSheet,} from "react-native"
+import { Text, StyleSheet, } from "react-native"
 
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
-import * as firebase from 'firebase' 
+import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlaceDetails from "./src/screeens/PlaceDetails"
+import { Ionicons } from '@expo/vector-icons';
+import LocationPicker from './src/screeens/LocationPicker'
+
+
+
+
+
+
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
 
@@ -30,8 +38,7 @@ var firebaseConfig = {
   messagingSenderId: "933961659260",
   appId: "1:933961659260:web:3284a16d6403087243eaf9"
 };
-if(!firebase.apps.length)
-{
+if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
 }
 
@@ -52,16 +59,24 @@ const TabNavigator = () => {
         name="Home"
         component={HomePage}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({ color }) => (
             <Entypo name="home" size={32} color={color} />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="Add"
+        component={PostPage}
+        options={{
+          tabBarIcon: ({ color }) => (
+<Ionicons name="ios-add-circle" size={32} color={color} />            ),
         }}
       />
       <Tab.Screen
         name="Liked"
         component={PostPage}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({ color }) => (
             <Entypo name="heart" size={32} color={color} />
           ),
         }}
@@ -70,27 +85,33 @@ const TabNavigator = () => {
         name="Profile"
         component={HomePage}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={32} color={color} />
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 };
 
 
 
-const HomeStack = () =>{
-  return(
-    <stack.Navigator initialRouteName ="HomePage">
+const HomeStack = () => {
+  return (
+    <stack.Navigator initialRouteName="HomePage">
 
-    <stack.Screen name="HomePage" component={TabNavigator} options={{
-        headerShown: false}}/>
-    <stack.Screen name ="PlaceDetails" component = {PlaceDetails} options={{
-        headerShown: false}} />
+      <stack.Screen name="HomePage" component={TabNavigator} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
+        headerShown: false
+      }} />
+            <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+        headerShown: false
+      }} />
 
-  </stack.Navigator>
+    </stack.Navigator>
   )
 }
 

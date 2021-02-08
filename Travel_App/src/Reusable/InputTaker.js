@@ -6,22 +6,24 @@ import { AntDesign } from '@expo/vector-icons';
 const InputTaker = (props) => {
     return (
 
-        <View style={[styles.inputstyle, { width: props.widthpass, height: props.heightpass}]}>
+        <View style={[styles.inputstyle, { width: props.widthpass, height: props.heightpass }]}>
 
-            <View style={{paddingTop:7}}>
-            {props.leftIcon}
+            <View style={{justifyContent:"center"}}>
+                {props.leftIcon}
             </View>
 
             <TextInput
                 //multiline={true}
-               style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20,fontSize:17}}
+                style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20, fontSize: 17 }}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
                 secureTextEntry={props.bool}
-                keyboardType= {props.keyboardType}
+                keyboardType={props.keyboardType}
                 numberOfLines={20}
                 textBreakStrategy="balanced"
-                               // maxLength = {20}
+                // maxLength = {20}
+                textAlignVertical="center"
+                textAlign="left"
             >
 
             </TextInput>
@@ -40,7 +42,7 @@ const styles = StyleSheet.create(
             padding: 10,
             margin: 5,
             alignSelf: "center",
-            flexDirection:"row"
+            flexDirection: "row"
 
         },
 

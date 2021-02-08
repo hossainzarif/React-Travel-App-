@@ -15,6 +15,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import InputTaker from '../Reusable/InputTaker';
 import PostTaker from '../Reusable/PostTaker';
+import CategoryPicker from '../screeens/CategoryPicker'
 import PhotoComponent from '../Reusable/PhotoComponent';
 import LocationPicker from '../screeens/LocationPicker'
 const PostPage = (props) => {
@@ -94,7 +95,7 @@ const PostPage = (props) => {
 
 
 
-                <View style={{ marginTop: 10, height: 30, flexDirection: 'row'}}>
+                <View style={{ marginTop: 10, height: 30, flexDirection: 'row' }}>
                     <Button
                         buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, }}
                         icon={{
@@ -106,27 +107,31 @@ const PostPage = (props) => {
                         titleStyle={{ color: "#db5e40" }}
                         type="outline"
 
-                        onPress={pickImage}
-                    />
-                        
-                        <Button
-                            buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org,marginLeft:35 }}
-                            icon={{
-                                name: "location-pin",
-                                size: 20,
-                                color: "gray"
-                            }}
-                            title="Location"
-                            titleStyle={{ color: "#db5e40" }}
-                            type="outline"
-
-                            onPress={
-                                function () {
-                                    props.navigation.navigate("LocationPicker")
-                                }
+                        onPress={
+                            function () {
+                                props.navigation.navigate("CategoryPicker")
                             }
-                        />
-                    
+                        }
+                    />
+
+                    <Button
+                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, marginLeft: 35 }}
+                        icon={{
+                            name: "location-pin",
+                            size: 20,
+                            color: "gray"
+                        }}
+                        title="Location"
+                        titleStyle={{ color: "#db5e40" }}
+                        type="outline"
+
+                        onPress={
+                            function () {
+                                props.navigation.navigate("LocationPicker")
+                            }
+                        }
+                    />
+
                 </View>
 
 

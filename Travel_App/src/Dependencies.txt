@@ -14,3 +14,6 @@ npm i react-native-vector-icons
 npm i react-native-gesture-handler
 npm install entypo
 npm i @react-navigation/bottom-tabs
+npm i react-native-multiple-select
+expo install expo-image-picker
+expo install expo-font

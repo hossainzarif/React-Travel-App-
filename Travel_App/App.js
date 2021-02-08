@@ -18,7 +18,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import PlaceDetails from "./src/screeens/PlaceDetails"
 import { Ionicons } from '@expo/vector-icons';
 import LocationPicker from './src/screeens/LocationPicker'
-
+import CategoryPicker from './src/screeens/CategoryPicker'
 
 
 
@@ -108,6 +108,9 @@ const HomeStack = () => {
         headerShown: false
       }} />
             <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+        headerShown: false
+      }} />
+             <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
         headerShown: false
       }} />
 

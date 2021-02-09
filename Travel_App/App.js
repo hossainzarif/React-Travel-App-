@@ -1,13 +1,14 @@
 
 import React from "react"
 import { Text, StyleSheet, } from "react-native"
-
+import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -16,11 +17,17 @@ import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlaceDetails from "./src/screeens/PlaceDetails"
+<<<<<<< HEAD
 import { Ionicons } from '@expo/vector-icons';
 import LocationPicker from './src/screeens/LocationPicker';
 import CategoryPicker from './src/screeens/CategoryPicker';
 import ProfileScreen from './src/screeens/ProfileScreen';
 
+=======
+import LocationPicker from './src/screeens/LocationPicker'
+import CategoryPicker from './src/screeens/CategoryPicker'
+import AirBook from './src/screeens/AirBook';
+>>>>>>> c9ab70ebcf6201f5f53826eead39bbbd992f2ef0
 
 
 
@@ -96,7 +103,42 @@ const TabNavigator = () => {
   );
 };
 
+const TopTab = createMaterialTopTabNavigator();
+const BookingTabNavigator=()=>{
+  return(
+    <TopTab.Navigator
+    initialRouteName="AirBook"
+    tabBarOptions={{
+      style: styles.tabBar,
+      activeTintColor: colors.orange,
+      inactiveTintColor: colors.gray,
+      showLabel: false,
+    }}>
+      <TopTab.Screen 
+      name="AirBook"
+      component={AirBook}
+      options={{tabBarIcon:({color})=>(
+        <Ionicons name="airplane" size={24} color={color} />
+      )}}
+      />
+      <TopTab.Screen 
+      name="AirBook"
+      component={AirBook}
+      options={{tabBarIcon:({color})=>(
+        <Ionicons name="airplane" size={24} color={color} />
+      )}}
+      />
+      <TopTab.Screen 
+      name="AirBook"
+      component={AirBook}
+      options={{tabBarIcon:({color})=>(
+        <Ionicons name="airplane" size={24} color={color} />
+      )}}
+      />
 
+    </TopTab.Navigator>
+  );
+};
 
 const HomeStack = () => {
   return (

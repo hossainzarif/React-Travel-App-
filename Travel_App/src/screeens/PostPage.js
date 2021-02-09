@@ -5,14 +5,14 @@ import {
     StyleSheet,
     ImageBackground,
     Dimensions,
-    TouchableOpacity
+    Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Input, Button, Card, Tile } from 'react-native-elements';
 import CurvedButtons from '../Reusable/CurvedButtons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import * as ImagePicker from 'expo-image-picker';
-
+import * as firebase from 'firebase'
 import InputTaker from '../Reusable/InputTaker';
 import PostTaker from '../Reusable/PostTaker';
 import CategoryPicker from '../screeens/CategoryPicker'
@@ -24,9 +24,8 @@ const PostPage = (props) => {
     const colorcode = "#606361"
 
 
-
     const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
-    const org = "#db5e40"
+
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -43,16 +42,27 @@ const PostPage = (props) => {
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [7, 7],
-            quality: 5,
+            quality: 1,
         });
 
         // console.log(result);
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage(result.uri)
         }
     };
 
+    const uploadImage = async () => {
+        const response = await fetch(image)
+        const blob = await response.blob()
+        var ref = firebase.storage().ref().child("images/" + "Whattuop")
+        ref.put(blob).then(() => {
+            Alert.alert("Success")
+        })
+            .catch((error) => {
+                Alert.alert(error)
+            })
+    }
 
     return (
 
@@ -159,27 +169,8 @@ const PostPage = (props) => {
             <View style={{ marginTop: 40 }}>
                 <CurvedButtons
                     title="Post"
-                    // style={styles.container}
-                    // onPress={
-                    //     async function () {
-
-
-                    //         if (Email && Password) {
-                    //             firebase
-                    //                 .auth()
-                    //                 .signInWithEmailAndPassword(Email, Password)
-                    //                 .then((userCreds) => {
-                    //                     auth.setisLoggedin(true);
-                    //                     auth.setCurrentUser(userCreds.user);
-                    //                 })
-                    //                 .catch((error) => {
-                    //                     alert(error);
-                    //                 });
-
-                    //             //props.navigation.navigate("Home")
-                    //         }
-                    //     }
-                    // }
+                    style={styles.container}
+                    onPress={uploadImage}
                     color='#db5e40'
                     bgcolor='white'
                     widthpass={310}

@@ -25,7 +25,7 @@ const PostPage = (props) => {
 
 
 
-    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
+    const [image, setImage] = useState("");
     const org = "#db5e40"
 
     useEffect(() => {
@@ -50,20 +50,27 @@ const PostPage = (props) => {
         // console.log(result);
 
         if (!result.cancelled) {
+
             setImage(result.uri)
         }
     };
 
     const uploadImage = async () => {
-        const response = await fetch(image)
+        if (image== "")
+        {
+                Alert.alert("Please selcet image to upload.")
+        }
+        else
+        {const response = await fetch(image)
         const blob = await response.blob()
-        var ref = firebase.storage().ref().child("images/" + "Whattuop")
+        var ref = firebase.storage().ref().child("images/" + "Whattuops")
         ref.put(blob).then(() => {
             Alert.alert("Success")
         })
             .catch((error) => {
                 Alert.alert(error)
             })
+        }
     }
 
     return (

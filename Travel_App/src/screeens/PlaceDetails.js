@@ -7,11 +7,11 @@ import {
   Dimensions,
 } from 'react-native';
 import { useFonts } from 'expo-font';
-
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from '../../assets/colors/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AppLoading from 'expo-app-loading';
+import AirBook from './AirBook';
 
 const height = Dimensions.get('window').height;
 
@@ -80,7 +80,12 @@ const PlaceDetails = ({ route, navigation }) => {
 
           <TouchableOpacity
             style={styles.buttonWrapper}
-            onPress={() => alert('You booked a trip!')}>
+            onPress={() =>{
+            console.log('booking')
+            navigation.navigate()
+            }
+          }
+          >
             <Text style={styles.buttonText}>Book Now</Text>
           </TouchableOpacity>
         </View>

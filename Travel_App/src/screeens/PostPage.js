@@ -5,11 +5,7 @@ import {
     StyleSheet,
     ImageBackground,
     Dimensions,
-<<<<<<< Updated upstream
-    TouchableOpacity
-=======
     Alert,
->>>>>>> Stashed changes
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Input, Button, Card, Tile } from 'react-native-elements';
@@ -27,14 +23,8 @@ const PostPage = (props) => {
     const colorcode = "#606361"
 
 
-<<<<<<< Updated upstream
-
-    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
-    const org = "#db5e40"
-=======
     const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
 
->>>>>>> Stashed changes
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -173,10 +163,6 @@ const PostPage = (props) => {
 
 
             </Card>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 
             <View style={{ marginTop: 40 }}>

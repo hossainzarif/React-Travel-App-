@@ -8,7 +8,6 @@ import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -23,6 +22,7 @@ import CategoryPicker from './src/screeens/CategoryPicker'
 import AirBook from './src/screeens/AirBook';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
+import TransportScreen from "./src/screeens/TransportScreen";
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
@@ -90,53 +90,17 @@ const TabNavigator = () => {
           ),
         }}
       />
-            <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
-      />
-
     </Tab.Navigator>
-  );
-};
-
-const TopTab = createMaterialTopTabNavigator();
-const BookingTabNavigator=()=>{
-  return(
-    <TopTab.Navigator
-    initialRouteName="AirBook">
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
-      />
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
-      />
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
-      />
-
-    </TopTab.Navigator>
   );
 };
 
 const BookStack=()=>{
   return(
-      <bStack.Navigator initialRouteName="PlaceDetails">
-        <bStack.Screen name="PlaceDetails" component={BookingTabNavigator} options={{
+      <bStack.Navigator>
+        <bStack.Screen name="PlaceDetails" component={PlaceDetails} options={{
+        headerShown: false
+      }}/>
+      <bStack.Screen name="TransportScreen" component={TransportScreen} options={{
         headerShown: false
       }}/>
       <bStack.Screen name="AirBook" component={AirBook} options={{
@@ -204,7 +168,7 @@ function App() {
           </NavigationContainer>)}
       </AuthContext.Consumer>
     </AuthProvider>
-
+    
   )
 }
 

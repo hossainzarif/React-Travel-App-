@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from '../../assets/colors/colors';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AppLoading from 'expo-app-loading';
-import AirBook from './AirBook';
+import TransportScreen from './TransportScreen';
 
 const height = Dimensions.get('window').height;
 
@@ -82,7 +82,7 @@ const PlaceDetails = ({ route, navigation }) => {
             style={styles.buttonWrapper}
             onPress={() =>{
             console.log('booking')
-            navigation.navigate('AirBook')
+            navigation.navigate('TransportScreen')
             }
           }
           >

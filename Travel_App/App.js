@@ -18,17 +18,15 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlaceDetails from "./src/screeens/PlaceDetails"
 import ProfileScreen from './src/screeens/ProfileScreen';
-
 import LocationPicker from './src/screeens/LocationPicker'
 import CategoryPicker from './src/screeens/CategoryPicker'
 import AirBook from './src/screeens/AirBook';
-
-
-
+import TrainBook from './src/screeens/TrainBook';
+import BusBook from './src/screeens/BusBook';
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
-
+const bStack=createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -108,13 +106,7 @@ const TopTab = createMaterialTopTabNavigator();
 const BookingTabNavigator=()=>{
   return(
     <TopTab.Navigator
-    initialRouteName="AirBook"
-    tabBarOptions={{
-      style: styles.tabBar,
-      activeTintColor: colors.orange,
-      inactiveTintColor: colors.gray,
-      showLabel: false,
-    }}>
+    initialRouteName="AirBook">
       <TopTab.Screen 
       name="AirBook"
       component={AirBook}
@@ -140,6 +132,25 @@ const BookingTabNavigator=()=>{
     </TopTab.Navigator>
   );
 };
+
+const BookStack=()=>{
+  return(
+      <bStack.Navigator initialRouteName="PlaceDetails">
+        <bStack.Screen name="PlaceDetails" component={BookingTabNavigator} options={{
+        headerShown: false
+      }}/>
+      <bStack.Screen name="AirBook" component={AirBook} options={{
+        headerShown: false
+      }}/>
+      <bStack.Screen name="TrainBook" component={TrainBook} options={{
+        headerShown: false
+      }}/>
+      <bStack.Screen name="BusBook" component={BusBook} options={{
+        headerShown: false
+      }}/>
+      </bStack.Navigator>
+  )
+}
 
 const HomeStack = () => {
   return (

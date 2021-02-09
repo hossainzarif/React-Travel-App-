@@ -82,7 +82,7 @@ const PlaceDetails = ({ route, navigation }) => {
             style={styles.buttonWrapper}
             onPress={() =>{
             console.log('booking')
-            navigation.navigate()
+            navigation.navigate('AirBook')
             }
           }
           >

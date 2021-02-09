@@ -94,28 +94,6 @@ const TabNavigator = () => {
   );
 };
 
-const BookStack=()=>{
-  return(
-      <bStack.Navigator>
-        <bStack.Screen name="PlaceDetails" component={PlaceDetails} options={{
-        headerShown: false
-      }}/>
-      <bStack.Screen name="TransportScreen" component={TransportScreen} options={{
-        headerShown: false
-      }}/>
-      <bStack.Screen name="AirBook" component={AirBook} options={{
-        headerShown: false
-      }}/>
-      <bStack.Screen name="TrainBook" component={TrainBook} options={{
-        headerShown: false
-      }}/>
-      <bStack.Screen name="BusBook" component={BusBook} options={{
-        headerShown: false
-      }}/>
-      </bStack.Navigator>
-  )
-}
-
 const HomeStack = () => {
   return (
     <stack.Navigator initialRouteName="HomePage">
@@ -130,6 +108,18 @@ const HomeStack = () => {
         headerShown: false
       }} />
       <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="TransportScreen" component={TransportScreen} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="AirBook" component={AirBook} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="TrainBook" component={TrainBook} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="BusBook" component={BusBook} options={{
         headerShown: false
       }} />
 

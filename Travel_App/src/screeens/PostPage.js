@@ -18,7 +18,8 @@ import InputTaker from '../Reusable/InputTaker';
 import PostTaker from '../Reusable/PostTaker';
 import CategoryPicker from '../screeens/CategoryPicker'
 import PhotoComponent from '../Reusable/PhotoComponent';
-import LocationPicker from '../screeens/LocationPicker'
+import LocationPicker from '../screeens/LocationPicker';
+
 const PostPage = (props) => {
 
     const colorcode = "#606361"
@@ -27,6 +28,7 @@ const PostPage = (props) => {
 
     const [image, setImage] = useState("");
     const org = "#db5e40"
+    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
 
     useEffect(() => {
         (async () => {
@@ -214,4 +216,4 @@ const styles = StyleSheet.create(
         },
     })
 
-export default PostPage
+export default PostPage;

@@ -17,7 +17,8 @@ import InputTaker from '../Reusable/InputTaker';
 import PostTaker from '../Reusable/PostTaker';
 import CategoryPicker from '../screeens/CategoryPicker'
 import PhotoComponent from '../Reusable/PhotoComponent';
-import LocationPicker from '../screeens/LocationPicker'
+import LocationPicker from '../screeens/LocationPicker';
+
 const PostPage = (props) => {
 
     const colorcode = "#606361"
@@ -212,4 +213,4 @@ const styles = StyleSheet.create(
         },
     })
 
-export default PostPage
+export default PostPage;

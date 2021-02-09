@@ -17,8 +17,9 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlaceDetails from "./src/screeens/PlaceDetails"
 import { Ionicons } from '@expo/vector-icons';
-import LocationPicker from './src/screeens/LocationPicker'
-import CategoryPicker from './src/screeens/CategoryPicker'
+import LocationPicker from './src/screeens/LocationPicker';
+import CategoryPicker from './src/screeens/CategoryPicker';
+import ProfileScreen from './src/screeens/ProfileScreen';
 
 
 
@@ -69,7 +70,7 @@ const TabNavigator = () => {
         component={PostPage}
         options={{
           tabBarIcon: ({ color }) => (
-<Ionicons name="ios-add-circle" size={32} color={color} />            ),
+            <Ionicons name="ios-add-circle" size={32} color={color} />),
         }}
       />
       <Tab.Screen
@@ -83,7 +84,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={HomePage}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={32} color={color} />
@@ -107,10 +108,10 @@ const HomeStack = () => {
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
         headerShown: false
       }} />
-            <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+      <stack.Screen name="LocationPicker" component={LocationPicker} options={{
         headerShown: false
       }} />
-             <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
+      <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
         headerShown: false
       }} />
 

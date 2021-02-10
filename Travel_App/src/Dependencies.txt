@@ -5,6 +5,7 @@
 npm install @react-navigation/native @react-navigation/stack
 expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
+
 expo install firebase
 npm i react-native-vector-icons
 npm i react-native-gesture-handler
@@ -15,5 +16,9 @@ expo install expo-image-picker
 expo install expo-font
 
 npm install @react-navigation/material-top-tabs react-native-tab-view
+<<<<<<< HEAD
 
 npm i react-native-vector-icons
+=======
+npm i --save react-native-safe-area-context
+>>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac

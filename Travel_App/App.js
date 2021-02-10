@@ -8,7 +8,6 @@ import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -16,6 +15,7 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+<<<<<<< HEAD
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
 import CategoryPicker from './src/screeens/CategoryPicker';
@@ -25,10 +25,21 @@ import EditProfile from './src/screeens/EditProfile';
 
 
 
+=======
+import PlaceDetails from "./src/screeens/PlaceDetails"
+import ProfileScreen from './src/screeens/ProfileScreen';
+import LocationPicker from './src/screeens/LocationPicker'
+import CategoryPicker from './src/screeens/CategoryPicker'
+import AirBook from './src/screeens/AirBook';
+import TrainBook from './src/screeens/TrainBook';
+import BusBook from './src/screeens/BusBook';
+import TransportScreen from "./src/screeens/TransportScreen";
+import { withNavigation } from 'react-navigation';
+>>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
-
+const bStack=createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -59,7 +70,7 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="home" size={32} color={color} />
@@ -69,7 +80,11 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Add"
         component={PostPage}
+         initialParams={{ item:[] }}
+         
+
         options={{
+
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-add-circle" size={32} color={color} />),
         }}
@@ -83,6 +98,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+      
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -92,11 +108,11 @@ const TabNavigator = () => {
           ),
         }}
       />
-
     </Tab.Navigator>
   );
 };
 
+<<<<<<< HEAD
 const TopTab = createMaterialTopTabNavigator();
 const BookingTabNavigator = () => {
   return (
@@ -140,11 +156,13 @@ const BookingTabNavigator = () => {
   );
 };
 
+=======
+>>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
 const HomeStack = () => {
   return (
     <stack.Navigator initialRouteName="HomePage">
 
-      <stack.Screen name="HomePage" component={TabNavigator} options={{
+      <stack.Screen name="HomePage" component={HomePage} options={{
         headerShown: false
       }} />
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
@@ -156,7 +174,20 @@ const HomeStack = () => {
       <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
         headerShown: false
       }} />
+      <stack.Screen name="TransportScreen" component={TransportScreen} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="AirBook" component={AirBook} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="TrainBook" component={TrainBook} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="BusBook" component={BusBook} options={{
+        headerShown: false
+      }} />
 
+<<<<<<< HEAD
       <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
         headerShown: false
       }} />
@@ -165,6 +196,11 @@ const HomeStack = () => {
         headerShown: false
       }} />
 
+=======
+<stack.Screen name="PostPage" component={PostPage} options={{
+        headerShown: false
+      }} />
+>>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
     </stack.Navigator>
   )
 }
@@ -196,11 +232,11 @@ function App() {
       <AuthContext.Consumer>
         {(auth) => (
           <NavigationContainer>
-            {auth.isLoggedin ? <HomeStack /> : <AuthStackScreen />}
+            {auth.isLoggedin ? <TabNavigator /> : <AuthStackScreen />}
           </NavigationContainer>)}
       </AuthContext.Consumer>
     </AuthProvider>
-
+    
   )
 }
 

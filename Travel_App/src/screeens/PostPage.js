@@ -5,7 +5,10 @@ import {
     StyleSheet,
     ImageBackground,
     Dimensions,
+    TouchableOpacity,
+    FlatList,
     Alert,
+    ScrollView
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Input, Button, Card, Tile } from 'react-native-elements';
@@ -18,14 +21,49 @@ import PostTaker from '../Reusable/PostTaker';
 import CategoryPicker from '../screeens/CategoryPicker'
 import PhotoComponent from '../Reusable/PhotoComponent';
 import LocationPicker from '../screeens/LocationPicker';
+import MultiSelect from 'react-native-multiple-select';
 
 const PostPage = (props) => {
 
     const colorcode = "#606361"
+    const [selcted, setselected] = useState([])
+    const [selectedItems, setItems] = useState([])
+    // const {data} = props.name
 
+    const [image, setImage] = useState("");
+    const org = "#db5e40"
+    let multiSelect = ""
 
-    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
-
+    //const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
+    let items = [{
+        id: '92iijs7yta',
+        name: 'Boating'
+    }, {
+        id: 'a0s0a8ssbsd',
+        name: 'Trekking'
+    }, {
+        id: '16hbajsabsd',
+        name: 'Surfing'
+    }, {
+        id: 'nahs75a5sg',
+        name: 'Scuba diving'
+    }, {
+        id: '667atsas',
+        name: 'Exploring'
+    }, {
+        id: 'hsyasajs',
+        name: 'Canoeing'
+    }, {
+        id: 'djsjudksjd',
+        name: 'Rafting'
+    }, {
+        id: 'sdhyaysdj',
+        name: 'kayaking'
+    }, {
+        id: 'suudydjsjd',
+        name: 'Zip-Lining'
+    }
+    ];
     useEffect(() => {
         (async () => {
             if (Platform.OS !== 'web') {
@@ -36,6 +74,12 @@ const PostPage = (props) => {
             }
         })();
     }, []);
+
+
+    const onSelectedItemsChange = (selectedItems) => {
+        setItems(selectedItems)
+
+    };
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -48,25 +92,32 @@ const PostPage = (props) => {
         // console.log(result);
 
         if (!result.cancelled) {
+
             setImage(result.uri)
         }
     };
 
     const uploadImage = async () => {
-        const response = await fetch(image)
-        const blob = await response.blob()
-        var ref = firebase.storage().ref().child("images/" + "Whattuop")
-        ref.put(blob).then(() => {
-            Alert.alert("Success")
-        })
-            .catch((error) => {
-                Alert.alert(error)
+        if (image == "") {
+            console.log(props.route.params.item)
+        }
+        else {
+            const response = await fetch(image)
+            const blob = await response.blob()
+            var ref = firebase.storage().ref().child("images/" + "Whattuops")
+            ref.put(blob).then(() => {
+                Alert.alert("Success")
             })
+                .catch((error) => {
+                    Alert.alert(error)
+                })
+        }
     }
 
     return (
 
-        <View>
+        <ScrollView>
+
 
             <Card containerStyle={styles.cardViewStyle}>
                 <View>
@@ -108,7 +159,7 @@ const PostPage = (props) => {
 
                 <View style={{ marginTop: 10, height: 30, flexDirection: 'row' }}>
                     <Button
-                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, }}
+                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org,borderWidth:1  }}
                         icon={{
                             name: "list",
                             size: 20,
@@ -126,7 +177,7 @@ const PostPage = (props) => {
                     />
 
                     <Button
-                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, marginLeft: 35 }}
+                        buttonStyle={{ borderRadius: 15, width: 130, height: 30, borderColor: org, color: org, marginLeft: 35 ,borderWidth:1 }}
                         icon={{
                             name: "location-pin",
                             size: 20,
@@ -139,6 +190,7 @@ const PostPage = (props) => {
                         onPress={
                             function () {
                                 props.navigation.navigate("LocationPicker")
+
                             }
                         }
                     />
@@ -148,7 +200,7 @@ const PostPage = (props) => {
 
                 <View style={{ marginTop: 20 }}>
                     <Button
-                        buttonStyle={{ borderRadius: 15, backgroundColor: '#db5e40' }}
+                        buttonStyle={{ borderRadius: 15, backgroundColor: '#db5e40',}}
                         icon={{
                             name: "photo",
                             size: 20,
@@ -165,8 +217,26 @@ const PostPage = (props) => {
 
             </Card>
 
+            <FlatList
+                style={{marginTop:20,marginRight:20,marginLeft:15}}
+                data={props.route.params.item}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
 
-            <View style={{ marginTop: 40 }}>
+
+                renderItem={({ item }) => {
+
+                    return (
+                        <Text style={{ fontSize: 15, borderWidth: 1, borderRadius: 15, borderColor: org, marginLeft: 10, padding: 5, margintop: 15 }}> {item}</Text>
+
+                    )
+                }
+                }
+            />
+               
+
+
+            <View style={{ marginTop: 20, marginBottom: 20 }}>
                 <CurvedButtons
                     title="Post"
                     style={styles.container}
@@ -179,11 +249,18 @@ const PostPage = (props) => {
                 </CurvedButtons>
             </View>
 
-        </View>
 
+
+
+
+
+
+
+        </ScrollView>
 
     )
 }
+
 
 const styles = StyleSheet.create(
     {

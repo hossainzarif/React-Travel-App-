@@ -4,8 +4,9 @@ import MultiSelect from 'react-native-multiple-select';
 import { Input, Button, Card, Tile } from 'react-native-elements';
 import InputTaker from '../Reusable/InputTaker';
 import { FontAwesome } from '@expo/vector-icons';
-
-
+import PostPage from './PostPage'
+import { withNavigation } from 'react-navigation';
+import AirBook from './AirBook'
 let items = [{
   id: '92iijs7yta',
   name: 'Boating'
@@ -38,7 +39,6 @@ let items = [{
 const org = "#db5e40"
 
 
-
 // const CategoryPicker =()=>
 // {
 //     return(
@@ -49,13 +49,15 @@ const org = "#db5e40"
 // export default CategoryPicker
 
 
-export default class MultiSelectExample extends Component {
-  constructor() {
-    super()
+class CategoryPicker extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       selectedItems: [],
-      adv: ""
+      adv: "",
+      selectedNames:[]
     }
+    this.showDetails = this.showDetails.bind(this)
   }
 
 
@@ -63,22 +65,25 @@ export default class MultiSelectExample extends Component {
 
 
   onSelectedItemsChange = selectedItems => {
+    console.log(selectedItems)
     this.setState({ 'selectedItems': selectedItems });
+    this.setState({'selectedNames':selectedItems})
 
   };
 
-  changeSet = currentinput =>
-  {
-    
-      this.setState({ 'adv': currentinput })
-      console.log(this.state.adv)
-    
+  changeSet = currentinput => {
+
+    this.setState({ 'adv': currentinput })
+    console.log(this.state.adv)
+
   }
 
-  pushval = adv => 
-  {
-    items.push ({id:"XXXXXX",name:this.state.adv})
-    
+  showDetails(_id) {
+    this.props.navigation.navigate('PostPage',{item:this.state.selectedNames});
+  }
+  pushval = adv => {
+    items.push({ id: "XXXXXX", name: this.state.adv })
+
   }
 
   render() {
@@ -94,7 +99,7 @@ export default class MultiSelectExample extends Component {
           <InputTaker
 
             leftIcon={<FontAwesome name="search" size={22} color="#db5e40" />}
-            placeholder="  Add tag"
+            placeholder="Add taG"
             widthpass={225}
             heightpass={50}
             keyboardType="default"
@@ -116,7 +121,7 @@ export default class MultiSelectExample extends Component {
               raised={true}
               //onPress={pickImage}
               onPress={
-                (adv)=> this.pushval(adv)
+                (adv) => this.pushval(adv)
               }
 
             />
@@ -131,7 +136,7 @@ export default class MultiSelectExample extends Component {
             hideTags
             items={items}
             textColor="gray"
-            uniqueKey="id"
+            uniqueKey="name"
             ref={(component) => { this.multiSelect = component }}
             onSelectedItemsChange={this.onSelectedItemsChange}
             selectedItems={this.state.selectedItems}
@@ -161,13 +166,16 @@ export default class MultiSelectExample extends Component {
             <Button
               buttonStyle={{ borderRadius: 15, backgroundColor: '#db5e40' }}
               icon={{
-                name: "photo",
+                name: "arrow-right",
                 size: 20,
                 color: "white"
               }}
-              title="Upload Image"
+              title="Confirm"
               raised={true}
-            //onPress={pickImage}
+              onPress={
+                this.showDetails
+              }
+
             />
           </View>
 
@@ -177,3 +185,5 @@ export default class MultiSelectExample extends Component {
     );
   }
 }
+
+export default withNavigation(CategoryPicker);

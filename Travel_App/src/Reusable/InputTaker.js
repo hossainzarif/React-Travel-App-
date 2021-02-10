@@ -14,12 +14,12 @@ const InputTaker = (props) => {
 
             <TextInput
                 //multiline={true}
-                style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20, fontSize: 17 }}
+                style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20, fontSize: 17,paddingLeft:5 }}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
                 secureTextEntry={props.bool}
                 keyboardType={props.keyboardType}
-                numberOfLines={20}
+                //numberOfLines={20}
                 textBreakStrategy="balanced"
                 // maxLength = {20}
                 textAlignVertical="center"

@@ -23,6 +23,7 @@ import AirBook from './src/screeens/AirBook';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
+import { withNavigation } from 'react-navigation';
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
@@ -57,7 +58,7 @@ const TabNavigator = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="home" size={32} color={color} />
@@ -67,7 +68,11 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Add"
         component={PostPage}
+         initialParams={{ item:[] }}
+         
+
         options={{
+
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-add-circle" size={32} color={color} />),
         }}
@@ -81,6 +86,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+      
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -98,7 +104,7 @@ const HomeStack = () => {
   return (
     <stack.Navigator initialRouteName="HomePage">
 
-      <stack.Screen name="HomePage" component={TabNavigator} options={{
+      <stack.Screen name="HomePage" component={HomePage} options={{
         headerShown: false
       }} />
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
@@ -123,6 +129,9 @@ const HomeStack = () => {
         headerShown: false
       }} />
 
+<stack.Screen name="PostPage" component={PostPage} options={{
+        headerShown: false
+      }} />
     </stack.Navigator>
   )
 }
@@ -154,7 +163,7 @@ function App() {
       <AuthContext.Consumer>
         {(auth) => (
           <NavigationContainer>
-            {auth.isLoggedin ? <HomeStack /> : <AuthStackScreen />}
+            {auth.isLoggedin ? <TabNavigator /> : <AuthStackScreen />}
           </NavigationContainer>)}
       </AuthContext.Consumer>
     </AuthProvider>

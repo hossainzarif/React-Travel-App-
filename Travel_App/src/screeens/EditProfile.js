@@ -11,25 +11,14 @@ import 'firebase/firestore';
 const iconsize = 17
 const colorcode = "#606361"
 
-const SignUp = (props) => {
-
-    const [Name, setName] = useState("")
-    const [Email, setEmail] = useState("")
+const EditProfile = (props) => {
+    const [Name, setName] = useState("");
+    const [Email, setEmail] = useState({})
     const [Password, setPassword] = useState("")
-
-
+    // const { updateEmail, currentUser } = useAuth();
     return (
-
-
         <View>
-            {/* <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: "center", marginTop: 50 }}>Welcome To Myblog</Text> */}
-            <Text style={styles.LogoText}>Sign Up</Text>
-
-            <View>
-                <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
-                    Register Now!
-            </Text>
-            </View>
+            <Text style={styles.LogoText}>Edit Profile</Text>
 
             <InputTaker
                 leftIcon={<AntDesign name="user" size={iconsize} color={colorcode} />}
@@ -47,7 +36,7 @@ const SignUp = (props) => {
 
             <InputTaker
                 leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
-                placeholder=" Email-adreress"
+                placeholder=" Email-Address"
                 widthpass={300}
                 heightpass={50}
                 keyboardType="email-address"
@@ -77,7 +66,7 @@ const SignUp = (props) => {
 
             <View style={{ marginTop: 40 }}>
                 <CurvedButtons
-                    title="Sign Up"
+                    title="Update"
                     // style={styles.container}
                     onPress={
                         function () {
@@ -102,7 +91,7 @@ const SignUp = (props) => {
                                             .then(() => {
 
                                                 console.log(userCreds.user);
-                                                props.navigation.navigate("SignIn");
+                                                props.navigation.navigate("ProfileScreen");
                                             })
                                             .catch((error) => {
                                                 alert(error);
@@ -125,28 +114,9 @@ const SignUp = (props) => {
                 </CurvedButtons>
 
             </View>
-            <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
-
-
-                <Text style={styles.TextStyle}>Already Have an Account?</Text>
-                <ClearButton
-                    title=" Sign In"
-                    onPress={
-                        function () {
-                            props.navigation.navigate("SignIn")
-                        }
-                    }
-                >
-                </ClearButton>
-            </View>
-
         </View>
-
-
-
-
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create(
     {
@@ -188,6 +158,6 @@ const styles = StyleSheet.create(
         },
 
     }
-)
+);
 
-export default SignUp
+export default EditProfile;

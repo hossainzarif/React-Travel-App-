@@ -16,18 +16,12 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import PlaceDetails from "./src/screeens/PlaceDetails"
-<<<<<<< HEAD
-import { Ionicons } from '@expo/vector-icons';
+import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
 import CategoryPicker from './src/screeens/CategoryPicker';
-import ProfileScreen from './src/screeens/ProfileScreen';
-
-=======
-import LocationPicker from './src/screeens/LocationPicker'
-import CategoryPicker from './src/screeens/CategoryPicker'
 import AirBook from './src/screeens/AirBook';
->>>>>>> c9ab70ebcf6201f5f53826eead39bbbd992f2ef0
+import ProfileScreen from './src/screeens/ProfileScreen';
+import EditProfile from './src/screeens/EditProfile';
 
 
 
@@ -104,36 +98,42 @@ const TabNavigator = () => {
 };
 
 const TopTab = createMaterialTopTabNavigator();
-const BookingTabNavigator=()=>{
-  return(
+const BookingTabNavigator = () => {
+  return (
     <TopTab.Navigator
-    initialRouteName="AirBook"
-    tabBarOptions={{
-      style: styles.tabBar,
-      activeTintColor: colors.orange,
-      inactiveTintColor: colors.gray,
-      showLabel: false,
-    }}>
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
+      initialRouteName="AirBook"
+      tabBarOptions={{
+        style: styles.tabBar,
+        activeTintColor: colors.orange,
+        inactiveTintColor: colors.gray,
+        showLabel: false,
+      }}>
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
       />
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
       />
-      <TopTab.Screen 
-      name="AirBook"
-      component={AirBook}
-      options={{tabBarIcon:({color})=>(
-        <Ionicons name="airplane" size={24} color={color} />
-      )}}
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
       />
 
     </TopTab.Navigator>
@@ -154,6 +154,14 @@ const HomeStack = () => {
         headerShown: false
       }} />
       <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
+        headerShown: false
+      }} />
+
+      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
+        headerShown: false
+      }} />
+
+      <stack.Screen name="EditProfile" component={EditProfile} options={{
         headerShown: false
       }} />
 

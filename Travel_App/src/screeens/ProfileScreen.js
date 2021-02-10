@@ -1,90 +1,168 @@
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, SafeAreaView, Image, ScrollView } from "react-native";
+import { Input, Button, Card, Tile, Text, Header, Avatar } from 'react-native-elements';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import colors from '../../assets/colors/colors';
+import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
+import { AuthContext } from "../Providers/AuthProvider";
+import EditProfile from "./EditProfile";
+import * as firebase from "firebase";
+import "firebase/firestore";
 
 
 const ProfileScreen = (props) => {
-    //console.log(props);
+    console.log(props);
+    // const [numberOfPosts, setNumberOfPosts] = useState(0);
+    // const [isLoading, setIsLoading] = useState(false);
+
+    // const loadPosts = async () => {
+    //     setIsLoading(true);
+    //     firebase
+    //         .firestore()
+    //         .collection('posts')
+    //         .doc(props.postID)
+    //         .onSnapshot((querySnapshot) => {
+    //             setNumberOfPosts(querySnapshot.size)
+    //         })
+    //         .catch((error) => {
+    //             setIsLoading(false);
+    //             alert(error);
+    //         })
+    // }
+
+
+
+
+    // useEffect(() => {
+    //     loadPosts();
+    //     // loadNotificationData();
+    // }, [])
+
+    // let postsButton = " ";
+    // postsButton = "Post(".concat(numberOfPosts.toString()).concat(")");
+
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.titleBar}>
-                    <Ionicons name="ios-arrow-back" size={24} color="#52575D"></Ionicons>
-                    <Ionicons name="md-more" size={24} color="#52575D"></Ionicons>
-                </View>
+        <AuthContext.Consumer>
+            {(auth) => (
 
-                <View style={{ alignSelf: "center" }}>
-                    <View style={styles.profileImage}>
-                        <Image source={require("../../assets/images/profile-pic.jpg")} style={styles.image} resizeMode="center"></Image>
-                    </View>
-                    <View style={styles.dm}>
-                        <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
-                    </View>
-                    <View style={styles.active}></View>
-                    <View style={styles.add}>
-                        <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                    </View>
-                </View>
 
-                <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Julie</Text>
-                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
-                </View>
+                <SafeAreaView style={styles.container}>
 
-                <View style={styles.statsContainer}>
-                    <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                        <Text style={[styles.text, styles.subText]}>Posts</Text>
-                    </View>
-                    <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
-                        <Text style={[styles.text, styles.subText]}>Followers</Text>
-                    </View>
-                    <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>302</Text>
-                        <Text style={[styles.text, styles.subText]}>Following</Text>
-                    </View>
-                </View>
+                    <ScrollView showsVerticalScrollIndicator={false}>
 
-                <View style={{ marginTop: 32 }}>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
+                        <Header
+                            backgroundColor="#fff"
+                            leftComponent={{
+                                icon: "menu",
+                                color: "black",
+                                size: 40,
+                                onPress: function () {
+                                    props.navigation.toggleDrawer();
+                                },
+                            }}
+                            //centerComponent={{ text: "The Office", style: { color: "#fff" } }}
+                            rightComponent={{
+                                icon: "lock-outline",
+                                color: "black",
+                                size: 30,
+                                onPress: function () {
+                                    auth.setIsLoggedIn(false);
+                                    auth.setCurrentUser({});
+                                },
+                            }}
+                        />
+                        <SafeAreaView>
+                            
+                                <TouchableOpacity onPress={
+                                    function () {
+                                        props.navigation.navigate("EditProfile")
+                                    }
+                                }><View style={styles.editWrapper}>
+
+                                    <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
+                                    <Entypo name="edit" size={20} color="#6b778d" />
+                                </View>
+                                </TouchableOpacity>
+
+
+                        </SafeAreaView>
+
+
+                        <View style={{ alignSelf: "center" }}>
+                            <View style={styles.profileImage}>
+                                <Image source={require("../../assets/images/profile-pic.jpg")} style={styles.image} resizeMode="center"></Image>
+                            </View>
+                            <View style={styles.dm}>
+                                <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
+                            </View>
+                            <View style={styles.active}></View>
+                            <View style={styles.add}>
+                                <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
+                            </View>
                         </View>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../../assets/images/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
+
+                        <View style={styles.infoContainer}>
+                            <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}> {auth.CurrentUser.displayName} </Text>
+                            <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
                         </View>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
+
+                        <View style={styles.statsContainer}>
+                            <View style={styles.statsBox}>
+                                <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
+                                <Text style={[styles.text, styles.subText]}>Posts</Text>
+                            </View>
+                            <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
+                                <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
+                                <Text style={[styles.text, styles.subText]}>Followers</Text>
+                            </View>
+                            <View style={styles.statsBox}>
+                                <Text style={[styles.text, { fontSize: 24 }]}>302</Text>
+                                <Text style={[styles.text, styles.subText]}>Following</Text>
+                            </View>
+                        </View>
+
+                        <View style={{ marginTop: 32 }}>
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                            </ScrollView>
+                            <View style={styles.mediaCount}>
+                                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
+                                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
+                            </View>
+                        </View>
+                        <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
+                        <View style={{ alignItems: "center" }}>
+                            <View style={styles.recentItem}>
+                                <View style={styles.activityIndicator}></View>
+                                <View style={{ width: 250 }}>
+                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                        Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
+                                    </Text>
+                                </View>
+                            </View>
+
+                            <View style={styles.recentItem}>
+                                <View style={styles.activityIndicator}></View>
+                                <View style={{ width: 250 }}>
+                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                        Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
+                                    </Text>
+                                </View>
+                            </View>
                         </View>
                     </ScrollView>
-                    <View style={styles.mediaCount}>
-                        <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
-                        <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
-                    </View>
-                </View>
-                <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
-                <View style={{ alignItems: "center" }}>
-                    <View style={styles.recentItem}>
-                        <View style={styles.activityIndicator}></View>
-                        <View style={{ width: 250 }}>
-                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
-                            </Text>
-                        </View>
-                    </View>
-
-                    <View style={styles.recentItem}>
-                        <View style={styles.activityIndicator}></View>
-                        <View style={{ width: 250 }}>
-                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+                </SafeAreaView>
+            )}
+        </AuthContext.Consumer>
     );
 }
 
@@ -92,6 +170,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#FFF"
+    },
+    editWrapper: {
+        marginHorizontal: 10,
+        marginTop: 10,
+        marginBottom: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     text: {
         color: "#52575D"

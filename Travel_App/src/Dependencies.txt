@@ -15,3 +15,5 @@ expo install expo-image-picker
 expo install expo-font
 
 npm install @react-navigation/material-top-tabs react-native-tab-view
+
+npm i react-native-vector-icons

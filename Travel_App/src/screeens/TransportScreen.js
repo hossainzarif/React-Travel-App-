@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, Alert, Modal, Image, ImageBackground } from "react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Header } from "react-native-elements";
 
-
-const TransportScreen = () => {
+const TransportScreen = ({navigation}) => {
     return (
         <View style={styles.viewStyle}>
         <Text style={styles.header}>Transport Sytem</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() =>{
+            navigation.navigate('AirBook')
+            }}>
             <ImageBackground
                 source={require("../../assets/images/plane.jpg")}
                 style={styles.imgBackground}
@@ -15,7 +17,9 @@ const TransportScreen = () => {
                 <Text style={styles.textStyle}>Airplane</Text>
             </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() =>{
+            navigation.navigate('TrainBook')
+            }}>
             <ImageBackground
                 source={require("../../assets/images/train2.jpg")}
                 style={styles.imgBackground}
@@ -23,7 +27,9 @@ const TransportScreen = () => {
                 <Text style={styles.textStyle}>Train</Text>
             </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() =>{
+            navigation.navigate('BusBook')
+            }}>
             <ImageBackground
                 source={require("../../assets/images/bus.jpg")}
                 style={styles.imgBackground}
@@ -32,6 +38,7 @@ const TransportScreen = () => {
             </ImageBackground>
         </TouchableOpacity>
         </View>
+       
     );
 };
 

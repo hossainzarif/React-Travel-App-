@@ -12,4 +12,4 @@ const LocationData = [
     { key: 'Meghalaya' },
     { key: 'Greece' },
 ];
-export default LocationData
+export default LocationData;

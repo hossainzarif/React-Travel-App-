@@ -29,6 +29,7 @@ import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
 import BookingInfo from "./src/screeens/BookingInfo";
+import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
@@ -152,7 +153,6 @@ const HomeStack = () => {
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
         headerShown: false
       }} />
-
       <stack.Screen name="TransportScreen" component={TransportScreen} options={{
         headerShown: false
       }} />

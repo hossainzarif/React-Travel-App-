@@ -5,11 +5,12 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { ScrollView } from "react-native-gesture-handler";
 import { Card, ListItem, Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
+import BookingInfo from './BookingInfo';
 
-const AirBook = ({navigation}) => {
+const AirBook = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require("../../assets/images/17663.jpg")}
+      source={require("../../assets/images/un.jpg")}
       style={{ height: 900, width: 450 }}
     >
       <View
@@ -26,7 +27,7 @@ const AirBook = ({navigation}) => {
             width: 80,
             height: 80,
             borderRadius: 50,
-            backgroundColor: "#5facdb",
+            backgroundColor: "#db5e40",
             justifyContent: "center",
             alignItems: "center",
             alignSelf: "center",
@@ -68,36 +69,29 @@ const AirBook = ({navigation}) => {
             }}
           >
             <Text
-              style={{
-                color: "#a2a2db",
-                fontFamily: "RobotoRegular",
-              }}
+              style={styles.leftFont}
             >
               New York
           </Text>
             <Text
-              style={{
-                color: "#a2a2db",
-                fontFamily: "RobotoRegular",
-                paddingLeft: 220,
-              }}
+              style={styles.rightFont}
             >
               Indonesia
           </Text>
           </View>
-          </Card>
+        </Card>
 
         <Button
-        type="solid"
-          buttonStyle={{ height:50, width:385, marginLeft: 15, marginRight: 90, backgroundColor: "#5facdb" }}
+          type="solid"
+          buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
           title="Book"
-          onPress={()=>{
+          onPress={() => {
             navigation.navigate('BookingInfo');
             console.log('payemnt info screen')
           }}
         />
 
-</View>
+      </View>
     </ImageBackground>
   );
 };
@@ -110,7 +104,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#FFF",
+    color: "#db5e40",
     fontFamily: 'RobotoBold',
     alignSelf: "center",
     marginRight: 30
@@ -141,6 +135,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#a2a2db",
     paddingHorizontal: 15,
+  },
+  leftFont: {
+    color: "#a2a2db",
+    fontFamily: "RobotoRegular",
+  },
+  rightFont: {
+    color: "#a2a2db",
+    fontFamily: "RobotoRegular",
+    paddingLeft: 220,
   }
 })
 export default AirBook;

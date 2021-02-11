@@ -15,7 +15,6 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-<<<<<<< HEAD
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
 import CategoryPicker from './src/screeens/CategoryPicker';
@@ -24,22 +23,15 @@ import ProfileScreen from './src/screeens/ProfileScreen';
 import EditProfile from './src/screeens/EditProfile';
 
 
-
-=======
-import PlaceDetails from "./src/screeens/PlaceDetails"
-import ProfileScreen from './src/screeens/ProfileScreen';
-import LocationPicker from './src/screeens/LocationPicker'
-import CategoryPicker from './src/screeens/CategoryPicker'
-import AirBook from './src/screeens/AirBook';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
-const bStack=createStackNavigator()
+const bStack = createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -79,9 +71,8 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Add"
-        component={PostPage}
-         initialParams={{ item:[] }}
-         
+        component={AddStack}
+
 
         options={{
 
@@ -98,10 +89,10 @@ const TabNavigator = () => {
           ),
         }}
       />
-      
+
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={32} color={color} />
@@ -112,7 +103,6 @@ const TabNavigator = () => {
   );
 };
 
-<<<<<<< HEAD
 const TopTab = createMaterialTopTabNavigator();
 const BookingTabNavigator = () => {
   return (
@@ -155,9 +145,44 @@ const BookingTabNavigator = () => {
     </TopTab.Navigator>
   );
 };
+const ProfileStack = () => {
+  return (
+    <stack.Navigator initialRouteName="ProfileScreen">
 
-=======
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
+      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
+        headerShown: false
+      }} />
+
+      <stack.Screen name="EditProfile" component={EditProfile} options={{
+        headerShown: false
+      }} />
+
+    </stack.Navigator>
+  )
+}
+
+const AddStack = () => {
+  return (
+
+    <stack.Navigator initialRouteName="PostPage">
+      <stack.Screen name="PostPage"
+
+        initialParams={{ item: [], location: "" }}
+
+        component={PostPage} options={{
+          headerShown: false
+        }} />
+      <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
+        headerShown: false
+      }} />
+
+    </stack.Navigator>
+  )
+}
+
 const HomeStack = () => {
   return (
     <stack.Navigator initialRouteName="HomePage">
@@ -168,12 +193,7 @@ const HomeStack = () => {
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
         headerShown: false
       }} />
-      <stack.Screen name="LocationPicker" component={LocationPicker} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
-        headerShown: false
-      }} />
+
       <stack.Screen name="TransportScreen" component={TransportScreen} options={{
         headerShown: false
       }} />
@@ -187,20 +207,8 @@ const HomeStack = () => {
         headerShown: false
       }} />
 
-<<<<<<< HEAD
-      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
-        headerShown: false
-      }} />
 
-      <stack.Screen name="EditProfile" component={EditProfile} options={{
-        headerShown: false
-      }} />
 
-=======
-<stack.Screen name="PostPage" component={PostPage} options={{
-        headerShown: false
-      }} />
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
     </stack.Navigator>
   )
 }
@@ -236,7 +244,7 @@ function App() {
           </NavigationContainer>)}
       </AuthContext.Consumer>
     </AuthProvider>
-    
+
   )
 }
 

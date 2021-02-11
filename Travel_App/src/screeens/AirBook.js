@@ -30,7 +30,7 @@ const AirBook=()=>{
             }}
           >
             <Image
-              source={require("../images/p.png")}
+              source={require("../../assets/images/p.png")}
               style={{ height: 26, width: 26 }}
             />
           </View>

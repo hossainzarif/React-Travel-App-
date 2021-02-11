@@ -22,7 +22,7 @@ import AirBook from './src/screeens/AirBook';
 import ProfileScreen from './src/screeens/ProfileScreen';
 import EditProfile from './src/screeens/EditProfile';
 
-
+import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
@@ -82,7 +82,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Liked"
-        component={PostPage}
+        component={Notification}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="heart" size={32} color={color} />

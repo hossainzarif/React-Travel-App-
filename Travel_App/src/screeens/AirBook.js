@@ -91,6 +91,10 @@ const AirBook = ({navigation}) => {
         type="solid"
           buttonStyle={{ height:50, width:385, marginLeft: 15, marginRight: 90, backgroundColor: "#5facdb" }}
           title="Book"
+          onPress={()=>{
+            navigation.navigate('BookingInfo');
+            console.log('payemnt info screen')
+          }}
         />
 
 </View>

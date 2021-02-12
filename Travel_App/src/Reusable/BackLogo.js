@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import Svg, {
     Path
   } from 'react-native-svg';
-const BackgroundCurve=()=>{
+const BackgroundLogo=()=>{
     return(
         <View>
         <View style={styles.viewAbove}/>
@@ -29,4 +29,4 @@ const styles=StyleSheet.create({
         top:10
     }
 })
-export default BackgroundCurve;
+export default BackgroundLogo;

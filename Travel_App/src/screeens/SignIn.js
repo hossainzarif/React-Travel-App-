@@ -8,8 +8,9 @@ import { AntDesign } from '@expo/vector-icons';
 import OutlineButton from "../Reusable/OutlineButton"
 import { AuthContext } from "../Providers/AuthProvider"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import * as firebase from "firebase";
-
+import BackLogo from './../Reusable/BackLogo';
 
 const iconsize = 17
 const colorcode = "#606361"
@@ -23,96 +24,96 @@ const SignIn = (props) => {
     return (
 
         <AuthContext.Consumer>
-            {  (auth) => (<View>
-
-
-
-                <Text style={styles.LogoText}>Sign In</Text>
+            {  (auth) => (
 
                 <View>
-                    <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
-                        Welcome!
-            </Text>
-                </View>
-
-                <InputTaker
-                    leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
-                    placeholder=" Email-address"
-                    widthpass={300}
-                    heightpass={50}
-                    bool = {false}
-                    keyboardType="email-address"
-                    onChangeText={
-                        function (currentInput) {
-                            setEmail(currentInput)
+                    <View>
+                        <BackLogo/>
+                        <Ionicons name="md-logo-react" size={150} color="white" style={styles.logoStyle}/>
+                        <Text style={{fontSize:35,alignSelf:"center",color:"white",fontWeight:"bold"}}>TraVac</Text>
+                    </View>
+                    <View style={{marginTop:130}}>
+                        <Text style={{ alignSelf: "center", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginBottom: 10 }}>
+                            Welcome!
+                        </Text>
+                    <InputTaker
+                        leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
+                        placeholder=" Email-address"
+                        widthpass={300}
+                        heightpass={50}
+                        bool={false}
+                        keyboardType="email-address"
+                        onChangeText={
+                            function (currentInput) {
+                                setEmail(currentInput)
+                            }
                         }
-                    }
-                >
-                </InputTaker>
+                    >
+                    </InputTaker>
 
 
-                <InputTaker
-                    leftIcon={<AntDesign name="lock" size={iconsize} color={colorcode} />}
-                    placeholder=" Password"
-                    widthpass={300}
-                    heightpass={50}
-                    bool={true}
-                    onChangeText={
-                        function (currentInput) {
-                            setPassword(currentInput)
+                    <InputTaker
+                        leftIcon={<AntDesign name="lock" size={iconsize} color={colorcode} />}
+                        placeholder=" Password"
+                        widthpass={300}
+                        heightpass={50}
+                        bool={true}
+                        onChangeText={
+                            function (currentInput) {
+                                setPassword(currentInput)
+                            }
                         }
-                    }
 
-                >
-                </InputTaker>
+                    >
+                    </InputTaker>
+                    </View>
+                    <View style={{ marginTop: 10 }}>
+                        <CurvedButtons
+                            title="Sign In"
+                            // style={styles.container}
+                            onPress={
+                                async function () {
 
-                <View style={{ marginTop: 60 }}>
-                    <CurvedButtons
-                        title="Sign In"
-                        // style={styles.container}
-                        onPress={
-                            async function () {
 
+                                    if (Email && Password) {
+                                        firebase
+                                            .auth()
+                                            .signInWithEmailAndPassword(Email, Password)
+                                            .then((userCreds) => {
+                                                auth.setisLoggedin(true);
+                                                auth.setCurrentUser(userCreds.user);
+                                            })
+                                            .catch((error) => {
+                                                alert(error);
+                                            });
 
-                                if (Email && Password) {
-                                    firebase
-                                        .auth()
-                                        .signInWithEmailAndPassword(Email, Password)
-                                        .then((userCreds) => {
-                                            auth.setisLoggedin(true);
-                                            auth.setCurrentUser(userCreds.user);
-                                        })
-                                        .catch((error) => {
-                                            alert(error);
-                                        });
-
-                                    //props.navigation.navigate("Home")
+                                        //props.navigation.navigate("Home")
+                                    }
                                 }
                             }
-                        }
-                        color='#db5e40'
-                        bgcolor='white'
-                        widthpass={300}
-                        heightpass={45}
-                    >
-                    </CurvedButtons>
+                            color='#db5e40'
+                            bgcolor='white'
+                            widthpass={300}
+                            heightpass={75}
+                        >
+                        </CurvedButtons>
 
-                </View>
-                <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
+                    </View>
+                    <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
 
 
-                    <Text style={styles.TextStyle}>Already Have an Account?</Text>
-                    <ClearButton
-                        title=" Sign Up"
-                        onPress={
-                            function () {
-                                props.navigation.navigate("SignUp")
+                        <Text style={styles.TextStyle}>Already Have an Account?</Text>
+                        <ClearButton
+                            title=" Sign Up"
+                            onPress={
+                                function () {
+                                    props.navigation.navigate("SignUp")
+                                }
                             }
-                        }
-                    >
-                    </ClearButton>
-                </View>
-            </View>)}
+                        >
+                        </ClearButton>
+                    </View>
+                </View>)}
 
         </AuthContext.Consumer>
 
@@ -157,8 +158,14 @@ const styles = StyleSheet.create(
             elevation: 10,
             color: "dimgray"
 
-        },
-
+        }
+        ,
+        logoStyle:{
+            justifyContent:"center",
+            alignSelf:"center",
+            marginVertical:-190,
+            paddingBottom:200
+        }
 
 
     }

@@ -74,12 +74,12 @@ const AirBook = ({ navigation }) => {
               <Text
                 style={styles.leftFont}
               >
-                Germany
+                {`Germany\n 3 am`}
           </Text>
               <Text
                 style={styles.rightFont}
               >
-                Indonesia
+                {`Indonesia\n 12 pm`}
           </Text>
           </View>
         </Card>
@@ -375,7 +375,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
     fontWeight: "bold",
     color: "#db5e40",
-    fontFamily: 'RobotoBold',
     alignSelf: "center",
     marginRight: 30
   },
@@ -397,7 +396,6 @@ const styles = StyleSheet.create({
   },
   headingFontStyle: {
         fontSize: 24,
-    fontFamily: "RobotoBold",
     color: "black",
     fontWeight: "bold",
   },

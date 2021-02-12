@@ -28,10 +28,11 @@ import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
+import BookingInfo from "./src/screeens/BookingInfo";
+import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
-const bStack = createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -103,48 +104,7 @@ const TabNavigator = () => {
   );
 };
 
-const TopTab = createMaterialTopTabNavigator();
-const BookingTabNavigator = () => {
-  return (
-    <TopTab.Navigator
-      initialRouteName="AirBook"
-      tabBarOptions={{
-        style: styles.tabBar,
-        activeTintColor: colors.orange,
-        inactiveTintColor: colors.gray,
-        showLabel: false,
-      }}>
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
 
-    </TopTab.Navigator>
-  );
-};
 const ProfileStack = () => {
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
@@ -193,7 +153,6 @@ const HomeStack = () => {
       <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
         headerShown: false
       }} />
-
       <stack.Screen name="TransportScreen" component={TransportScreen} options={{
         headerShown: false
       }} />
@@ -206,9 +165,9 @@ const HomeStack = () => {
       <stack.Screen name="BusBook" component={BusBook} options={{
         headerShown: false
       }} />
-
-
-
+      <stack.Screen name="BookingInfo" component={BookingInfo} options={{
+        headerShown: false
+      }} />
     </stack.Navigator>
   )
 }

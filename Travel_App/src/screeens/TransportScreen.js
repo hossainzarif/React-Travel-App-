@@ -24,10 +24,10 @@ const TransportScreen = ({navigation}) => {
             </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity onPress={() =>{
-            navigation.navigate('AirBook')
+            navigation.navigate('TrainBook')
             }}>
             <ImageBackground
-                source={require("../../assets/images/plane0.jpg")}
+                source={require("../../assets/images/trainnn.jpg")}
                 style={styles.discoverItem}
                 imageStyle={styles.discoverItemImage}
             >

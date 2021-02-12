@@ -1,4 +1,3 @@
-
 import React from "react"
 import { Text, StyleSheet, } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
@@ -15,24 +14,24 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import PlaceDetails from "./src/screeens/PlaceDetails";
-import LocationPicker from './src/screeens/LocationPicker';
+import ProfileScreen from './src/screeens/ProfileScreen';
 import CategoryPicker from './src/screeens/CategoryPicker';
 import AirBook from './src/screeens/AirBook';
-import ProfileScreen from './src/screeens/ProfileScreen';
+import PlaceDetails from "./src/screeens/PlaceDetails";
+import LocationPicker from './src/screeens/LocationPicker';
 import EditProfile from './src/screeens/EditProfile';
-
 import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
+
+const stack = createStackNavigator()
 import BookingInfo from "./src/screeens/BookingInfo";
 import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
-const stack = createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -73,8 +72,6 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Add"
         component={AddStack}
-
-
         options={{
 
           tabBarIcon: ({ color }) => (
@@ -103,8 +100,6 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-
 const ProfileStack = () => {
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
@@ -120,7 +115,6 @@ const ProfileStack = () => {
     </stack.Navigator>
   )
 }
-
 const AddStack = () => {
   return (
 
@@ -163,6 +157,10 @@ const HomeStack = () => {
         headerShown: false
       }} />
       <stack.Screen name="BusBook" component={BusBook} options={{
+        headerShown: false
+      }} />
+
+      <stack.Screen name="PostPage" component={PostPage} options={{
         headerShown: false
       }} />
       <stack.Screen name="BookingInfo" component={BookingInfo} options={{

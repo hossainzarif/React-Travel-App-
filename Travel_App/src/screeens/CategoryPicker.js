@@ -79,7 +79,7 @@ class CategoryPicker extends Component {
   }
 
   showDetails(_id) {
-    this.props.navigation.navigate('PostPage',{item:this.state.selectedNames});
+    this.props.navigation.navigate('PostPage',{item:this.state.selectedNames,location:"" });
   }
   pushval = adv => {
     items.push({ id: "XXXXXX", name: this.state.adv })
@@ -99,7 +99,7 @@ class CategoryPicker extends Component {
           <InputTaker
 
             leftIcon={<FontAwesome name="search" size={22} color="#db5e40" />}
-            placeholder="Add taG"
+            placeholder="Add tag."
             widthpass={225}
             heightpass={50}
             keyboardType="default"

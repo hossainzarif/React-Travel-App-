@@ -21,6 +21,7 @@ const styles = StyleSheet.create(
     {
         text: {
             fontSize: 22,
+            fontWeight:"bold"
         },
         buttonView: {            
             borderRadius:15,

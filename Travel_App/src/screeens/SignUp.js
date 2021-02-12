@@ -5,9 +5,12 @@ import { AntDesign } from '@expo/vector-icons'
 import CurvedButtons from "../Reusable/CurvedButtons"
 import ClearButton from "../Reusable/ClearButton"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import BackLogo from './../Reusable/BackLogo';
+
 const iconsize = 17
 const colorcode = "#606361"
 
@@ -22,11 +25,13 @@ const SignUp = (props) => {
 
 
         <View>
-            {/* <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: "center", marginTop: 50 }}>Welcome To Myblog</Text> */}
-            <Text style={styles.LogoText}>Sign Up</Text>
-
             <View>
-                <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
+                <BackLogo />
+                <Ionicons name="md-logo-react" size={150} color="white" style={styles.logoStyle}/>
+            </View>
+            {/* <Text style={{ fontSize: 28, fontWeight: "bold", alignSelf: "center", marginTop: 50 }}>Welcome To Myblog</Text> */}
+            <View style={{marginTop:120}}>
+                <Text style={{ alignSelf: "center", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 0, marginBottom: 10 }}>
                     Register Now!
             </Text>
             </View>
@@ -120,7 +125,7 @@ const SignUp = (props) => {
                     color='#db5e40'
                     bgcolor='white'
                     widthpass={300}
-                    heightpass={45}
+                    heightpass={75}
                 >
                 </CurvedButtons>
 
@@ -186,8 +191,13 @@ const styles = StyleSheet.create(
             color: "dimgray"
 
         },
-
+        logoStyle:{
+            justifyContent:"center",
+            alignSelf:"center",
+            marginVertical:-140,
+            paddingBottom:130
+        }
     }
 )
 
-export default SignUp
+export default SignUp;

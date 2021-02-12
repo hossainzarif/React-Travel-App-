@@ -1,4 +1,3 @@
-
 import React from "react"
 import { Text, StyleSheet, } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +7,7 @@ import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -15,31 +15,20 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-<<<<<<< HEAD
-import PlaceDetails from "./src/screeens/PlaceDetails";
-import LocationPicker from './src/screeens/LocationPicker';
-import CategoryPicker from './src/screeens/CategoryPicker';
-import AirBook from './src/screeens/AirBook';
-import ProfileScreen from './src/screeens/ProfileScreen';
 import EditProfile from './src/screeens/EditProfile';
-
-
-
-=======
 import PlaceDetails from "./src/screeens/PlaceDetails"
 import ProfileScreen from './src/screeens/ProfileScreen';
 import LocationPicker from './src/screeens/LocationPicker'
-import CategoryPicker from './src/screeens/CategoryPicker'
+import CategoryPicker from './src/screeens/CategoryPicker';
 import AirBook from './src/screeens/AirBook';
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
-const bStack=createStackNavigator()
+const bStack = createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -80,8 +69,8 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Add"
         component={PostPage}
-         initialParams={{ item:[] }}
-         
+        initialParams={{ item: [] }}
+
 
         options={{
 
@@ -98,7 +87,7 @@ const TabNavigator = () => {
           ),
         }}
       />
-      
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -112,7 +101,6 @@ const TabNavigator = () => {
   );
 };
 
-<<<<<<< HEAD
 const TopTab = createMaterialTopTabNavigator();
 const BookingTabNavigator = () => {
   return (
@@ -156,8 +144,6 @@ const BookingTabNavigator = () => {
   );
 };
 
-=======
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
 const HomeStack = () => {
   return (
     <stack.Navigator initialRouteName="HomePage">
@@ -187,7 +173,6 @@ const HomeStack = () => {
         headerShown: false
       }} />
 
-<<<<<<< HEAD
       <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
         headerShown: false
       }} />
@@ -196,11 +181,9 @@ const HomeStack = () => {
         headerShown: false
       }} />
 
-=======
-<stack.Screen name="PostPage" component={PostPage} options={{
+      <stack.Screen name="PostPage" component={PostPage} options={{
         headerShown: false
       }} />
->>>>>>> 2ab90ebe57b2a009aad1317338db67e243ece0ac
     </stack.Navigator>
   )
 }
@@ -236,7 +219,7 @@ function App() {
           </NavigationContainer>)}
       </AuthContext.Consumer>
     </AuthProvider>
-    
+
   )
 }
 

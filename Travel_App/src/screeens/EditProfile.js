@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import PhotoComponent from "../Reusable/PhotoComponent"
 const iconsize = 17
 const colorcode = "#606361"
 
@@ -16,9 +17,25 @@ const EditProfile = (props) => {
     const [Email, setEmail] = useState({})
     const [Password, setPassword] = useState("")
     // const { updateEmail, currentUser } = useAuth();
+
+    // const doProfileUpdate = (profile) => {
+    //     return (
+
+    //         firebase
+    //             .firestore()
+    //             .collection("users")
+    //             .doc(auth.currentUser.uid)
+    //             .set(profile)
+    //             .catch((error) => console.error("Error: ", error))
+    //     );
+
+    // };
+
     return (
         <View>
             <Text style={styles.LogoText}>Edit Profile</Text>
+
+            <PhotoComponent/>
 
             <InputTaker
                 leftIcon={<AntDesign name="user" size={iconsize} color={colorcode} />}
@@ -64,6 +81,7 @@ const EditProfile = (props) => {
             >
             </InputTaker>
 
+
             <View style={{ marginTop: 40 }}>
                 <CurvedButtons
                     title="Update"
@@ -91,7 +109,7 @@ const EditProfile = (props) => {
                                             .then(() => {
 
                                                 console.log(userCreds.user);
-                                                props.navigation.navigate("ProfileScreen");
+                                                props.navigation.navigate("SignIn");
                                             })
                                             .catch((error) => {
                                                 alert(error);
@@ -105,6 +123,8 @@ const EditProfile = (props) => {
                             }
                         }
                     }
+
+
 
                     color='#db5e40'
                     bgcolor='white'
@@ -132,7 +152,7 @@ const styles = StyleSheet.create(
             color: 'black',
             alignSelf: "center",
             marginTop: 30,
-            marginBottom: 70,
+            marginBottom: 30,
             fontWeight: 'bold',
         },
         placeholdertext:

@@ -36,7 +36,7 @@ const PhotoComponent = () => {
 
     return (
         
-           < View style={{width:200,justifyContent:"center",alignContent:"center",alignSelf:"center",height:220,marginTop:10}}>
+           < View style={{width:200,justifyContent:"center",alignContent:"center",alignSelf:"center",height:220,marginTop:10, marginBottom:10}}>
             <TouchableOpacity
             
             onPress={pickImage}

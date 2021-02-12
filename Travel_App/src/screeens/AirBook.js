@@ -47,6 +47,12 @@ const AirBook = ({ navigation }) => {
               alignItems: "center",
             }}
           >
+<<<<<<< HEAD
+            <Image
+              source={require("../../assets/images/p.png")}
+              style={{ height: 26, width: 26 }}
+            />
+=======
             <Text
               style={styles.headingFontStyle}
             >
@@ -62,6 +68,7 @@ const AirBook = ({ navigation }) => {
             >
               IDN
           </Text>
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
           </View>
           <View
             style={{

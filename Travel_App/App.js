@@ -1,4 +1,3 @@
-
 import React from "react"
 import { Text, StyleSheet, } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +7,7 @@ import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -15,6 +15,14 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+<<<<<<< HEAD
+import EditProfile from './src/screeens/EditProfile';
+import PlaceDetails from "./src/screeens/PlaceDetails"
+import ProfileScreen from './src/screeens/ProfileScreen';
+import LocationPicker from './src/screeens/LocationPicker'
+import CategoryPicker from './src/screeens/CategoryPicker';
+import AirBook from './src/screeens/AirBook';
+=======
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
 import CategoryPicker from './src/screeens/CategoryPicker';
@@ -22,17 +30,25 @@ import AirBook from './src/screeens/AirBook';
 import ProfileScreen from './src/screeens/ProfileScreen';
 import EditProfile from './src/screeens/EditProfile';
 
-
+import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
+<<<<<<< HEAD
+
+const AuthStack = createStackNavigator()
+const stack = createStackNavigator()
+const bStack = createStackNavigator()
+=======
 import BookingInfo from "./src/screeens/BookingInfo";
 import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -72,7 +88,12 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Add"
+<<<<<<< HEAD
+        component={PostPage}
+        initialParams={{ item: [] }}
+=======
         component={AddStack}
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
 
 
         options={{
@@ -83,7 +104,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Liked"
-        component={PostPage}
+        component={Notification}
         options={{
           tabBarIcon: ({ color }) => (
             <Entypo name="heart" size={32} color={color} />
@@ -104,8 +125,55 @@ const TabNavigator = () => {
   );
 };
 
+<<<<<<< HEAD
+const TopTab = createMaterialTopTabNavigator();
+const BookingTabNavigator = () => {
+  return (
+    <TopTab.Navigator
+      initialRouteName="AirBook"
+      tabBarOptions={{
+        style: styles.tabBar,
+        activeTintColor: colors.orange,
+        inactiveTintColor: colors.gray,
+        showLabel: false,
+      }}>
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
+      />
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
+      />
+      <TopTab.Screen
+        name="AirBook"
+        component={AirBook}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="airplane" size={24} color={color} />
+          )
+        }}
+      />
+
+    </TopTab.Navigator>
+  );
+};
+
+const HomeStack = () => {
+=======
 
 const ProfileStack = () => {
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
 
@@ -159,13 +227,23 @@ const HomeStack = () => {
       <stack.Screen name="AirBook" component={AirBook} options={{
         headerShown: false
       }} />
+<<<<<<< HEAD
+
+      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
+=======
       <stack.Screen name="TrainBook" component={TrainBook} options={{
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
         headerShown: false
       }} />
       <stack.Screen name="BusBook" component={BusBook} options={{
         headerShown: false
       }} />
+<<<<<<< HEAD
+
+      <stack.Screen name="PostPage" component={PostPage} options={{
+=======
       <stack.Screen name="BookingInfo" component={BookingInfo} options={{
+>>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
         headerShown: false
       }} />
     </stack.Navigator>

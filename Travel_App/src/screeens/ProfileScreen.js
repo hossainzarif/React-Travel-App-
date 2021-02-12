@@ -12,7 +12,7 @@ import "firebase/firestore";
 
 
 const ProfileScreen = (props) => {
-    console.log(props);
+    //console.log(props);
     // const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
 
@@ -42,6 +42,8 @@ const ProfileScreen = (props) => {
     // let postsButton = " ";
     // postsButton = "Post(".concat(numberOfPosts.toString()).concat(")");
 
+
+
     return (
         <AuthContext.Consumer>
             {(auth) => (
@@ -67,23 +69,31 @@ const ProfileScreen = (props) => {
                                 color: "black",
                                 size: 30,
                                 onPress: function () {
-                                    auth.setIsLoggedIn(false);
-                                    auth.setCurrentUser({});
+                                    firebase
+                                        .auth()
+                                        .signOut()
+                                        .then(() => {
+                                            auth.setIsLoggedIn(false);
+                                            auth.setCurrentUser({});
+                                        })
+                                        .catch((error) => {
+                                            alert(error);
+                                        })
                                 },
                             }}
                         />
                         <SafeAreaView>
-                            
-                                <TouchableOpacity onPress={
-                                    function () {
-                                        props.navigation.navigate("EditProfile")
-                                    }
-                                }><View style={styles.editWrapper}>
+
+                            <TouchableOpacity onPress={
+                                function () {
+                                    props.navigation.navigate("EditProfile")
+                                }
+                            }><View style={styles.editWrapper}>
 
                                     <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
                                     <Entypo name="edit" size={20} color="#6b778d" />
                                 </View>
-                                </TouchableOpacity>
+                            </TouchableOpacity>
 
 
                         </SafeAreaView>
@@ -216,7 +226,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     active: {
-        backgroundColor: "#db5e40",
+        backgroundColor: "#00bd56",
         position: "absolute",
         bottom: 28,
         left: 10,

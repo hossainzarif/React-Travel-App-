@@ -10,6 +10,8 @@ import {
     Alert,
     ScrollView
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Input, Button, Card, Tile } from 'react-native-elements';
 import CurvedButtons from '../Reusable/CurvedButtons';
@@ -24,6 +26,8 @@ import LocationPicker from '../screeens/LocationPicker';
 import MultiSelect from 'react-native-multiple-select';
 import "firebase/firestore";
 import { AuthContext } from "../Providers/AuthProvider"
+import StarRating from 'react-native-star-rating';
+import { or } from 'react-native-reanimated';
 
 const PostPage = (props) => {
 
@@ -38,40 +42,13 @@ const PostPage = (props) => {
     const [Header, setHeaderName] = useState("")
     const [blog, setBlog] = useState("")
     // const {data} = props.name
-
+    const [costs,setCost] = useState(0)
+    const [duration,setDuration] = useState(0)
     const [image, setImage] = useState("");
     const org = "#db5e40"
     let multiSelect = ""
     //const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
-    let items = [{
-        id: '92iijs7yta',
-        name: 'Boating'
-    }, {
-        id: 'a0s0a8ssbsd',
-        name: 'Trekking'
-    }, {
-        id: '16hbajsabsd',
-        name: 'Surfing'
-    }, {
-        id: 'nahs75a5sg',
-        name: 'Scuba diving'
-    }, {
-        id: '667atsas',
-        name: 'Exploring'
-    }, {
-        id: 'hsyasajs',
-        name: 'Canoeing'
-    }, {
-        id: 'djsjudksjd',
-        name: 'Rafting'
-    }, {
-        id: 'sdhyaysdj',
-        name: 'kayaking'
-    }, {
-        id: 'suudydjsjd',
-        name: 'Zip-Lining'
-    }
-    ];
+    const [stars, setStars] = useState(0)
     useEffect(() => {
 
         (async () => {
@@ -110,6 +87,9 @@ const PostPage = (props) => {
             quality: 1,
         });
 
+
+
+
         // console.log(result);
 
         if (!result.cancelled) {
@@ -144,9 +124,10 @@ const PostPage = (props) => {
                             url: downloadURL,
                             time: firebase.firestore.Timestamp.now(),
                             categories: props.route.params.item,
-                            locationName: props.route.params.location
-
-
+                            locationName: props.route.params.location,
+                            costing : costs,
+                            durations:duration,
+                            rating :stars
                         })
                         .then((docref) => {
                             Alert.alert("DONE");
@@ -214,7 +195,32 @@ const PostPage = (props) => {
                         >
                         </PostTaker>
 
-
+                        <InputTaker
+                            leftIcon={<FontAwesome name="dollar" size={20} color={colorcode}/> }
+                            placeholder="Cost Per Person."
+                            widthpass={300}
+                            heightpass={50}
+                            keyboardType="number-pad"
+                            onChangeText={
+                                function (currentInput) {
+                                    setCost(currentInput)
+                                }
+                            }
+                        >
+                        </InputTaker>
+                        <InputTaker
+                            leftIcon={<Ionicons name="md-time" size={20} color={colorcode} />}
+                            placeholder="Duration in hours."
+                            widthpass={300}
+                            heightpass={50}
+                            keyboardType="number-pad"
+                            onChangeText={
+                                function (currentInput) {
+                                    setDuration(currentInput)
+                                }
+                            }
+                        >
+                        </InputTaker>
 
                         <View style={{ marginTop: 10, height: 30, flexDirection: 'row' }}>
                             <Button
@@ -258,6 +264,20 @@ const PostPage = (props) => {
 
                         </View>
 
+                        <View style={{ width: 250, alignSelf: "center",marginTop:20 }}>
+
+                            <StarRating
+                                fullStarColor= {org}
+                                
+                                disabled={false}
+                                maxStars={5}
+                                starSize={30}
+                                rating={stars}
+                                halfStarEnabled={true}
+                                selectedStar={(rating) => setStars(rating)}
+
+                            />
+                        </View>
 
                         <View style={{ marginTop: 20 }}>
                             <Button
@@ -307,6 +327,8 @@ const PostPage = (props) => {
 
                     </View>
 
+
+
                     <View style={{ marginTop: 20, marginBottom: 20 }}>
                         <CurvedButtons
                             title="Post"
@@ -349,7 +371,7 @@ const styles = StyleSheet.create(
             borderRadius: 20,
             elevation: 5,
             marginTop: 100,
-            height: 410,
+            height: 580,
             width: 330
 
 

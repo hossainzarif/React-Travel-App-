@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -7,6 +7,7 @@ import {
     ScrollView,
     ImageBackground,
 } from 'react-native';
+import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -20,11 +21,44 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
+import "firebase/firestore";
+import * as firebase from "firebase"
 Feather.loadFont();
 Entypo.loadFont();
 
 
+
 const HomePage = ({ navigation }) => {
+    const [postblog, setPostblog] = useState("");
+    const [posts, setPosts] = useState([]);
+
+
+
+    const loadPosts = async () => {
+
+        firebase
+            .firestore()
+            .collection("posts")
+            .orderBy("time", "desc")
+            .onSnapshot((querySnapshot) => {
+                let temp_posts = [];
+                querySnapshot.forEach((doc) => {
+                    temp_posts.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    });
+                });
+                setPosts(temp_posts);
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+
+    useEffect(() => {
+        loadPosts()
+    }, []);
+
 
     let [fontsLoaded] = useFonts({
         'Lato-Bold': require('../../assets/fonts/Lato-Bold.ttf'),
@@ -32,27 +66,36 @@ const HomePage = ({ navigation }) => {
 
     });
     const renderDiscoverItem = ({ item }) => {
+        const image = { uri: item.data.url };
+
         return (
+            <AuthContext.Consumer>
+            {(auth) => (
+            
             <TouchableOpacity
                 onPress={() =>
                     navigation.navigate('PlaceDetails', {
-                        item: item,
+                        items: item,
+                        auth_id:auth.CurrentUser.uid
                     })
                 }>
                 <ImageBackground
-                    source={item.image}
+
+                    source={image}
                     style={[
                         styles.discoverItem,
                         { marginLeft: item.id === 'discover-1' ? 20 : 0 },
                     ]}
                     imageStyle={styles.discoverItemImage}>
-                    <Text style={styles.discoverItemTitle}>{item.title}</Text>
+                    <Text style={styles.discoverItemTitle}>{item.data.postheader}</Text>
                     <View style={styles.discoverItemLocationWrapper}>
                         <Entypo name="location-pin" size={18} color={colors.white} />
-                        <Text style={styles.discoverItemLocationText}>{item.location}</Text>
+                        <Text style={styles.discoverItemLocationText}>{item.data.locationName}</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
+            )}
+            </AuthContext.Consumer>
         );
     };
 
@@ -120,7 +163,7 @@ const HomePage = ({ navigation }) => {
                         </View>
                         <View style={styles.discoverItemsWrapper}>
                             <FlatList
-                                data={discoverData}
+                                data={posts}
                                 renderItem={renderDiscoverItem}
                                 keyExtractor={(item) => item.id}
                                 horizontal

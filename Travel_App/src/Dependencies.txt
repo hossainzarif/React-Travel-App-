@@ -20,3 +20,10 @@ npm install @react-navigation/material-top-tabs react-native-tab-view
 npm i react-native-vector-icons
 npm i --save react-native-safe-area-context
 expo install react-native-svg
+
+
+
+----> new dependencies
+npm i react-native-gesture-bottom-sheet
+npm install react-native-actions-sheet --save
+npm i react-native-star-rating

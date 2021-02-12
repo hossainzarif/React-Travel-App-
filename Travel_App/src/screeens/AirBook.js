@@ -13,103 +13,366 @@ const AirBook = ({ navigation }) => {
       source={require("../../assets/images/un.jpg")}
       style={{ height: 900, width: 450 }}
     >
-      <View
-        style={{
-          width: 100,
-          marginTop: 50,
-          marginBottom: 20,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <ScrollView>
         <View
           style={{
-            width: 80,
-            height: 80,
-            borderRadius: 50,
-            backgroundColor: "#db5e40",
+            width: 100,
+            marginTop: 50,
+            marginBottom: 20,
             justifyContent: "center",
             alignItems: "center",
-            alignSelf: "center",
-            marginLeft: 320
           }}
         >
-          <Ionicons name="airplane-sharp" size={40} color="white" style={styles.iconStyle} />
-        </View>
-
-      </View>
-      <Text style={styles.textStyle}>CHOOSE A FLIGHT</Text>
-      <View>
-        <Card containerStyle={styles.cardViewStyle}>
           <View
             style={{
-              flexDirection: "row",
+              width: 80,
+              height: 80,
+              borderRadius: 50,
+              backgroundColor: "#db5e40",
+              justifyContent: "center",
               alignItems: "center",
+              alignSelf: "center",
+              marginLeft: 320
             }}
           >
-<<<<<<< HEAD
-            <Image
-              source={require("../../assets/images/p.png")}
-              style={{ height: 26, width: 26 }}
-            />
-=======
-            <Text
-              style={styles.headingFontStyle}
-            >
-              NYC
-          </Text>
-            <Text
-              style={styles.dots}
-            >
-              - - - - - - - - - - - - - - - -
-          </Text>
-            <Text
-              style={styles.headingFontStyle}
-            >
-              IDN
-          </Text>
->>>>>>> 9801f1a4c55296d5711ac404fd5ec8abae24f015
+            <Ionicons name="airplane-sharp" size={40} color="white" style={styles.iconStyle} />
           </View>
-          <View
-            style={{
+
+        </View>
+        <Text style={styles.textStyle}>CHOOSE A FLIGHT</Text>
+        <View>
+          <Card containerStyle={styles.cardViewStyle}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={require("../../assets/images/p.png")}
+                style={{ height: 26, width: 26 }}
+              />
+            </View>
+            <View style={{
               flexDirection: "row",
-            }}
-          >
-            <Text
-              style={styles.leftFont}
+            }}>
+              <Text style={styles.headingFontStyle}>
+                GM
+              </Text>
+              <Text style={styles.dots}>
+                - - - - - - - - - - - - - - - -
+              </Text>
+              <Text style={styles.headingFontStyle}>
+                IDN
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+              }}
             >
-              New York
+              <Text
+                style={styles.leftFont}
+              >
+                Germany
           </Text>
-            <Text
-              style={styles.rightFont}
-            >
-              Indonesia
+              <Text
+                style={styles.rightFont}
+              >
+                Indonesia
           </Text>
           </View>
         </Card>
 
-        <Button
-          type="solid"
-          buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
-          title="Book"
-          onPress={() => {
-            navigation.navigate('BookingInfo');
-            console.log('payemnt info screen')
-          }}
-        />
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
+            <Card containerStyle={styles.cardViewStyle}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/p.png")}
+                  style={{ height: 26, width: 26 }}
+                />
+              </View>
+              <View style={{
+                flexDirection: "row",
+              }}>
+                <Text style={styles.headingFontStyle}>
+                  HKG
+              </Text>
+                <Text style={styles.dots}>
+                  - - - - - - - - - - - - - - - -
+              </Text>
+                <Text style={styles.headingFontStyle}>
+                  DXB
+              </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={styles.leftFont}
+                >
+                  {`Hong Kong \n 6 am`}
+                </Text>
+                <Text
+                  style={styles.rightFont}
+                >
+                  {`Dubai\n 7 pm`}
+                </Text>
+              </View>
+            </Card>
+
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
+            <Card containerStyle={styles.cardViewStyle}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/p.png")}
+                  style={{ height: 26, width: 26 }}
+                />
+              </View>
+              <View style={{
+                flexDirection: "row",
+              }}>
+                <Text style={styles.headingFontStyle}>
+                  KL
+              </Text>
+                <Text style={styles.dots}>
+                  - - - - - - - - - - - - - - - - - - -
+              </Text>
+                <Text style={styles.headingFontStyle}>
+                  ISL
+              </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={styles.leftFont}
+                >
+                  {`Kuala Lampur \n 11 am`}
+                </Text>
+                <Text
+                  style={{
+                    color: "#a2a2db",
+                    paddingLeft: 210,
+                  }}
+                >
+                  {`Istanbul\n 5 pm`}
+                </Text>
+              </View>
+            </Card>
+
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
+            <Card containerStyle={styles.cardViewStyle}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/p.png")}
+                  style={{ height: 26, width: 26 }}
+                />
+              </View>
+              <View style={{
+                flexDirection: "row",
+              }}>
+                <Text style={styles.headingFontStyle}>
+                  DOH
+              </Text>
+                <Text style={styles.dots}>
+                  - - - - - - - - - - - - - - - - -
+              </Text>
+                <Text style={styles.headingFontStyle}>
+                  UK
+              </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={styles.leftFont}
+                >
+                  {`Doha \n 1 am`}
+                </Text>
+                <Text
+                  style={{
+                    color: "#a2a2db",
+                    paddingLeft: 260,
+                  }}
+                >
+                  {`London\n 9 am`}
+                </Text>
+              </View>
+            </Card>
+
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
+            <Card containerStyle={styles.cardViewStyle}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/p.png")}
+                  style={{ height: 26, width: 26 }}
+                />
+              </View>
+              <View style={{
+                flexDirection: "row",
+              }}>
+                <Text style={styles.headingFontStyle}>
+                  BD
+              </Text>
+                <Text style={styles.dots}>
+                  - - - - - - - - - - - - - - - - - -
+              </Text>
+                <Text style={styles.headingFontStyle}>
+                  DXB
+              </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={styles.leftFont}
+                >
+                  {`Bangladesh\n 3 am`}
+                </Text>
+                <Text
+                  style={styles.rightFont}
+                >
+                  {`Dubai\n 1 pm`}
+                </Text>
+              </View>
+            </Card>
+
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
+            <Card containerStyle={styles.cardViewStyle}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={require("../../assets/images/p.png")}
+                  style={{ height: 26, width: 26 }}
+                />
+              </View>
+              <View style={{
+                flexDirection: "row",
+              }}>
+                <Text style={styles.headingFontStyle}>
+                  USA
+              </Text>
+                <Text style={styles.dots}>
+                  - - - - - - - - - - - - - - - -
+              </Text>
+                <Text style={styles.headingFontStyle}>
+                  RU
+              </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={styles.leftFont}
+                >
+                  {`United States \n 5 am`}
+                </Text>
+                <Text
+                  style={styles.rightFont}
+                >
+                  {`Russia\n 7 pm`}
+                </Text>
+              </View>
+            </Card>
+
+            <Button
+              type="solid"
+              buttonStyle={{ height: 50, width: 381, marginLeft: 17, marginRight: 90, backgroundColor: "#db5e40" }}
+              title="Book"
+              onPress={() => {
+                navigation.navigate('BookingInfo');
+                console.log('payemnt info screen')
+              }}
+            />
 
       </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 10,
+        container: {
+        padding: 10,
     fontSize: 30
   },
   textStyle: {
-    fontSize: 30,
+        fontSize: 30,
     fontWeight: "bold",
     color: "#db5e40",
     fontFamily: 'RobotoBold',
@@ -117,10 +380,10 @@ const styles = StyleSheet.create({
     marginRight: 30
   },
   iconStyle: {
-    marginLeft: 5
+        marginLeft: 5
   },
   cardViewStyle: {
-    fontSize: 30,
+        fontSize: 30,
     backgroundColor: '#fff',
     height: 100,
     width: 380,
@@ -133,24 +396,24 @@ const styles = StyleSheet.create({
     elevation: 1
   },
   headingFontStyle: {
-    fontSize: 24,
+        fontSize: 24,
     fontFamily: "RobotoBold",
     color: "black",
     fontWeight: "bold",
   },
   dots: {
-    fontSize: 20,
+        fontSize: 20,
     color: "#a2a2db",
     paddingHorizontal: 15,
   },
   leftFont: {
-    color: "#a2a2db",
-    fontFamily: "RobotoRegular",
+        color: "#a2a2db",
+
   },
   rightFont: {
-    color: "#a2a2db",
-    fontFamily: "RobotoRegular",
+        color: "#a2a2db",
+
     paddingLeft: 220,
   }
-})
+});
 export default AirBook;

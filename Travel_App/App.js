@@ -7,7 +7,6 @@ import SignUp from "./src/screeens/SignUp"
 import { AuthContext, AuthProvider } from "./src/Providers/AuthProvider"
 import colors from './assets/colors/colors';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import AppLoading from 'expo-app-loading';
 import PostPage from './src/screeens/PostPage'
 import SignIn from "./src/screeens/SignIn"
@@ -15,19 +14,12 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import EditProfile from './src/screeens/EditProfile';
-import PlaceDetails from "./src/screeens/PlaceDetails"
 import ProfileScreen from './src/screeens/ProfileScreen';
-import LocationPicker from './src/screeens/LocationPicker'
 import CategoryPicker from './src/screeens/CategoryPicker';
 import AirBook from './src/screeens/AirBook';
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
-import CategoryPicker from './src/screeens/CategoryPicker';
-import AirBook from './src/screeens/AirBook';
-import ProfileScreen from './src/screeens/ProfileScreen';
 import EditProfile from './src/screeens/EditProfile';
-
 import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TrainBook from './src/screeens/TrainBook';
@@ -35,13 +27,11 @@ import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
 
-const AuthStack = createStackNavigator()
 const stack = createStackNavigator()
 import BookingInfo from "./src/screeens/BookingInfo";
 import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
-const stack = createStackNavigator()
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -110,10 +100,7 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-
-
-
-const HomeStack = () => {
+const ProfileStack = () => {
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
 
@@ -128,7 +115,6 @@ const HomeStack = () => {
     </stack.Navigator>
   )
 }
-
 const AddStack = () => {
   return (
 

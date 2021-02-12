@@ -19,8 +19,9 @@ const TransportScreen = ({navigation}) => {
                 source={require("../../assets/images/del.jpg")}
                 style={styles.discoverItem}
                 imageStyle={styles.discoverItemImage}
+                blurRadius={0}
             >
-            <Text>Airplane</Text>
+            <Text style={styles.textStyle}>Airplane</Text>
             </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity onPress={() =>{
@@ -31,7 +32,18 @@ const TransportScreen = ({navigation}) => {
                 style={styles.discoverItem}
                 imageStyle={styles.discoverItemImage}
             >
-            <Text>Airplane</Text>
+            <Text style={styles.textStyle}>Train</Text>
+            </ImageBackground>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() =>{
+            navigation.navigate('BusBook')
+            }}>
+            <ImageBackground
+                source={require("../../assets/images/bus.jpg")}
+                style={styles.discoverItem}
+                imageStyle={styles.discoverItemImage}
+            >
+            <Text style={styles.textStyle}>Bus</Text>
             </ImageBackground>
         </TouchableOpacity>
         </ScrollView>
@@ -69,6 +81,22 @@ const styles= StyleSheet.create({
     },
     viewStyle:{
         alignContent:'center'
+    },
+    textStyle:{
+       fontSize:40,
+       fontWeight:"bold",
+       color:"white",
+       textAlign:'center',
+       marginTop:150,
+       fontFamily: "Cochin",
+       textDecorationLine:"underline",
+       textDecorationColor: "#db5e40",
+        textShadowColor: "black",
+        textShadowRadius: 5,
+        margin: 24,
+        letterSpacing:2,
+        textShadowOffset:{width:1,height:1}
+        
     }
 })
 export default TransportScreen;

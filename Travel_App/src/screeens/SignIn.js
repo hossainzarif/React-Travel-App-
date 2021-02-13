@@ -23,96 +23,97 @@ const SignIn = (props) => {
     return (
 
         <AuthContext.Consumer>
-            {  (auth) => (<View>
-
-
-
-                <Text style={styles.LogoText}>Sign In</Text>
-
+            {  (auth) => (
                 <View>
-                    <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
-                        Welcome!
-            </Text>
-                </View>
 
-                <InputTaker
-                    leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
-                    placeholder=" Email-address"
-                    widthpass={300}
-                    heightpass={50}
-                    bool = {false}
-                    keyboardType="email-address"
-                    onChangeText={
-                        function (currentInput) {
-                            setEmail(currentInput)
+                    <Text style={styles.LogoText}>Sign In</Text>
+
+                    <View>
+                        <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
+                            Welcome!
+                        </Text>
+                    </View>
+
+                    <InputTaker
+                        leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
+                        placeholder=" Email-address"
+                        widthpass={300}
+                        heightpass={50}
+                        bool={false}
+                        keyboardType="email-address"
+                        onChangeText={
+                            function (currentInput) {
+                                setEmail(currentInput)
+                            }
                         }
-                    }
-                >
-                </InputTaker>
+                    >
+                    </InputTaker>
 
 
-                <InputTaker
-                    leftIcon={<AntDesign name="lock" size={iconsize} color={colorcode} />}
-                    placeholder=" Password"
-                    widthpass={300}
-                    heightpass={50}
-                    bool={true}
-                    onChangeText={
-                        function (currentInput) {
-                            setPassword(currentInput)
+                    <InputTaker
+                        leftIcon={<AntDesign name="lock" size={iconsize} color={colorcode} />}
+                        placeholder=" Password"
+                        widthpass={300}
+                        heightpass={50}
+                        bool={true}
+                        onChangeText={
+                            function (currentInput) {
+                                setPassword(currentInput)
+                            }
                         }
-                    }
 
-                >
-                </InputTaker>
+                    >
+                    </InputTaker>
 
-                <View style={{ marginTop: 60 }}>
-                    <CurvedButtons
-                        title="Sign In"
-                        // style={styles.container}
-                        onPress={
-                            async function () {
+                    <View style={{ marginTop: 60 }}>
+                        <CurvedButtons
+                            title="Sign In"
+                            // style={styles.container}
+                            onPress={
+                                async function () {
 
 
-                                if (Email && Password) {
-                                    firebase
-                                        .auth()
-                                        .signInWithEmailAndPassword(Email, Password)
-                                        .then((userCreds) => {
-                                            auth.setisLoggedin(true);
-                                            auth.setCurrentUser(userCreds.user);
-                                        })
-                                        .catch((error) => {
-                                            alert(error);
-                                        });
+                                    if (Email && Password) {
+                                        firebase
+                                            .auth()
+                                            .signInWithEmailAndPassword(Email, Password)
+                                            .then((userCreds) => {
+                                                auth.setisLoggedin(true);
+                                                auth.setCurrentUser(userCreds.user);
+                                            })
+                                            .catch((error) => {
+                                                alert(error);
+                                            });
 
-                                    //props.navigation.navigate("Home")
+                                        //props.navigation.navigate("Home")
+                                    }
                                 }
                             }
-                        }
-                        color='#db5e40'
-                        bgcolor='white'
-                        widthpass={300}
-                        heightpass={45}
-                    >
-                    </CurvedButtons>
+                            color='#db5e40'
+                            bgcolor='white'
+                            widthpass={300}
+                            heightpass={45}
+                        >
+                        </CurvedButtons>
 
-                </View>
-                <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
+                    </View>
+                    <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "center", }}>
 
 
-                    <Text style={styles.TextStyle}>Already Have an Account?</Text>
-                    <ClearButton
-                        title=" Sign Up"
-                        onPress={
-                            function () {
-                                props.navigation.navigate("SignUp")
+                        <Text style={styles.TextStyle}>Already Have an Account?</Text>
+                        <ClearButton
+                            title=" Sign Up"
+                            onPress={
+                                function () {
+                                    props.navigation.navigate("SignUp")
+                                }
                             }
-                        }
-                    >
-                    </ClearButton>
+                        >
+                        </ClearButton>
+                    </View>
                 </View>
-            </View>)}
+                
+                )}
 
         </AuthContext.Consumer>
 

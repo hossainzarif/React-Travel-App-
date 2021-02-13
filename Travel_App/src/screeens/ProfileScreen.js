@@ -12,35 +12,41 @@ import "firebase/firestore";
 
 
 const ProfileScreen = (props) => {
-    //console.log(props);
-    // const [numberOfPosts, setNumberOfPosts] = useState(0);
+    const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
+    console.log(props.userId);
 
-    // const loadPosts = async () => {
-    //     setIsLoading(true);
-    //     firebase
-    //         .firestore()
-    //         .collection('posts')
-    //         .doc(props.postID)
-    //         .onSnapshot((querySnapshot) => {
-    //             setNumberOfPosts(querySnapshot.size)
-    //         })
-    //         .catch((error) => {
-    //             setIsLoading(false);
-    //             alert(error);
-    //         })
-    // }
+    const loadPosts = async () => {
+        //setIsLoading(true);
 
 
 
+        firebase
+            .firestore()
+            .collection('posts')
+            .onSnapshot((querySnapshot) => {
+                // if (props.userId == auth.CurrentUser.uid) {
+                //     setNumberOfPosts(querySnapshot.size)
+                // }
+                setNumberOfPosts(querySnapshot.size)
 
-    // useEffect(() => {
-    //     loadPosts();
-    //     // loadNotificationData();
-    // }, [])
+            })
+            .catch((error) => {
+                //setIsLoading(false);
+                alert(error);
+            })
 
-    // let postsButton = " ";
-    // postsButton = "Post(".concat(numberOfPosts.toString()).concat(")");
+    }
+
+
+
+
+    useEffect(() => {
+        loadPosts();
+    }, [])
+
+    let postsButton = " ";
+    postsButton = numberOfPosts.toString();
 
 
 
@@ -69,6 +75,7 @@ const ProfileScreen = (props) => {
                                 color: "black",
                                 size: 30,
                                 onPress: function () {
+                                    //console.log(auth.setIsLoggedIn())
                                     firebase
                                         .auth()
                                         .signOut()
@@ -88,7 +95,8 @@ const ProfileScreen = (props) => {
                                 function () {
                                     props.navigation.navigate("EditProfile")
                                 }
-                            }><View style={styles.editWrapper}>
+                            }>
+                                <View style={styles.editWrapper}>
 
                                     <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
                                     <Entypo name="edit" size={20} color="#6b778d" />
@@ -117,11 +125,21 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
                         </View>
 
+
+
                         <View style={styles.statsContainer}>
-                            <View style={styles.statsBox}>
-                                <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                                <Text style={[styles.text, styles.subText]}>Posts</Text>
-                            </View>
+                            <TouchableOpacity onPress={
+                                function () {
+                                    props.navigation.navigate("EditProfile")
+                                }
+                            }>
+                                <View style={styles.statsBox}>
+                                    <Text style={[styles.text, { fontSize: 24 }]}>{postsButton}</Text>
+                                    <Text style={[styles.text, styles.subText]}>Posts</Text>
+                                </View>
+                            </TouchableOpacity>
+
+
                             <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
                                 <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
                                 <Text style={[styles.text, styles.subText]}>Followers</Text>
@@ -258,7 +276,10 @@ const styles = StyleSheet.create({
     },
     statsBox: {
         alignItems: "center",
-        flex: 1
+        flex: 1,
+        marginLeft: 15
+
+
     },
     mediaImageContainer: {
         width: 180,

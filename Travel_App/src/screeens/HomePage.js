@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    ScrollView,
-    ImageBackground,
-} from 'react-native';
+    View, Text, StyleSheet, Image, ScrollView, ImageBackground} from 'react-native';
 import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';
 import Feather from 'react-native-vector-icons/Feather';

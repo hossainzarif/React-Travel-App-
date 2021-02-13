@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import CurvedButtons from './CurvedButtons';
 import TextField from './TextField';
 
@@ -42,10 +42,12 @@ const CreditCardForm = () => {
             />
             {/* </View> */}
 
-            <View style={{marginTop:20}}>
+            <View style={{ marginTop: 20 }}>
                 <CurvedButtons
-                    title="PAY $15.12"
-                    onPress={onSubmit}
+                    title="$ PAY"
+                    onPress={function () {
+                        alert("Payment Done!");
+                    }}
                     color='#db5e40'
                     bgcolor='white'
                     widthpass={310}

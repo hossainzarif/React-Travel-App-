@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import CurvedButtons from './CurvedButtons';
+import { Fontisto } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import TextField from './TextField';
 
 const CreditCardForm = () => {
@@ -12,20 +15,26 @@ const CreditCardForm = () => {
         console.log('form submitted');
     }
     return (
-        <View style={{ marginTop: 5, marginBottom: 10 }}>
+        <View style={{ marginTop: 100, marginBottom: 10 }}>
+            <View style={styles.horiz}>
+            <Fontisto name="person" size={24} color="white" style={{marginTop:33,paddingHorizontal:5}}/>
             <TextField
                 style={styles.textField}
                 placeholder="Cardholder Name"
                 value={name}
                 onChangeText={(text) => setName(text)}
             />
+             </View>
+             <View style={styles.horiz}>
+             <FontAwesome5 name="credit-card" size={24} color="white" style={{marginTop:33,paddingHorizontal:2}}/>
             <TextField
                 style={styles.textField}
                 placeholder="Card Number"
                 value={cardNumber}
                 onChangeText={(text) => setCardNumber(text)}
             />
-            {/* <View style={styles.row}> */}
+            </View>
+            <View style={{flexDirection:"row",justifyContent:"space-between", padding:1, paddingLeft:30,paddingRight:10}}>
             <TextField
                 style={[
                     styles.textField
@@ -40,9 +49,10 @@ const CreditCardForm = () => {
                 value={cvv}
                 onChangeText={(text) => setCvv(text)}
             />
+            </View>
             {/* </View> */}
 
-            <View style={{ marginTop: 20 }}>
+            <View style={{ marginTop: 30,paddingRight:30 }}>
                 <CurvedButtons
                     title="$ PAY"
                     onPress={function () {
@@ -50,8 +60,8 @@ const CreditCardForm = () => {
                     }}
                     color='#db5e40'
                     bgcolor='white'
-                    widthpass={310}
-                    heightpass={45}
+                    widthpass={400}
+                    heightpass={55}
 
                 />
             </View>
@@ -67,6 +77,12 @@ const styles = StyleSheet.create({
     textField: {
         flex: 1,
         marginTop: 14,
+
     },
+    horiz:{
+        flexDirection:"row",
+        alignContent:"center",
+        paddingRight:10
+    }
 });
 export default CreditCardForm;

@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     borderColor: '#B9C4CA',
     borderWidth: 1,
     borderRadius: 4,
-    fontFamily: 'Avenir-Medium',
-    fontSize: 16
+    fontSize: 16,
+    backgroundColor:"#fff"
   }
 });
 export default TextField;

@@ -10,7 +10,7 @@ import BookingInfo from './BookingInfo';
 const BusBook = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require("../../assets/images/earthy.jpg")}
+      source={require("../../assets/images/m0.jpg")}
       style={{ height: 900, width: 450 }}
     >
       <ScrollView>

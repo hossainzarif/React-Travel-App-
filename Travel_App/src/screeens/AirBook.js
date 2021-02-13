@@ -10,7 +10,7 @@ import BookingInfo from './BookingInfo';
 const AirBook = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require("../../assets/images/un.jpg")}
+      source={require("../../assets/images/oc3.jpg")}
       style={{ height: 900, width: 450 }}
     >
       <ScrollView>

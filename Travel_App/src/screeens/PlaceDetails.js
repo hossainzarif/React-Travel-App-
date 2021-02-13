@@ -112,7 +112,7 @@ const PlaceDetails = ({ route, navigation }) => {
                   <Entypo name="chevron-left" size={32} color={colors.white} />
                 </TouchableOpacity>
                 <View style={styles.titlesWrapper}>
-                  <Text style={styles.itemsTitle}>{items.title}</Text>
+                  <Text style={styles.itemsTitle}>{items.data.postheader}</Text>
                   <View style={styles.locationWrapper}>
                     <Entypo name="location-pin" size={24} color={colors.white} />
                     <Text style={styles.locationText}>{items.data.locationName}</Text>
@@ -140,8 +140,6 @@ const PlaceDetails = ({ route, navigation }) => {
 
                 </View>
                 <BottomSheet hasDraggableIcon ref={bottomSheet} height={600}
-
-
 
                 >
 

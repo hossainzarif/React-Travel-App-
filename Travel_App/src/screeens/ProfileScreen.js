@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, Image, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, Image, ScrollView, ImageBackground } from "react-native";
 import { Input, Button, Card, Tile, Text, Header, Avatar } from 'react-native-elements';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -7,42 +7,87 @@ import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
 import EditProfile from "./EditProfile";
+import PlaceDetails from '../screeens/PlaceDetails';
 import * as firebase from "firebase";
 import "firebase/firestore";
 
 
 const ProfileScreen = (props) => {
-    //console.log(props);
-    // const [numberOfPosts, setNumberOfPosts] = useState(0);
+    const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
+    const [posts, setPosts] = useState([]);
 
-    // const loadPosts = async () => {
-    //     setIsLoading(true);
-    //     firebase
-    //         .firestore()
-    //         .collection('posts')
-    //         .doc(props.postID)
-    //         .onSnapshot((querySnapshot) => {
-    //             setNumberOfPosts(querySnapshot.size)
-    //         })
-    //         .catch((error) => {
-    //             setIsLoading(false);
-    //             alert(error);
-    //         })
-    // }
+    //console.log(props.userId);
 
 
+    const loadPosts = async () => {
+        // if (props.userId == auth.CurrentUser.uid) {
+
+        firebase
+            .firestore()
+            .collection("posts")
+            .orderBy("time", "desc")
+            .onSnapshot((querySnapshot) => {
+                let temp_posts = [];
+                querySnapshot.forEach((doc) => {
+                    temp_posts.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    });
+                });
+                setPosts(temp_posts);
+                setNumberOfPosts(querySnapshot.size)
+            })
+            .catch((error) => {
+                alert(error);
+            });
+        // }
+    }
+
+    useEffect(() => {
+        loadPosts()
+    }, []);
 
 
-    // useEffect(() => {
-    //     loadPosts();
-    //     // loadNotificationData();
-    // }, [])
-
-    // let postsButton = " ";
-    // postsButton = "Post(".concat(numberOfPosts.toString()).concat(")");
+    let postsButton = " ";
+    postsButton = numberOfPosts.toString();
 
 
+    const renderDiscoverItem = ({ item }) => {
+        const image = { uri: item.data.url };
+
+        return (
+            <AuthContext.Consumer>
+                {(auth) => (
+
+                    <TouchableOpacity
+                        onPress={() =>
+                        
+                            props.navigation.navigate('PlaceDetails', {
+                                
+                                items: item,
+                                auth_id: auth.CurrentUser.uid
+                            })
+                        }>
+                        <ImageBackground
+
+                            source={image}
+                            style={[
+                                styles.discoverItem,
+                                { marginLeft: item.id === 'discover-1' ? 20 : 0 },
+                            ]}
+                            imageStyle={styles.discoverItemImage}>
+                            <Text style={styles.discoverItemTitle}>{item.data.postheader}</Text>
+                            <View style={styles.discoverItemLocationWrapper}>
+                                <Entypo name="location-pin" size={18} color={colors.white} />
+                                <Text style={styles.discoverItemLocationText}>{item.data.locationName}</Text>
+                            </View>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                )}
+            </AuthContext.Consumer>
+        );
+    };
 
     return (
         <AuthContext.Consumer>
@@ -69,11 +114,12 @@ const ProfileScreen = (props) => {
                                 color: "black",
                                 size: 30,
                                 onPress: function () {
+                                    console.log(auth.setisLoggedIn())
                                     firebase
                                         .auth()
                                         .signOut()
                                         .then(() => {
-                                            auth.setIsLoggedIn(false);
+                                            auth.setisLoggedin(false);
                                             auth.setCurrentUser({});
                                         })
                                         .catch((error) => {
@@ -88,7 +134,8 @@ const ProfileScreen = (props) => {
                                 function () {
                                     props.navigation.navigate("EditProfile")
                                 }
-                            }><View style={styles.editWrapper}>
+                            }>
+                                <View style={styles.editWrapper}>
 
                                     <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
                                     <Entypo name="edit" size={20} color="#6b778d" />
@@ -114,16 +161,20 @@ const ProfileScreen = (props) => {
 
                         <View style={styles.infoContainer}>
                             <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}> {auth.CurrentUser.displayName} </Text>
-                            <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
+                            <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>{auth.CurrentUser.email}</Text>
                         </View>
 
+
+
                         <View style={styles.statsContainer}>
+
                             <View style={styles.statsBox}>
-                                <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                                <Text style={[styles.text, styles.subText]}>Posts</Text>
+                                <Text style={[styles.text, { fontSize: 24 }]}>20</Text>
+                                <Text style={[styles.text, styles.subText]}>Media</Text>
                             </View>
+
                             <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                                <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
+                                <Text style={[styles.text, { fontSize: 24 }]}>454</Text>
                                 <Text style={[styles.text, styles.subText]}>Followers</Text>
                             </View>
                             <View style={styles.statsBox}>
@@ -132,8 +183,8 @@ const ProfileScreen = (props) => {
                             </View>
                         </View>
 
-                        <View style={{ marginTop: 32 }}>
-                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <View style={styles.discoverWrapper}>
+                            {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                                 <View style={styles.mediaImageContainer}>
                                     <Image source={require("../../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
                                 </View>
@@ -143,10 +194,21 @@ const ProfileScreen = (props) => {
                                 <View style={styles.mediaImageContainer}>
                                     <Image source={require("../../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
                                 </View>
-                            </ScrollView>
+                            </ScrollView> */}
+                            <View style={styles.discoverItemsWrapper} >
+                                
+                                    <FlatList
+                                        data={posts}
+                                        renderItem={renderDiscoverItem}
+                                        keyExtractor={(item) => item.id}
+                                        horizontal
+                                        showsHorizontalScrollIndicator={false}
+                                    />
+                                
+                            </View>
                             <View style={styles.mediaCount}>
-                                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
-                                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
+                                <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{postsButton}</Text>
+                                <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Posts</Text>
                             </View>
                         </View>
                         <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
@@ -258,7 +320,46 @@ const styles = StyleSheet.create({
     },
     statsBox: {
         alignItems: "center",
-        flex: 1
+        flex: 1,
+        marginLeft: 15
+
+
+    },
+    discoverItemsWrapper: {
+        paddingVertical: 20,
+        marginLeft: 10
+    },
+    discoverItem: {
+        width: 170,
+        height: 200,
+        justifyContent: 'flex-end',
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        marginRight: 20,
+    },
+    discoverItemImage: {
+        borderRadius: 20,
+
+    },
+    discoverItemTitle: {
+        fontFamily: 'Lato-Bold',
+        fontSize: 18,
+        color: colors.white,
+    },
+    discoverItemLocationWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 5,
+    },
+    discoverItemLocationText: {
+        marginLeft: 5,
+        fontFamily: 'Lato-Bold',
+        fontSize: 14,
+        color: colors.white,
+    },
+    discoverWrapper: {
+        // marginHorizontal: 20,
+        marginTop: 20,
     },
     mediaImageContainer: {
         width: 180,

@@ -104,6 +104,8 @@ const ProfileStack = () => {
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
 
+
+
       <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
         headerShown: false
       }} />
@@ -133,83 +135,89 @@ const AddStack = () => {
         headerShown: false
       }} />
 
-    </stack.Navigator>
-  )
-}
-
-const HomeStack = () => {
-  return (
-    <stack.Navigator initialRouteName="HomePage">
-
-      <stack.Screen name="HomePage" component={HomePage} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="TransportScreen" component={TransportScreen} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="AirBook" component={AirBook} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="TrainBook" component={TrainBook} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="BusBook" component={BusBook} options={{
-        headerShown: false
-      }} />
-
-      <stack.Screen name="PostPage" component={PostPage} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="BookingInfo" component={BookingInfo} options={{
-        headerShown: false
-      }} />
-    </stack.Navigator>
-  )
-}
-
-
-const AuthStackScreen = () => {
-
-  return (
-
-    <AuthStack.Navigator
-      initialRouteName="SignIn">
-      <AuthStack.Screen name="SignUp" component={SignUp} options={{
-        headerShown: false,
-      }} />
-
-      <AuthStack.Screen name="SignIn" component={SignIn} options={{
-        headerShown: false,
-      }} />
-
-    </AuthStack.Navigator>
-  )
-}
+      </stack.Navigator>
+)}
 
 
 
-function App() {
-  return (
-    <AuthProvider>
-      <AuthContext.Consumer>
-        {(auth) => (
-          <NavigationContainer>
-            {auth.isLoggedin ? <TabNavigator /> : <AuthStackScreen />}
-          </NavigationContainer>)}
-      </AuthContext.Consumer>
-    </AuthProvider>
 
-  )
-}
 
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-});
-export default App
+  const HomeStack = () => {
+    return (
+      <stack.Navigator initialRouteName="HomePage">
+
+        <stack.Screen name="HomePage" component={HomePage} options={{
+          headerShown: false
+        }} />
+        <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
+          headerShown: false
+        }} />
+        <stack.Screen name="TransportScreen" component={TransportScreen} options={{
+          headerShown: false
+        }} />
+        <stack.Screen name="AirBook" component={AirBook} options={{
+          headerShown: false
+        }} />
+
+        <stack.Screen name="TrainBook" component={TrainBook} options={{
+          headerShown: false
+        }} />
+        <stack.Screen name="BusBook" component={BusBook} options={{
+          headerShown: false
+        }} />
+
+        <stack.Screen name="PostPage" component={PostPage} options={{
+          headerShown: false
+        }} />
+        <stack.Screen name="BookingInfo" component={BookingInfo} options={{
+          headerShown: false
+        }} />
+      </stack.Navigator>
+    )
+  }
+
+
+  const AuthStackScreen = () => {
+
+    return (
+
+      <AuthStack.Navigator
+        initialRouteName="SignIn">
+        <AuthStack.Screen name="SignUp" component={SignUp} options={{
+          headerShown: false,
+        }} />
+
+        <AuthStack.Screen name="SignIn" component={SignIn} options={{
+          headerShown: false,
+        }} />
+
+      </AuthStack.Navigator>
+    )
+  }
+
+
+
+  function App() {
+    return (
+      <AuthProvider>
+        <AuthContext.Consumer>
+          {(auth) => (
+            <NavigationContainer>
+              {auth.isLoggedin ? <TabNavigator /> : <AuthStackScreen />}
+            </NavigationContainer>)}
+        </AuthContext.Consumer>
+      </AuthProvider>
+
+    )
+  }
+
+  const styles = StyleSheet.create(
+      {
+        tabBar: {
+        backgroundColor: colors.white,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+      },
+    }
+  );
+  export default App

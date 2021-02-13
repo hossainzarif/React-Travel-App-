@@ -14,40 +14,24 @@ import * as firebase from 'firebase'
 import HomePage from "./src/screeens/HomePage"
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-<<<<<<< HEAD
-import EditProfile from './src/screeens/EditProfile';
-import PlaceDetails from "./src/screeens/PlaceDetails"
-=======
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 import ProfileScreen from './src/screeens/ProfileScreen';
 import CategoryPicker from './src/screeens/CategoryPicker';
 import AirBook from './src/screeens/AirBook';
-<<<<<<< HEAD
-import Notification from './src/screeens/Notification'
-=======
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
 import EditProfile from './src/screeens/EditProfile';
 import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 import TrainBook from './src/screeens/TrainBook';
 import BusBook from './src/screeens/BusBook';
 import TransportScreen from "./src/screeens/TransportScreen";
 import { withNavigation } from 'react-navigation';
 
 const stack = createStackNavigator()
-<<<<<<< HEAD
-const bStack = createStackNavigator()
-import BookingInfo from "./src/screeens/BookingInfo";
-import BackgroundCurve from "./src/Reusable/BackgroundCurve";
-
-=======
 import BookingInfo from "./src/screeens/BookingInfo";
 import BackgroundCurve from "./src/Reusable/BackgroundCurve";
 
 const AuthStack = createStackNavigator()
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 Entypo.loadFont();
 MaterialCommunityIcons.loadFont();
 
@@ -87,15 +71,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Add"
-<<<<<<< HEAD
-        component={PostPage}
-        initialParams={{ item: [] }}
         component={AddStack}
-
-
-=======
-        component={AddStack}
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
         options={{
 
           tabBarIcon: ({ color }) => (
@@ -124,138 +100,47 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-<<<<<<< HEAD
-
-const TopTab = createMaterialTopTabNavigator();
-const BookingTabNavigator = () => {
-  return (
-    <TopTab.Navigator
-      initialRouteName="AirBook"
-      tabBarOptions={{
-        style: styles.tabBar,
-        activeTintColor: colors.orange,
-        inactiveTintColor: colors.gray,
-        showLabel: false,
-      }}>
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
-      <TopTab.Screen
-        name="AirBook"
-        component={AirBook}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="airplane" size={24} color={color} />
-          )
-        }}
-      />
-
-    </TopTab.Navigator>
-  );
-};
-
-
-=======
 const ProfileStack = () => {
   return (
     <stack.Navigator initialRouteName="ProfileScreen">
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 
-  const ProfileStack = () => {
-    return (
-      <stack.Navigator initialRouteName="ProfileScreen">
 
-        <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
-          headerShown: false
-        }} />
 
-        <stack.Screen name="EditProfile" component={EditProfile} options={{
-          headerShown: false
-        }} />
+      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
+        headerShown: false
+      }} />
 
-<<<<<<< HEAD
-      </stack.Navigator>
-    )
-  }
+      <stack.Screen name="EditProfile" component={EditProfile} options={{
+        headerShown: false
+      }} />
 
-  const AddStack = () => {
-    return (
-=======
     </stack.Navigator>
   )
 }
 const AddStack = () => {
   return (
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 
-      <stack.Navigator initialRouteName="PostPage">
-        <stack.Screen name="PostPage"
+    <stack.Navigator initialRouteName="PostPage">
+      <stack.Screen name="PostPage"
 
-          initialParams={{ item: [], location: "" }}
+        initialParams={{ item: [], location: "" }}
 
-          component={PostPage} options={{
-            headerShown: false
-          }} />
-        <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+        component={PostPage} options={{
           headerShown: false
         }} />
-        <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
-          headerShown: false
-        }} />
+      <stack.Screen name="LocationPicker" component={LocationPicker} options={{
+        headerShown: false
+      }} />
+      <stack.Screen name="CategoryPicker" component={CategoryPicker} options={{
+        headerShown: false
+      }} />
 
-<<<<<<< HEAD
       </stack.Navigator>
-    )
-  }
-=======
-const HomeStack = () => {
-  return (
-    <stack.Navigator initialRouteName="HomePage">
+)}
 
-      <stack.Screen name="HomePage" component={HomePage} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="PlaceDetails" component={PlaceDetails} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="TransportScreen" component={TransportScreen} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="AirBook" component={AirBook} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="TrainBook" component={TrainBook} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="BusBook" component={BusBook} options={{
-        headerShown: false
-      }} />
 
-      <stack.Screen name="PostPage" component={PostPage} options={{
-        headerShown: false
-      }} />
-      <stack.Screen name="BookingInfo" component={BookingInfo} options={{
-        headerShown: false
-      }} />
-    </stack.Navigator>
-  )
-}
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
+
+
 
   const HomeStack = () => {
     return (
@@ -327,8 +212,8 @@ const HomeStack = () => {
   }
 
   const styles = StyleSheet.create(
-    {
-      tabBar: {
+      {
+        tabBar: {
         backgroundColor: colors.white,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,

@@ -32,10 +32,7 @@
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "~2.15.2",
-<<<<<<< HEAD
-=======
     "react-native-star-rating": "^1.1.0",
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
     "react-native-svg": "12.1.0",
     "react-native-tab-view": "^2.15.2",
     "react-native-vector-icons": "^8.0.0",

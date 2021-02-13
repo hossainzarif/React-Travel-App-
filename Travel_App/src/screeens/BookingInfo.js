@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 36,
     },
     title: {
-        fontFamily: 'Avenir-Heavy',
         color: 'black',
         fontSize: 32,
         marginBottom: 5,

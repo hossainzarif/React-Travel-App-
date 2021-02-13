@@ -35,29 +35,7 @@ const AirBook = ({ navigation }) => {
               marginLeft: 320
             }}
           >
-<<<<<<< HEAD
-            <Image
-              source={require("../../assets/images/p.png")}
-              style={{ height: 26, width: 26 }}
-            />
-            <Text
-              style={styles.headingFontStyle}
-            >
-              NYC
-          </Text>
-            <Text
-              style={styles.dots}
-            >
-              - - - - - - - - - - - - - - - -
-          </Text>
-            <Text
-              style={styles.headingFontStyle}
-            >
-              IDN
-          </Text>
-=======
             <Ionicons name="airplane-sharp" size={40} color="white" style={styles.iconStyle} />
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
           </View>
 
         </View>

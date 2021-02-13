@@ -80,7 +80,7 @@ const ProfileScreen = (props) => {
                                         .auth()
                                         .signOut()
                                         .then(() => {
-                                            auth.setIsLoggedIn(false);
+                                            auth.setisLoggedin(false);
                                             auth.setCurrentUser({});
                                         })
                                         .catch((error) => {

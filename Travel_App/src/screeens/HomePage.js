@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
     },
     discoverItemsWrapper: {
         paddingVertical: 20,
+        marginLeft:10
     },
     discoverItem: {
         width: 170,
@@ -255,6 +256,7 @@ const styles = StyleSheet.create({
     },
     discoverItemImage: {
         borderRadius: 20,
+        
     },
     discoverItemTitle: {
         fontFamily: 'Lato-Bold',
@@ -283,11 +285,13 @@ const styles = StyleSheet.create({
     },
     activitiesItemsWrapper: {
         paddingVertical: 20,
+        
     },
     activityItemWrapper: {
         justifyContent: 'flex-end',
         alignItems: 'center',
         marginRight: 20,
+     
     },
     activityItemImage: {
         width: 36,

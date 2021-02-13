@@ -25,18 +25,6 @@ const SignIn = (props) => {
 
         <AuthContext.Consumer>
             {  (auth) => (
-<<<<<<< HEAD
-                <View>
-
-                    <Text style={styles.LogoText}>Sign In</Text>
-
-                    <View>
-                        <Text style={{ alignSelf: "flex-start", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginLeft: 30, marginBottom: 10 }}>
-                            Welcome!
-                        </Text>
-                    </View>
-
-=======
 
                 <View>
                     <View>
@@ -48,7 +36,6 @@ const SignIn = (props) => {
                         <Text style={{ alignSelf: "center", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginBottom: 10 }}>
                             Welcome!
                         </Text>
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
                     <InputTaker
                         leftIcon={<MaterialCommunityIcons name="email-outline" size={16} color={colorcode} />}
                         placeholder=" Email-address"
@@ -63,13 +50,8 @@ const SignIn = (props) => {
                         }
                     >
                     </InputTaker>
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
                     <InputTaker
                         leftIcon={<AntDesign name="lock" size={iconsize} color={colorcode} />}
                         placeholder=" Password"
@@ -84,13 +66,8 @@ const SignIn = (props) => {
 
                     >
                     </InputTaker>
-<<<<<<< HEAD
-
-                    <View style={{ marginTop: 60 }}>
-=======
                     </View>
                     <View style={{ marginTop: 10 }}>
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
                         <CurvedButtons
                             title="Sign In"
                             // style={styles.container}
@@ -117,11 +94,7 @@ const SignIn = (props) => {
                             color='#db5e40'
                             bgcolor='white'
                             widthpass={300}
-<<<<<<< HEAD
                             heightpass={45}
-=======
-                            heightpass={75}
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
                         >
                         </CurvedButtons>
 
@@ -140,13 +113,7 @@ const SignIn = (props) => {
                         >
                         </ClearButton>
                     </View>
-<<<<<<< HEAD
-                </View>
-                
-                )}
-=======
                 </View>)}
->>>>>>> 24e4b574de22d3405d4c970fc40782e1e7ce1ade
 
         </AuthContext.Consumer>
 

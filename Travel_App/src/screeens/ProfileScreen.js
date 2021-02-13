@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, SafeAreaView, Image, ScrollView, ImageBackground } from "react-native";
 import { Input, Button, Card, Tile, Text, Header, Avatar } from 'react-native-elements';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
 import EditProfile from "./EditProfile";
+import CurvedButtons from '../Reusable/CurvedButtons';
 import PlaceDetails from '../screeens/PlaceDetails';
+import UploadImage from '../Reusable/UploadImage';
 import * as firebase from "firebase";
 import "firebase/firestore";
 
@@ -16,6 +18,10 @@ const ProfileScreen = (props) => {
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState([]);
+    const [Birthdate, setBirthdate] = useState("");
+    const [currentCity, setCurrentCity] = useState("");
+    const [workPlace, setWorkPlace] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     //console.log(props.userId);
 
@@ -44,8 +50,27 @@ const ProfileScreen = (props) => {
         // }
     }
 
+    const LoadData = async () => {
+        setIsLoading(true);
+        firebase
+            .firestore()
+            .collection('users')
+            .doc(props.currentUser.uid)
+            .onSnapshot((querySnapShot) => {
+                setIsLoading(false);
+                setBirthdate(querySnapShot.data().birthdate);
+                setCurrentCity(querySnapShot.data().currentCity);
+                setWorkPlace(querySnapShot.data().workPlace);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                alert(error);
+            })
+    }
+
     useEffect(() => {
-        loadPosts()
+        loadPosts();
+        LoadData();
     }, []);
 
 
@@ -62,9 +87,9 @@ const ProfileScreen = (props) => {
 
                     <TouchableOpacity
                         onPress={() =>
-                        
+
                             props.navigation.navigate('PlaceDetails', {
-                                
+
                                 items: item,
                                 auth_id: auth.CurrentUser.uid
                             })
@@ -128,35 +153,10 @@ const ProfileScreen = (props) => {
                                 },
                             }}
                         />
-                        <SafeAreaView>
 
-                            <TouchableOpacity onPress={
-                                function () {
-                                    props.navigation.navigate("EditProfile")
-                                }
-                            }>
-                                <View style={styles.editWrapper}>
-
-                                    <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
-                                    <Entypo name="edit" size={20} color="#6b778d" />
-                                </View>
-                            </TouchableOpacity>
-
-
-                        </SafeAreaView>
-
-
-                        <View style={{ alignSelf: "center" }}>
-                            <View style={styles.profileImage}>
-                                <Image source={require("../../assets/images/profile-pic.jpg")} style={styles.image} resizeMode="center"></Image>
-                            </View>
-                            <View style={styles.dm}>
-                                <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
-                            </View>
-                            <View style={styles.active}></View>
-                            <View style={styles.add}>
-                                <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                            </View>
+                        <View>
+                            <UploadImage props={props} />
+                            <Text style={{ fontSize: 30, color: '#152a38', marginBottom: 20, marginTop:-60 }}> {auth.CurrentUser.name} </Text>
                         </View>
 
                         <View style={styles.infoContainer}>
@@ -183,54 +183,102 @@ const ProfileScreen = (props) => {
                             </View>
                         </View>
 
+
+                        <View >
+                            <View style={styles.stats2Container}>
+                                <MaterialIcons name="date-range" size={28} color="#52575D" />
+                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Born On {Birthdate}  </Text>
+                            </View>
+                            <View style={styles.stats2Container}>
+                                <FontAwesome name="home" size={28} color="#52575D" />
+                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Currently lives in {currentCity} </Text>
+                            </View>
+                            <View style={styles.stats2Container}>
+                                <Entypo name="suitcase" size={24} color="#52575D" />
+                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Works at {workPlace} </Text>
+                            </View>
+
+                        </View>
+
                         <View style={styles.discoverWrapper}>
-                            {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                <View style={styles.mediaImageContainer}>
-                                    <Image source={require("../../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
-                                </View>
-                                <View style={styles.mediaImageContainer}>
-                                    <Image source={require("../../assets/images/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
-                                </View>
-                                <View style={styles.mediaImageContainer}>
-                                    <Image source={require("../../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
-                                </View>
-                            </ScrollView> */}
+
                             <View style={styles.discoverItemsWrapper} >
-                                
-                                    <FlatList
-                                        data={posts}
-                                        renderItem={renderDiscoverItem}
-                                        keyExtractor={(item) => item.id}
-                                        horizontal
-                                        showsHorizontalScrollIndicator={false}
-                                    />
-                                
+
+                                <FlatList
+                                    data={posts}
+                                    renderItem={renderDiscoverItem}
+                                    keyExtractor={(item) => item.id}
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                />
+
                             </View>
                             <View style={styles.mediaCount}>
                                 <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>{postsButton}</Text>
                                 <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Posts</Text>
                             </View>
                         </View>
-                        <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
-                        <View style={{ alignItems: "center" }}>
-                            <View style={styles.recentItem}>
-                                <View style={styles.activityIndicator}></View>
-                                <View style={{ width: 250 }}>
-                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                        Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
-                                    </Text>
-                                </View>
-                            </View>
 
-                            <View style={styles.recentItem}>
-                                <View style={styles.activityIndicator}></View>
-                                <View style={{ width: 250 }}>
-                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                        Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
-                                    </Text>
-                                </View>
+                        <Card>
+                            <View style={styles.editWrapper}>
+                                <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile Details </Text>
+                                <Entypo name="edit" size={20} color="#6b778d" />
                             </View>
-                        </View>
+                            <Card.Divider />
+                            <Input leftIcon={<FontAwesome name="calendar" size={24} color="#DFD8C8" />}
+                                placeholder='Add Birth Date'
+                                onChangeText={function (currentInput) {
+                                    setBirthdate(currentInput);
+                                }}
+                            />
+
+                            <Input leftIcon={<FontAwesome name="address-card" size={24} color="#DFD8C8" />}
+                                placeholder='Add Current City'
+                                onChangeText={function (currentInput) {
+                                    setCurrentCity(currentInput);
+                                }}
+                            />
+                            <Input leftIcon={<Entypo name="suitcase" size={24} color="#DFD8C8" />}
+                                placeholder="Add Work Place"
+                                onChangeText={function (currentInput) {
+                                    setWorkPlace(currentInput);
+                                }}
+                            />
+                            <CurvedButtons
+                                title="Update"
+                                onPress={
+                                    function () {
+                                        firebase
+                                            .firestore()
+                                            .collection('users')
+                                            .doc(auth.CurrentUser.uid)
+                                            .set(
+                                                {
+                                                    birthdate: Birthdate,
+                                                    currentCity: currentCity,
+                                                    workPlace: workPlace
+
+                                                },
+                                                { merge: true }
+                                            )
+                                            .then(() => {
+                                                setIsLoading(false);
+                                            })
+                                            .catch((error) => {
+                                                setIsLoading(false);
+                                                alert(error);
+                                            })
+
+                                    }
+                                }
+                                color='white'
+                                bgcolor='#db5e40'
+                                widthpass={150}
+                                heightpass={40}
+                            />
+
+                        </Card>
+
                     </ScrollView>
                 </SafeAreaView>
             )}
@@ -272,9 +320,9 @@ const styles = StyleSheet.create({
         fontWeight: "500"
     },
     profileImage: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
+        width: 300,
+        height: 300,
+        borderRadius: 200,
         overflow: "hidden"
     },
     dm: {
@@ -317,6 +365,13 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignSelf: "center",
         marginTop: 32
+    },
+    stats2Container: {
+        flexDirection: "row",
+        alignSelf: "flex-start",
+        marginTop: 22,
+        marginLeft: 50
+
     },
     statsBox: {
         alignItems: "center",
@@ -403,6 +458,20 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginTop: 3,
         marginRight: 20
+    },
+    editedTextStyle: {
+        color: "#52575D",
+        marginLeft: 10,
+        fontSize: 20,
+        fontWeight: "100",
+        padding: 10
+    },
+    updateButton: {
+        height: 40,
+        borderRadius: 15,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Text, StyleSheet, View } from "react-native"
+import { Text, StyleSheet, View,ScrollView } from "react-native"
 import { color } from "react-native-reanimated"
 import CurvedButtons from "../Reusable/CurvedButtons"
 import ClearButton from "../Reusable/ClearButton"
@@ -26,7 +26,11 @@ const SignIn = (props) => {
         <AuthContext.Consumer>
             {  (auth) => (
 
+<<<<<<< Updated upstream
                 <View >
+=======
+                <ScrollView>
+>>>>>>> Stashed changes
                     <View>
                         <BackLogo/>
                         <Ionicons name="md-logo-react" size={150} color="white" style={styles.logoStyle}/>
@@ -113,8 +117,12 @@ const SignIn = (props) => {
                         >
                         </ClearButton>
                     </View>
+<<<<<<< Updated upstream
                     </View>
                 </View>)}
+=======
+                </ScrollView>)}
+>>>>>>> Stashed changes
 
         </AuthContext.Consumer>
 

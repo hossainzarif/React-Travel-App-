@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-<<<<<<< Updated upstream
-    View, Text, StyleSheet, Image, ScrollView, ImageBackground} from 'react-native';
-=======
     View,
     Text,
     StyleSheet,
@@ -15,7 +12,6 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
->>>>>>> Stashed changes
 import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';
 import Feather from 'react-native-vector-icons/Feather';

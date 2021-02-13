@@ -26,17 +26,12 @@ const SignIn = (props) => {
         <AuthContext.Consumer>
             {  (auth) => (
 
-<<<<<<< Updated upstream
-                <View >
-=======
                 <ScrollView>
->>>>>>> Stashed changes
                     <View>
                         <BackLogo/>
                         <Ionicons name="md-logo-react" size={150} color="white" style={styles.logoStyle}/>
-                        <Text style={{fontSize:35,alignSelf:"center",color:"white",fontWeight:"bold",padding:80, marginVertical:100}}>TraVac</Text>
+                        <Text style={{fontSize:35,alignSelf:"center",color:"white",fontWeight:"bold"}}>TraVac</Text>
                     </View>
-                    <View style={styles.container}>
                     <View style={{marginTop:130}}>
                         <Text style={{ alignSelf: "center", fontSize: 20, color: 'dimgray', fontWeight: "bold", marginBottom: 10 }}>
                             Welcome!
@@ -75,6 +70,7 @@ const SignIn = (props) => {
                     <View style={{ marginTop: 10 }}>
                         <CurvedButtons
                             title="Sign In"
+                            // style={styles.container}
                             onPress={
                                 async function () {
 
@@ -98,7 +94,7 @@ const SignIn = (props) => {
                             color='#db5e40'
                             bgcolor='white'
                             widthpass={300}
-                            heightpass={80}
+                            heightpass={45}
                         >
                         </CurvedButtons>
 
@@ -117,12 +113,7 @@ const SignIn = (props) => {
                         >
                         </ClearButton>
                     </View>
-<<<<<<< Updated upstream
-                    </View>
-                </View>)}
-=======
                 </ScrollView>)}
->>>>>>> Stashed changes
 
         </AuthContext.Consumer>
 
@@ -134,9 +125,7 @@ const styles = StyleSheet.create(
     {
         container:
         {
-            marginTop:-200,
-            justifyContent: 'center',
-            alignItems: 'center',
+            margin: 50
         },
 
 
@@ -174,14 +163,12 @@ const styles = StyleSheet.create(
         logoStyle:{
             justifyContent:"center",
             alignSelf:"center",
-            resizeMode: 'cover',
             marginVertical:-190,
-            paddingBottom:20,
-            
+            paddingBottom:200
         }
 
 
     }
 )
 
-export default SignIn;
+export default SignIn

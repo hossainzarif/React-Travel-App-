@@ -6,7 +6,6 @@ import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
-import EditProfile from "./EditProfile";
 import CurvedButtons from '../Reusable/CurvedButtons';
 import PlaceDetails from '../screeens/PlaceDetails';
 import UploadImage from '../Reusable/UploadImage';
@@ -384,13 +383,15 @@ const styles = StyleSheet.create({
     statsContainer: {
         flexDirection: "row",
         alignSelf: "center",
-        marginTop: 32
+        marginTop: 32,
+        marginRight:30
     },
     stats2Container: {
         flexDirection: "row",
         alignSelf: "flex-start",
         marginTop: 22,
-        marginLeft: 50
+        marginLeft: 40
+
 
     },
     statsBox: {

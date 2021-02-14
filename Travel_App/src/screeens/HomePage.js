@@ -380,9 +380,9 @@ const HomePage = ({ navigation }) => {
 
 
                                     <Card containerStyle={styles.cardViewStyle}>
-                                        <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 5 }}>
-                                            <Entypo name="plus" size={24} color="black" style={{ paddingTop: 3 }} />
-                                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: 'black', }}> Create New Group</Text>
+                                        <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 1 }}>
+                                            <Entypo name="plus" size={24} color="#fff" style={{ paddingTop: 3 }} />
+                                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#fff',alignSelf:"center", }}> Create New Group</Text>
                                         </View>
 
 
@@ -485,7 +485,7 @@ const HomePage = ({ navigation }) => {
 
 
                             <View style={styles.tourGuideWrapper}>
-                                <Text style={styles.tourGuideTitle}>Hire Tour Guide</Text>
+                                <Text style={styles.tourGuideTitle}>Hire a Tour Guide</Text>
 
                                 <TouchableOpacity
 
@@ -508,8 +508,8 @@ const HomePage = ({ navigation }) => {
                                             backgroundColor: 'white'
                                         }}>
                                             {/* <Entypo name="call" size={24} color="black" style={{ paddingTop: 3 }} /> */}
-                                            <MaterialIcons name="contact-page" size={32} color='#db5e40' style={{ paddingTop: 2 }} />
-                                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#db5e40', }}> Contacts</Text>
+                                            <MaterialIcons name="contact-page" size={32} color='#db5e40' style={{ paddingBottom: 10 }} />
+                                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#db5e40',marginVertical:4 }}> Contacts</Text>
                                         </View>
 
                                     </Card>
@@ -537,12 +537,9 @@ const styles = StyleSheet.create({
     cardViewStyle: {
         // justifyContent: 'center',
         borderRadius: 15,
-        backgroundColor: "#e3e3e3",
-        height: 80,
-        width: 330,
-
-
-
+        backgroundColor: "#db5e40",
+        height: 60,
+        width: 400,
     },
 
     menuWrapper: {
@@ -668,10 +665,10 @@ const styles = StyleSheet.create({
     tourCardViewStyle: {
         // justifyContent: 'center',
         borderRadius: 15,
-        height: 60,
-        width: 300,
+        height: 64,
+        width: 365,
         marginLeft: 18,
-        backgroundColor: 'white'
+        backgroundColor: '#fff'
 
     },
     tourGuideWrapper: {
@@ -681,7 +678,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: "#e3e3e3",
         height: 150,
-        width: 340,
+        width: 400,
         paddingTop: 15,
         paddingBottom: 50,
     },
@@ -690,7 +687,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
         fontSize: 24,
         color: colors.black,
-        paddingLeft: 50
+        paddingLeft: 0
     },
 });
 

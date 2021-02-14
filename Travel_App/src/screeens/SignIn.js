@@ -96,7 +96,7 @@ const SignIn = (props) => {
                             color='#db5e40'
                             bgcolor='white'
                             widthpass={300}
-                            heightpass={45}
+                            heightpass={55}
                         >
                         </CurvedButtons>
 

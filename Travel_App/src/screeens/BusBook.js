@@ -60,7 +60,7 @@ const BusBook = ({ navigation }) => {
               Chittagong
               </Text>
               <Text style={styles.dots}>
-                - - - - - - - - - 
+                - - - - - - - - - - - - - - - - - - -
               </Text>
               <Text style={styles.headingFontStyle}>
                 Dhaka
@@ -79,7 +79,7 @@ const BusBook = ({ navigation }) => {
               <Text
                 style={styles.rightFont}
               >
-                {`12 pm`}
+                {`         12 pm`}
           </Text>
           </View>
         </Card>
@@ -112,7 +112,7 @@ const BusBook = ({ navigation }) => {
                   Dhaka
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   Kolkata
@@ -126,12 +126,12 @@ const BusBook = ({ navigation }) => {
                 <Text
                   style={styles.leftFont}
                 >
-                  {`10:30 pm`}
+                  {`   10:30 pm`}
                 </Text>
                 <Text
                   style={styles.rightFont}
                 >
-                  {`  12 pm`}
+                  {`     12 pm`}
                 </Text>
               </View>
             </Card>
@@ -164,7 +164,7 @@ const BusBook = ({ navigation }) => {
                   Jessore
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   Dhaka
@@ -186,7 +186,7 @@ const BusBook = ({ navigation }) => {
                     paddingLeft: 210,
                   }}
                 >
-                  {`            3 pm`}
+                  {`                  3 pm`}
                 </Text>
               </View>
             </Card>
@@ -219,7 +219,7 @@ const BusBook = ({ navigation }) => {
                   Dhaka
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - -  
+                  - - - - - - - - - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   Cox's Bazar

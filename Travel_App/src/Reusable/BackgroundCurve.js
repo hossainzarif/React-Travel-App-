@@ -22,7 +22,7 @@ const BackgroundCurve=()=>{
 const styles=StyleSheet.create({
     viewAbove:{
         backgroundColor:"#db5e40",
-        height:250
+        height:210
     },
     svg:{
         position:"absolute",

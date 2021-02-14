@@ -54,7 +54,7 @@ const TransportScreen = ({navigation}) => {
 const styles= StyleSheet.create({
     discoverItem: {
         width: 350,
-        height: 450,
+        height: 400,
         paddingHorizontal: 10,
         paddingVertical: 15,
         marginRight: 20,
@@ -88,7 +88,6 @@ const styles= StyleSheet.create({
        color:"white",
        textAlign:'center',
        marginTop:150,
-       fontFamily: "Cochin",
        textDecorationLine:"underline",
        textDecorationColor: "#db5e40",
         textShadowColor: "black",

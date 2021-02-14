@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#db5e40",
     alignSelf: "center",
-    marginVertical: 30,
-    paddingRight:20
+    marginVertical: 0,
+    paddingRight:0,
+    justifyContent:"center"
     },
 });
 

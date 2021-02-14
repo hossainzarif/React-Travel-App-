@@ -52,7 +52,7 @@ const CreditCardForm = () => {
             </View>
             {/* </View> */}
 
-            <View style={{ marginTop: 30,paddingRight:30 }}>
+            <View style={{ marginTop: 20,paddingRight:20 }}>
                 <CurvedButtons
                     title="$ PAY"
                     onPress={function () {
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     horiz:{
         flexDirection:"row",
         alignContent:"center",
-        paddingRight:10
+        paddingRight:10,
+        paddingBottom:0
     }
 });
 export default CreditCardForm;

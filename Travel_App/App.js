@@ -19,7 +19,6 @@ import CategoryPicker from './src/screeens/CategoryPicker';
 import AirBook from './src/screeens/AirBook';
 import PlaceDetails from "./src/screeens/PlaceDetails";
 import LocationPicker from './src/screeens/LocationPicker';
-import EditProfile from './src/screeens/EditProfile';
 import Notification from './src/screeens/Notification'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TrainBook from './src/screeens/TrainBook';
@@ -91,7 +90,7 @@ const TabNavigator = () => {
 
       <Tab.Screen
         name="Profile"
-        component={ProfileStack}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={32} color={color} />
@@ -101,23 +100,17 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
-const ProfileStack = () => {
-  return (
-    <stack.Navigator initialRouteName="ProfileScreen">
+// const ProfileStack = () => {
+//   return (
+//     <stack.Navigator initialRouteName="ProfileScreen">
 
+//       <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
+//         headerShown: false
+//       }} />
 
-
-      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
-        headerShown: false
-      }} />
-
-      <stack.Screen name="EditProfile" component={EditProfile} options={{
-        headerShown: false
-      }} />
-
-    </stack.Navigator>
-  )
-}
+//     </stack.Navigator>
+//   )
+// }
 const AddStack = () => {
   return (
 
@@ -176,6 +169,10 @@ const HomeStack = () => {
       }} />
 
       <stack.Screen name="Groups" component={Groups} options={{
+        headerShown: false
+      }} />
+
+      <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
         headerShown: false
       }} />
     </stack.Navigator>

@@ -6,12 +6,13 @@ import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
-import EditProfile from "./EditProfile";
 import CurvedButtons from '../Reusable/CurvedButtons';
 import PlaceDetails from '../screeens/PlaceDetails';
 import UploadImage from '../Reusable/UploadImage';
 import * as firebase from "firebase";
 import "firebase/firestore";
+import { getDataJSON,  } from "../Functions/AsynchronousStorageFunctions";
+
 
 
 const ProfileScreen = (props) => {
@@ -22,12 +23,13 @@ const ProfileScreen = (props) => {
     const [currentCity, setCurrentCity] = useState("");
     const [workPlace, setWorkPlace] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [userId, setUserId] = useState("");
+    
 
-    //console.log(props.userId);
 
 
     const loadPosts = async () => {
-        // if (props.userId == auth.CurrentUser.uid) {
+        //console.log(userId)
 
         firebase
             .firestore()
@@ -35,27 +37,33 @@ const ProfileScreen = (props) => {
             .orderBy("time", "desc")
             .onSnapshot((querySnapshot) => {
                 let temp_posts = [];
+                let count=0;
                 querySnapshot.forEach((doc) => {
-                    temp_posts.push({
-                        id: doc.id,
-                        data: doc.data(),
-                    });
+                    if (doc.data().userId == userId) {
+                        //console.log(doc.data().userId)
+                        temp_posts.push({
+                            id: doc.id,
+                            data: doc.data(),
+                        });
+                        count = count + 1
+                        //console.log(count)
+                     }
                 });
                 setPosts(temp_posts);
-                setNumberOfPosts(querySnapshot.size)
+                setNumberOfPosts(count)
             })
             .catch((error) => {
                 alert(error);
             });
         // }
     }
-
+    //console.log(props)
     const LoadData = async () => {
         setIsLoading(true);
         firebase
             .firestore()
             .collection('users')
-            .doc(props.currentUser.uid)
+            .doc(userId)
             .onSnapshot((querySnapShot) => {
                 setIsLoading(false);
                 setBirthdate(querySnapShot.data().birthdate);
@@ -68,10 +76,21 @@ const ProfileScreen = (props) => {
             })
     }
 
+    const getUserId = async () => {
+        await getDataJSON("mail").then((data) => {
+          if (data == null) {
+            setUserId("");
+          } else setUserId(data);
+        });
+      }
+
     useEffect(() => {
         loadPosts();
         LoadData();
-    }, []);
+    }, [userId]);
+    useEffect(() => {
+        getUserId();
+    },[] );
 
 
     let postsButton = " ";
@@ -139,7 +158,7 @@ const ProfileScreen = (props) => {
                                 color: "black",
                                 size: 30,
                                 onPress: function () {
-                                    console.log(auth.setisLoggedIn())
+                                    console.log(auth.setisLoggedin())
                                     firebase
                                         .auth()
                                         .signOut()
@@ -156,7 +175,7 @@ const ProfileScreen = (props) => {
 
                         <View>
                             <UploadImage props={props} />
-                            <Text style={{ fontSize: 30, color: '#152a38', marginBottom: 20, marginTop:-60 }}> {auth.CurrentUser.name} </Text>
+                            {/* <Text style={{ fontSize: 30, color: '#152a38', marginBottom: 20, marginTop:-60 }}> {auth.CurrentUser.name} </Text> */}
                         </View>
 
                         <View style={styles.infoContainer}>
@@ -364,13 +383,15 @@ const styles = StyleSheet.create({
     statsContainer: {
         flexDirection: "row",
         alignSelf: "center",
-        marginTop: 32
+        marginTop: 32,
+        marginRight:30
     },
     stats2Container: {
         flexDirection: "row",
         alignSelf: "flex-start",
         marginTop: 22,
-        marginLeft: 50
+        marginLeft: 40
+
 
     },
     statsBox: {

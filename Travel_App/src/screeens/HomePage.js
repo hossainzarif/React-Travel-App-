@@ -10,6 +10,7 @@ import {
 
 
 } from 'react-native';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';
@@ -28,24 +29,22 @@ import CommentCard from '../Reusable/CommentCard'
 import "firebase/firestore";
 import * as firebase from "firebase"
 import { Card, Button } from 'react-native-elements';
-import { FontAwesome } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome,MaterialIcons } from '@expo/vector-icons';
 import CurvedButtons from '../Reusable/CurvedButtons'
 import InputTaker from '../Reusable/InputTaker'
 Feather.loadFont();
 Entypo.loadFont();
-
-
 import BottomSheet from "react-native-gesture-bottom-sheet";
 import PostTaker from '../Reusable/PostTaker';
 import * as ImagePicker from 'expo-image-picker';
-
+import TourGuide from './TourGuide';
 
 
 
 
 const HomePage = ({ navigation }) => {
     const bottomSheet = useRef();
+    const tourBottomSheet = useRef();
 
     const [postblog, setPostblog] = useState("");
     const [posts, setPosts] = useState([]);
@@ -246,19 +245,19 @@ const HomePage = ({ navigation }) => {
     const renderActivityItem = ({ item }) => {
 
         return (
-           
-                    <View
-                        style={[
-                            styles.activityItemWrapper,
-                            {
-                                marginLeft: item.id === 'activities-1' ? 20 : 0,
-                            },
-                        ]}>
-                        <Image source={item.image} style={styles.activityItemImage} />
-                        <Text style={styles.activityItemText}>{item.title}</Text>
-                    </View>
 
-           
+            <View
+                style={[
+                    styles.activityItemWrapper,
+                    {
+                        marginLeft: item.id === 'activities-1' ? 20 : 0,
+                    },
+                ]}>
+                <Image source={item.image} style={styles.activityItemImage} />
+                <Text style={styles.activityItemText}>{item.title}</Text>
+            </View>
+
+
         );
     };
 
@@ -270,29 +269,29 @@ const HomePage = ({ navigation }) => {
 
         return (
             <AuthContext.Consumer>
-            {(auth) => (
+                {(auth) => (
 
-            <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate('Groups', {
-                        items: item,
-                        auth_id:auth.CurrentUser.uid
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigation.navigate('Groups', {
+                                items: item,
+                                auth_id: auth.CurrentUser.uid
 
-                    })
-                }>
-                <ImageBackground
-                    source={imagecover}
-                    style={[
-                        styles.learnMoreItem,
-                        {
-                            marginLeft: item.id === 'learnMore-1' ? 10 : 0,
-                        },
-                    ]}
-                    imageStyle={styles.learnMoreItemImage}>
-                    <Text style={styles.learnMoreItemText}>{item.data.groupname}</Text>
-                </ImageBackground>
-            </TouchableOpacity>
-            )}
+                            })
+                        }>
+                        <ImageBackground
+                            source={imagecover}
+                            style={[
+                                styles.learnMoreItem,
+                                {
+                                    marginLeft: item.id === 'learnMore-1' ? 10 : 0,
+                                },
+                            ]}
+                            imageStyle={styles.learnMoreItemImage}>
+                            <Text style={styles.learnMoreItemText}>{item.data.groupname}</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                )}
             </AuthContext.Consumer>
         );
     };
@@ -320,6 +319,9 @@ const HomePage = ({ navigation }) => {
                                         style={styles.menuIcon}
                                     />
                                     {/* <Image source={profile} style={styles.profileImage} /> */}
+                                    <Text style={{ fontWeight: "200", fontSize: 20 }}> {auth.CurrentUser.displayName} </Text>
+
+
                                 </View>
                             </SafeAreaView>
 
@@ -479,6 +481,45 @@ const HomePage = ({ navigation }) => {
                                 </View>
 
                             </View>
+
+
+
+                            <View style={styles.tourGuideWrapper}>
+                                <Text style={styles.tourGuideTitle}>Hire Tour Guide</Text>
+
+                                <TouchableOpacity
+
+                                    onPress={
+                                        () => {
+
+                                            tourBottomSheet.current.show()
+                                            //console.log(allGroups)
+
+                                        }
+                                    }
+
+                                >
+
+                                    <Card containerStyle={styles.tourCardViewStyle}>
+                                        <View style={{
+                                            flexDirection: "row", justifyContent: "center", marginBottom: 5,
+                                            paddingBottom: 10,
+                                            marginRight: 10,
+                                            backgroundColor: 'white'
+                                        }}>
+                                            {/* <Entypo name="call" size={24} color="black" style={{ paddingTop: 3 }} /> */}
+                                            <MaterialIcons name="contact-page" size={32} color='#db5e40' style={{ paddingTop: 2 }} />
+                                            <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#db5e40', }}> Contacts</Text>
+                                        </View>
+
+                                    </Card>
+
+                                </TouchableOpacity>
+                                <BottomSheet hasDraggableIcon ref={tourBottomSheet} height={450}>
+                                    <TourGuide />
+
+                                </BottomSheet>
+                            </View>
                         </ScrollView>
                     </View>
                 )}
@@ -503,6 +544,7 @@ const styles = StyleSheet.create({
 
 
     },
+
     menuWrapper: {
         marginHorizontal: 20,
         marginTop: 20,
@@ -622,6 +664,33 @@ const styles = StyleSheet.create({
         color: colors.white,
         marginHorizontal: 10,
         marginVertical: 20,
+    },
+    tourCardViewStyle: {
+        // justifyContent: 'center',
+        borderRadius: 15,
+        height: 60,
+        width: 300,
+        marginLeft: 18,
+        backgroundColor: 'white'
+
+    },
+    tourGuideWrapper: {
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        borderRadius: 15,
+        backgroundColor: "#e3e3e3",
+        height: 150,
+        width: 340,
+        paddingTop: 15,
+        paddingBottom: 50,
+    },
+    tourGuideTitle: {
+        marginHorizontal: 20,
+        fontFamily: 'Lato-Bold',
+        fontSize: 24,
+        color: colors.black,
+        paddingLeft: 50
     },
 });
 

@@ -32,4 +32,6 @@ npm install react-native-actions-sheet --save
 npm i react-native-star-rating
 
 ---->
-yarn add react-native-safe-area-context
+npm install @react-native-async-storage/async-storage
+npm install -g react-native-cli
+react-native init rnalert

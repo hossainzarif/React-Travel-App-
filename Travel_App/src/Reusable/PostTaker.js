@@ -4,6 +4,8 @@ import { TextInput } from "react-native-gesture-handler"
 import { AntDesign } from '@expo/vector-icons';
 
 const PostTaker = (props) => {
+   
+
     return (
 
         <View style={[styles.inputstyle, { width: props.widthpass, height: props.heightpass}]}>
@@ -22,6 +24,9 @@ const PostTaker = (props) => {
                 textAlignVertical="top"
                 textAlign="left"
                 textBreakStrategy="balanced"
+                clearButtonMode="always"
+
+
                                // maxLength = {20}
             >
 

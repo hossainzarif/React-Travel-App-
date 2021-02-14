@@ -52,6 +52,7 @@ const FlatListItemSeparator = () => {
 const LocationPicker = (props) => {
 
 
+    const input = React.createRef();
 
     const iconsize = 17
     const colorcode = "#606361"
@@ -71,7 +72,7 @@ const LocationPicker = (props) => {
 
             <View style={{ marginTop: 90, }}>
                 <InputTaker
-
+                    ref={input}
                     leftIcon={<FontAwesome name="search" size={22} color="#db5e40" />}
                     placeholder="  Search location"
                     widthpass={320}

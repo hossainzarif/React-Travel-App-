@@ -3,7 +3,7 @@ import { Text, StyleSheet, View } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { AntDesign } from '@expo/vector-icons';
 
-const InputTaker = (props) => {
+const InputTaker = React.forwardRef((props,ref) => {
     return (
 
         <View style={[styles.inputstyle, { width: props.widthpass, height: props.heightpass }]}>
@@ -14,6 +14,7 @@ const InputTaker = (props) => {
 
             <TextInput
                 //multiline={true}
+                ref={ref}
                 style={{ width: props.widthpass, height: props.heightpass, paddingBottom: 20, fontSize: 17,paddingLeft:5 }}
                 onChangeText={props.onChangeText}
                 placeholder={props.placeholder}
@@ -31,7 +32,7 @@ const InputTaker = (props) => {
     )
 
 }
-
+)
 
 
 const styles = StyleSheet.create(

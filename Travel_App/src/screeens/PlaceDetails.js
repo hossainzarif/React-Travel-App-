@@ -30,6 +30,7 @@ import CommentCard from "../Reusable/CommentCard"
 const height = Dimensions.get('window').height;
 
 const PlaceDetails = ({ route, navigation }) => {
+  const input = React.createRef();
 
   const { items, auth_id } = route.params;
   const image = { uri: items.data.url };
@@ -223,6 +224,7 @@ const PlaceDetails = ({ route, navigation }) => {
 
 
                       <InputTaker
+                        ref = {input} 
                         leftIcon={<FontAwesome name="comment" size={22} color={"gray"} />}
                         placeholder="Write a comment.."
                         widthpass={300}
@@ -243,6 +245,8 @@ const PlaceDetails = ({ route, navigation }) => {
 
                           onPress={
                             () => {
+
+                              input.current.clear()
                               firebase
                                 .firestore()
                                 .collection("posts").doc(items.id).collection("postcomments")
@@ -253,7 +257,7 @@ const PlaceDetails = ({ route, navigation }) => {
                                   created_desc: firebase.firestore.Timestamp.now(),
                                 })
                                 .then((docref) => {
-                                  alert("comment id :" + docref.id);
+                                  
 
                                 })
                                 .catch((error) => {
@@ -363,14 +367,14 @@ const PlaceDetails = ({ route, navigation }) => {
                   <View style={styles.infoItemsitems}>
                     <Text style={styles.infoTitle}>RATING</Text>
                     <View style={styles.infoTextWrapper}>
-                      <Text style={styles.infoText}>${items.data.rating}</Text>
+                      <Text style={styles.infoText}>*{items.data.rating}</Text>
                       <Text style={styles.infoSubText}>/5</Text>
                     </View>
                   </View>
                   <View style={styles.infoItemsitems}>
                     <Text style={styles.infoTitle}>DURATION</Text>
                     <View style={styles.infoTextWrapper}>
-                      <Text style={styles.infoText}>${items.data.durations}</Text>
+                      <Text style={styles.infoText}>@{items.data.durations}</Text>
                       <Text style={styles.infoSubText}> hours</Text>
                     </View>
                   </View>

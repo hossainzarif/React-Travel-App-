@@ -5,6 +5,7 @@ import { Card, Button } from 'react-native-elements';
 
 import "firebase/firestore";
 import * as firebase from "firebase"
+import HeaderComponent from "../Reusable/HeaderComponent";
 
 
 
@@ -57,6 +58,10 @@ const Notification = () => {
     return (
 
         <ScrollView contentContainerStyle={{marginBottom:20}}>
+            
+            <HeaderComponent />
+            
+            
             <FlatList
 
                 data={notifications}

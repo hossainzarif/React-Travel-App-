@@ -122,6 +122,41 @@ const [GroupMembers,setMembers] = useState([])
 
 
 
+
+
+              <View style={styles.commentWrapper}>
+                  <TouchableOpacity
+                    onPress={
+                      () => {
+
+                            if(isMember== true)
+                            {
+                                firebase
+                                .firestore()
+                                .collection("groups").doc(items.id).collection("members").doc(auth.CurrentUser.uid).delete()
+                               
+                                .then((docref) => {
+                                    Alert.alert("Left Group");
+                                    setIsMember(false)
+                                    //alert(auth.CurrentUser.sid)
+                                })
+
+                            }
+                            else
+                            {
+                                Alert.alert("you are not a Member.")
+                            }
+                      }
+                    }
+                  >
+                    <FontAwesome name="minus" size={32} color={"gray"} />
+
+                  </TouchableOpacity>
+
+
+                </View>
+               
+
                 <View style={styles.heartWrapper}>
                   <TouchableOpacity
                     onPress={
@@ -137,7 +172,8 @@ const [GroupMembers,setMembers] = useState([])
                                 })
 
                                 .then((docref) => {
-                                    Alert.alert("DONE");
+                                  setIsMember(true)
+                                    Alert.alert("Joined new Group");
                                     //alert(auth.CurrentUser.sid)
                                 })
 

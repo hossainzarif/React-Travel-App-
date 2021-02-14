@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, SafeAreaView, Image, ScrollView, ImageBackground } from "react-native";
+import { StyleSheet, View, SafeAreaView, Image, ScrollView, ImageBackground, Touchable, TouchableOpacity, Alert } from "react-native";
 import { Input, Button, Card, Tile, Text, Header, Avatar } from 'react-native-elements';
+<<<<<<< Updated upstream
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
+=======
+import { FlatList, } from 'react-native-gesture-handler';
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+>>>>>>> Stashed changes
 import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
@@ -11,14 +16,25 @@ import PlaceDetails from '../screeens/PlaceDetails';
 import UploadImage from '../Reusable/UploadImage';
 import * as firebase from "firebase";
 import "firebase/firestore";
+<<<<<<< Updated upstream
 import { getDataJSON,  } from "../Functions/AsynchronousStorageFunctions";
 
+=======
+import HeaderComponent from "../Reusable/HeaderComponent";
+import * as ImagePicker from 'expo-image-picker';
+>>>>>>> Stashed changes
 
 
-const ProfileScreen = (props) => {
+const ProfileScreen = ({ route }) => {
+
+    const { auth_id } = route.params;
+
+
+    const [imgarray, setimg] = useState([])
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState([]);
+<<<<<<< Updated upstream
     const [Birthdate, setBirthdate] = useState("");
     const [currentCity, setCurrentCity] = useState("");
     const [workPlace, setWorkPlace] = useState("");
@@ -91,6 +107,66 @@ const ProfileScreen = (props) => {
     useEffect(() => {
         getUserId();
     },[] );
+=======
+    const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
+
+
+
+
+    const pickImage = async (auth) => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [7, 7],
+            quality: 1,
+        });
+
+
+
+
+        // console.log(result);
+
+        if (!result.cancelled) {
+
+            setImage(result.uri)
+
+            const response = await fetch(image)
+            const blob = await response.blob()
+            var ref = firebase.storage().ref().child("ProfilePicture/" + toString(auth.CurrentUser.uid))
+            ref.put(blob).then(() => {
+                ref.getDownloadURL().then((downloadURL) => {
+
+                    firebase
+                        .firestore()
+                        .collection("users").doc(auth.CurrentUser.uid).collection("profilepicture").doc(auth.CurrentUser.uid).set
+                        ({
+
+                            url: downloadURL,
+
+                        }).then
+                    {
+                        Alert.alert("Profile Picture Updated")
+                    }
+
+
+                }
+
+                )
+            })
+
+
+        }
+    };
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
 
     let postsButton = " ";
@@ -142,6 +218,7 @@ const ProfileScreen = (props) => {
 
                     <ScrollView showsVerticalScrollIndicator={false}>
 
+<<<<<<< Updated upstream
                         <Header
                             backgroundColor="#fff"
                             leftComponent={{
@@ -176,6 +253,60 @@ const ProfileScreen = (props) => {
                         <View>
                             <UploadImage props={props} />
                             {/* <Text style={{ fontSize: 30, color: '#152a38', marginBottom: 20, marginTop:-60 }}> {auth.CurrentUser.name} </Text> */}
+=======
+                        <HeaderComponent />
+                        <SafeAreaView>
+
+                            <TouchableOpacity onPress={
+                                function () {
+
+
+                                    props.navigation.navigate("EditProfile")
+                                }
+                            }>
+                                <View style={styles.editWrapper}>
+
+                                    <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile </Text>
+                                    <Entypo name="edit" size={20} color="#6b778d" />
+                                </View>
+                            </TouchableOpacity>
+
+
+                        </SafeAreaView>
+
+
+                        <View style={{ alignSelf: "center" }}>
+
+                            <TouchableOpacity
+
+                                onPress={() =>
+
+                                    pickImage(auth)
+                                }
+
+
+                            >
+
+
+                                <View style={styles.profileImage}>
+
+
+
+                                    <Image source={{ uri: image }} style={styles.image} resizeMode="center"></Image>
+
+
+
+                                </View>
+                            </TouchableOpacity>
+
+                            <View style={styles.dm}>
+                                <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
+                            </View>
+                            <View style={styles.active}></View>
+                            <View style={styles.add}>
+                                <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
+                            </View>
+>>>>>>> Stashed changes
                         </View>
 
                         <View style={styles.infoContainer}>

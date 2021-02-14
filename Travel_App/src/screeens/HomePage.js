@@ -37,7 +37,14 @@ Entypo.loadFont();
 import BottomSheet from "react-native-gesture-bottom-sheet";
 import PostTaker from '../Reusable/PostTaker';
 import * as ImagePicker from 'expo-image-picker';
+<<<<<<< Updated upstream
 import TourGuide from './TourGuide';
+=======
+import HeaderComponent from '../Reusable/HeaderComponent';
+
+
+
+>>>>>>> Stashed changes
 
 
 const HomePage = ({ navigation }) => {
@@ -47,7 +54,8 @@ const HomePage = ({ navigation }) => {
     const [postblog, setPostblog] = useState("");
     const [posts, setPosts] = useState([]);
 
-
+    const input = React.createRef();
+    const input_2 = React.createRef();
     let durl = ""
     const colorcode = "#606361"
     const [selcted, setselected] = useState([])
@@ -67,22 +75,22 @@ const HomePage = ({ navigation }) => {
     let multiSelect = ""
     //const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
     const [stars, setStars] = useState(0)
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     (async () => {
-    //         if (Platform.OS !== 'web') {
-    //             const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
-    //             if (status !== 'granted') {
-    //                 alert('Need Camera and Media Permisson');
-    //             }
-    //         }
-
-
-    //         // setprops();
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+                if (status !== 'granted') {
+                    alert('Need Camera and Media Permisson');
+                }
+            }
 
 
-    //     })();
-    // }, []);
+            // setprops();
+
+
+        })();
+    }, []);
 
 
 
@@ -137,7 +145,13 @@ const HomePage = ({ navigation }) => {
                                 })
 
                                 .then((docref) => {
+<<<<<<< Updated upstream
                                     Alert.alert("Posted Succesfully!");
+=======
+                                    bottomSheet.current.hide()
+
+                                    Alert.alert("Group Created");
+>>>>>>> Stashed changes
                                     //alert(auth.CurrentUser.sid)
                                 })
                             //alert(auth.CurrentUser.sid)
@@ -267,6 +281,7 @@ const HomePage = ({ navigation }) => {
 
         return (
             <AuthContext.Consumer>
+<<<<<<< Updated upstream
                 {(auth) => (
 
                     <TouchableOpacity
@@ -290,6 +305,67 @@ const HomePage = ({ navigation }) => {
                         </ImageBackground>
                     </TouchableOpacity>
                 )}
+=======
+            {(auth) => (
+
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate('Groups', {
+                        items: item,
+                        auth_id:auth.CurrentUser.uid
+
+                    })
+                }
+                
+                
+                onLongPress={() => {
+                    Alert.alert(
+                      "Delete The Group?",
+                      "Press ok to Delete",
+                      [
+                        {
+                          text: "Cancel",
+                          onPress: () => console.log("Cancel Pressed"),
+                          style: "cancel"
+                        },
+                        {
+                          text: "OK", onPress: () => {
+
+                            if (auth.CurrentUser.uid == item.data.groupOwner) {
+
+                              firebase
+                                .firestore()
+                                .collection("groups").doc(item.id).delete()
+                            }
+
+                            else {
+                              alert("You're not the owner of this group")
+                            }
+                          }
+
+
+
+                        }
+                      ],
+                      { cancelable: false }
+                    );
+                  }}
+                
+                >
+                <ImageBackground
+                    source={imagecover}
+                    style={[
+                        styles.learnMoreItem,
+                        {
+                            marginLeft: item.id === 'learnMore-1' ? 10 : 0,
+                        },
+                    ]}
+                    imageStyle={styles.learnMoreItemImage}>
+                    <Text style={styles.learnMoreItemText}>{item.data.groupname}</Text>
+                </ImageBackground>
+            </TouchableOpacity>
+            )}
+>>>>>>> Stashed changes
             </AuthContext.Consumer>
         );
     };
@@ -308,6 +384,7 @@ const HomePage = ({ navigation }) => {
                     <View style={styles.container}>
                         <ScrollView>
                             {/* Header */}
+<<<<<<< Updated upstream
                             <SafeAreaView>
                                 <View style={styles.menuWrapper}>
                                     <Feather
@@ -322,6 +399,9 @@ const HomePage = ({ navigation }) => {
 
                                 </View>
                             </SafeAreaView>
+=======
+                          <HeaderComponent/>
+>>>>>>> Stashed changes
 
                             {/* Discover */}
                             <View style={styles.discoverWrapper}>
@@ -401,6 +481,7 @@ const HomePage = ({ navigation }) => {
 
 
                                         <InputTaker
+                                            ref={input_2}
                                             leftIcon={<FontAwesome name="group" size={18} color="gray" />}
                                             placeholder="Name Your Group."
                                             widthpass={300}

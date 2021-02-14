@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     FlatList,
     Alert,
-    ScrollView
+    ScrollView,
+    TextInput
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -28,8 +29,11 @@ import "firebase/firestore";
 import { AuthContext } from "../Providers/AuthProvider"
 import StarRating from 'react-native-star-rating';
 import { or } from 'react-native-reanimated';
+import HeaderComponent from '../Reusable/HeaderComponent';
 
 const PostPage = (props) => {
+    const input = React.createRef();
+    const input_2 = React.createRef();
 
     let durl = ""
     const colorcode = "#606361"
@@ -42,8 +46,8 @@ const PostPage = (props) => {
     const [Header, setHeaderName] = useState("")
     const [blog, setBlog] = useState("")
     // const {data} = props.name
-    const [costs,setCost] = useState(0)
-    const [duration,setDuration] = useState(0)
+    const [costs, setCost] = useState(0)
+    const [duration, setDuration] = useState(0)
     const [image, setImage] = useState("");
     const org = "#db5e40"
     let multiSelect = ""
@@ -100,9 +104,7 @@ const PostPage = (props) => {
 
     const uploadImage = async (auth) => {
         if (image == "") {
-            console.log(selcted)
-
-            console.log(location)
+            Alert.alert("Select Images.")
 
 
         }
@@ -113,31 +115,44 @@ const PostPage = (props) => {
             ref.put(blob).then(() => {
                 ref.getDownloadURL().then((downloadURL) => {
 
-                    firebase
-                        .firestore()
-                        .collection("posts")
-                        .add({
-                            userId: auth.CurrentUser.uid,
-                            author: auth.CurrentUser.displayName,
-                            postheader: Header,
-                            postbody: blog,
-                            url: downloadURL,
-                            time: firebase.firestore.Timestamp.now(),
-                            categories: props.route.params.item,
-                            locationName: props.route.params.location,
-                            costing : costs,
-                            durations:duration,
-                            rating :stars
-                        })
-                        .then((docref) => {
-                            Alert.alert("DONE");
-                            //alert(auth.CurrentUser.sid)
-                        })
-                        .catch((error) => {
-                            alert(error);
-                        });
+                    if (Header && blog && costs && duration && ((props.route.params.item).length != 0 && (props.route.params.location != ""))) {
+
+                        firebase
+                            .firestore()
+                            .collection("posts")
+                            .add({
+                                userId: auth.CurrentUser.uid,
+                                author: auth.CurrentUser.displayName,
+                                postheader: Header,
+                                postbody: blog,
+                                url: downloadURL,
+                                time: firebase.firestore.Timestamp.now(),
+                                categories: props.route.params.item,
+                                locationName: props.route.params.location,
+                                costing: costs,
+                                durations: duration,
+                                rating: stars
+                            })
+                            .then((docref) => {
+                                //setHeaderName("")
+                                Alert.alert("Post Created");
+                                input.current.clear()
+                                input_2.current.clear()
+
+                                props.navigation.navigate("HomePage")
+                                //alert(auth.CurrentUser.sid)
 
 
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+
+
+                    }
+                    else {
+                        Alert.alert("Please Fill up Necessary Sections")
+                    }
                 }
 
                 )
@@ -157,6 +172,7 @@ const PostPage = (props) => {
 
 
                 <ScrollView>
+                    <HeaderComponent />
 
 
                     <Card containerStyle={styles.cardViewStyle}>
@@ -182,6 +198,8 @@ const PostPage = (props) => {
 
 
                         <PostTaker
+                            //   ref={input}
+
                             leftIcon={<Entypo name="location-pin" size={22} color={colorcode} />}
                             placeholder="Share your recent adventure."
                             widthpass={300}
@@ -196,7 +214,8 @@ const PostPage = (props) => {
                         </PostTaker>
 
                         <InputTaker
-                            leftIcon={<FontAwesome name="dollar" size={20} color={colorcode}/> }
+                            ref={input}
+                            leftIcon={<FontAwesome name="dollar" size={20} color={colorcode} />}
                             placeholder="Cost Per Person."
                             widthpass={300}
                             heightpass={50}
@@ -209,6 +228,8 @@ const PostPage = (props) => {
                         >
                         </InputTaker>
                         <InputTaker
+                            ref={input_2}
+
                             leftIcon={<Ionicons name="md-time" size={20} color={colorcode} />}
                             placeholder="Duration in hours."
                             widthpass={300}
@@ -264,11 +285,11 @@ const PostPage = (props) => {
 
                         </View>
 
-                        <View style={{ width: 250, alignSelf: "center",marginTop:20 }}>
+                        <View style={{ width: 250, alignSelf: "center", marginTop: 20 }}>
 
                             <StarRating
-                                fullStarColor= {org}
-                                
+                                fullStarColor={org}
+
                                 disabled={false}
                                 maxStars={5}
                                 starSize={30}
@@ -334,7 +355,11 @@ const PostPage = (props) => {
                             title="Post"
                             style={styles.container}
                             onPress=
-                            {() => uploadImage(auth)}
+                            {() =>
+                                uploadImage(auth)
+
+                            }
+
 
 
                             color='#db5e40'
@@ -344,10 +369,6 @@ const PostPage = (props) => {
                         >
                         </CurvedButtons>
                     </View>
-
-
-
-
 
 
 
@@ -370,7 +391,7 @@ const styles = StyleSheet.create(
             // justifyContent: 'center',
             borderRadius: 20,
             elevation: 5,
-            marginTop: 100,
+            marginTop: 20,
             height: 580,
             width: 330
 

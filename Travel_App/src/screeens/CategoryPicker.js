@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import PostPage from './PostPage'
 import { withNavigation } from 'react-navigation';
 import AirBook from './AirBook'
+import PostTaker from '../Reusable/PostTaker';
 let items = [{
   id: '92iijs7yta',
   name: 'Boating'
@@ -96,8 +97,7 @@ class CategoryPicker extends Component {
 
 
         <View style={{ marginTop: 80, flexDirection: "row", justifyContent: "center" }}>
-          <InputTaker
-
+          <PostTaker
             leftIcon={<FontAwesome name="search" size={22} color="#db5e40" />}
             placeholder="Add tag."
             widthpass={225}
@@ -108,7 +108,7 @@ class CategoryPicker extends Component {
           >
 
 
-          </InputTaker>
+          </PostTaker>
           <View style={{ justifyContent: "center" }}>
             <Button
               buttonStyle={{ borderRadius: 10, backgroundColor: '#db5e40', width: 100, }}

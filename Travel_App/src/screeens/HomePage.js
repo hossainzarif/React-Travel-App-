@@ -40,8 +40,6 @@ import * as ImagePicker from 'expo-image-picker';
 import TourGuide from './TourGuide';
 
 
-
-
 const HomePage = ({ navigation }) => {
     const bottomSheet = useRef();
     const tourBottomSheet = useRef();
@@ -139,7 +137,7 @@ const HomePage = ({ navigation }) => {
                                 })
 
                                 .then((docref) => {
-                                    Alert.alert("DONE");
+                                    Alert.alert("Posted Succesfully!");
                                     //alert(auth.CurrentUser.sid)
                                 })
                             //alert(auth.CurrentUser.sid)

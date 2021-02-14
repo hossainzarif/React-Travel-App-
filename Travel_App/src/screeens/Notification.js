@@ -10,7 +10,7 @@ import * as firebase from "firebase"
 
 
 const Notification = () => {
-    const [notifications, setNotifications] = useState([])
+    const [notifications, setNotifications] = useState([]);
 
     const loadPosts = async () => {
 

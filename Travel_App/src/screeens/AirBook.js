@@ -60,7 +60,7 @@ const AirBook = ({ navigation }) => {
                 GM
               </Text>
               <Text style={styles.dots}>
-                - - - - - - - - - - - - - - - -
+                - - - - - - - - - - - - - - - - - - - - - - - - - - - 
               </Text>
               <Text style={styles.headingFontStyle}>
                 IDN
@@ -79,7 +79,7 @@ const AirBook = ({ navigation }) => {
               <Text
                 style={styles.rightFont}
               >
-                {`Indonesia\n 12 pm`}
+                {`      Indonesia\n          12 pm`}
           </Text>
           </View>
         </Card>
@@ -112,7 +112,7 @@ const AirBook = ({ navigation }) => {
                   HKG
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - - - - - - - - - - - 
               </Text>
                 <Text style={styles.headingFontStyle}>
                   DXB
@@ -131,7 +131,7 @@ const AirBook = ({ navigation }) => {
                 <Text
                   style={styles.rightFont}
                 >
-                  {`Dubai\n 7 pm`}
+                  {`          Dubai\n          7 pm`}
                 </Text>
               </View>
             </Card>
@@ -164,7 +164,7 @@ const AirBook = ({ navigation }) => {
                   KL
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   ISL
@@ -186,7 +186,7 @@ const AirBook = ({ navigation }) => {
                     paddingLeft: 210,
                   }}
                 >
-                  {`Istanbul\n 5 pm`}
+                  {`      Istanbul\n      5 pm`}
                 </Text>
               </View>
             </Card>
@@ -219,7 +219,7 @@ const AirBook = ({ navigation }) => {
                   DOH
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - - - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   UK
@@ -241,7 +241,7 @@ const AirBook = ({ navigation }) => {
                     paddingLeft: 260,
                   }}
                 >
-                  {`London\n 9 am`}
+                  {`       London\n       9 am`}
                 </Text>
               </View>
             </Card>
@@ -274,7 +274,7 @@ const AirBook = ({ navigation }) => {
                   BD
               </Text>
                 <Text style={styles.dots}>
-                  - - - - - - - - - - - - - - - - - -
+                  - - - - - - - - - - - - - - - - - -  - - - - - - - - - -
               </Text>
                 <Text style={styles.headingFontStyle}>
                   DXB
@@ -293,7 +293,7 @@ const AirBook = ({ navigation }) => {
                 <Text
                   style={styles.rightFont}
                 >
-                  {`Dubai\n 1 pm`}
+                  {`           Dubai\n         1 pm`}
                 </Text>
               </View>
             </Card>

@@ -10,6 +10,7 @@ import { AuthContext } from "../Providers/AuthProvider"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import * as firebase from "firebase";
+import { getDataJSON, storeDataJSON } from "../Functions/AsynchronousStorageFunctions";
 import BackLogo from './../Reusable/BackLogo';
 
 const iconsize = 17
@@ -79,9 +80,10 @@ const SignIn = (props) => {
                                         firebase
                                             .auth()
                                             .signInWithEmailAndPassword(Email, Password)
-                                            .then((userCreds) => {
+                                            .then(async (userCreds) => {
                                                 auth.setisLoggedin(true);
                                                 auth.setCurrentUser(userCreds.user);
+                                                await storeDataJSON("mail", userCreds.user.uid)
                                             })
                                             .catch((error) => {
                                                 alert(error);

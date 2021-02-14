@@ -10,7 +10,7 @@ import {
 
 
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';
@@ -35,12 +35,9 @@ import CurvedButtons from '../Reusable/CurvedButtons'
 import InputTaker from '../Reusable/InputTaker'
 Feather.loadFont();
 Entypo.loadFont();
-
-
 import BottomSheet from "react-native-gesture-bottom-sheet";
 import PostTaker from '../Reusable/PostTaker';
 import * as ImagePicker from 'expo-image-picker';
-
 
 
 
@@ -321,12 +318,14 @@ const HomePage = ({ navigation }) => {
                                         style={styles.menuIcon}
                                     />
                                     {/* <Image source={profile} style={styles.profileImage} /> */}
+
                                 </View>
                             </SafeAreaView>
 
                             {/* Discover */}
                             <View style={styles.discoverWrapper}>
                                 <Text style={styles.discoverTitle}>Discover</Text>
+                                <Text style={{ fontWeight: "200", fontSize: 36 }}> {auth.CurrentUser.displayName} </Text>
                                 <View style={styles.discoverCategoriesWrapper}>
                                     <Text style={[styles.discoverCategoryText, { color: colors.orange }]}>
                                         All

@@ -320,7 +320,7 @@ const HomePage = ({ navigation }) => {
                                         color={colors.black}
                                         style={styles.menuIcon}
                                     />
-                                    <Image source={profile} style={styles.profileImage} />
+                                    {/* <Image source={profile} style={styles.profileImage} /> */}
                                 </View>
                             </SafeAreaView>
 

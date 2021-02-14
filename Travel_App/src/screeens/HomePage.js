@@ -10,7 +10,6 @@ import {
 
 
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { AuthContext } from "../Providers/AuthProvider"
 import colors from '../../assets/colors/colors';

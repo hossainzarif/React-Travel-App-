@@ -1,115 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, SafeAreaView, Image, ScrollView, ImageBackground, Touchable, TouchableOpacity, Alert } from "react-native";
 import { Input, Button, Card, Tile, Text, Header, Avatar } from 'react-native-elements';
-<<<<<<< Updated upstream
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons, MaterialIcons, FontAwesome } from "@expo/vector-icons";
-=======
 import { FlatList, } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
->>>>>>> Stashed changes
 import colors from '../../assets/colors/colors';
 import { Entypo, Feather, AntDesign } from '@expo/vector-icons';
 import { AuthContext } from "../Providers/AuthProvider";
-import CurvedButtons from '../Reusable/CurvedButtons';
 import PlaceDetails from '../screeens/PlaceDetails';
-import UploadImage from '../Reusable/UploadImage';
 import * as firebase from "firebase";
 import "firebase/firestore";
-<<<<<<< Updated upstream
-import { getDataJSON,  } from "../Functions/AsynchronousStorageFunctions";
-
-=======
 import HeaderComponent from "../Reusable/HeaderComponent";
 import * as ImagePicker from 'expo-image-picker';
->>>>>>> Stashed changes
 
 
-const ProfileScreen = ({ route }) => {
+const ProfileScreen = ({ }) => {
 
-    const { auth_id } = route.params;
+
 
 
     const [imgarray, setimg] = useState([])
     const [numberOfPosts, setNumberOfPosts] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState([]);
-<<<<<<< Updated upstream
-    const [Birthdate, setBirthdate] = useState("");
-    const [currentCity, setCurrentCity] = useState("");
-    const [workPlace, setWorkPlace] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-    const [userId, setUserId] = useState("");
-    
-
-
-
-    const loadPosts = async () => {
-        //console.log(userId)
-
-        firebase
-            .firestore()
-            .collection("posts")
-            .orderBy("time", "desc")
-            .onSnapshot((querySnapshot) => {
-                let temp_posts = [];
-                let count=0;
-                querySnapshot.forEach((doc) => {
-                    if (doc.data().userId == userId) {
-                        //console.log(doc.data().userId)
-                        temp_posts.push({
-                            id: doc.id,
-                            data: doc.data(),
-                        });
-                        count = count + 1
-                        //console.log(count)
-                     }
-                });
-                setPosts(temp_posts);
-                setNumberOfPosts(count)
-            })
-            .catch((error) => {
-                alert(error);
-            });
-        // }
-    }
-    //console.log(props)
-    const LoadData = async () => {
-        setIsLoading(true);
-        firebase
-            .firestore()
-            .collection('users')
-            .doc(userId)
-            .onSnapshot((querySnapShot) => {
-                setIsLoading(false);
-                setBirthdate(querySnapShot.data().birthdate);
-                setCurrentCity(querySnapShot.data().currentCity);
-                setWorkPlace(querySnapShot.data().workPlace);
-            })
-            .catch((error) => {
-                setIsLoading(false);
-                alert(error);
-            })
-    }
-
-    const getUserId = async () => {
-        await getDataJSON("mail").then((data) => {
-          if (data == null) {
-            setUserId("");
-          } else setUserId(data);
-        });
-      }
-
-    useEffect(() => {
-        loadPosts();
-        LoadData();
-    }, [userId]);
-    useEffect(() => {
-        getUserId();
-    },[] );
-=======
     const [image, setImage] = useState('https://dummyimage.com/200x300/e0e0e0/e8e8e8.jpg&text=upload');
 
+    //console.log(props.userId);
+
+    // useEffect(() => {
+
+    //     (async () => {
+    //         if (Platform.OS !== 'web') {
+    //             const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+    //             if (status !== 'granted') {
+    //                 alert('Need Camera and Media Permisson');
+    //             }
+    //         }
+
+
+    //         // setprops();
+
+
+    //     })();
+    // }, []);
 
 
 
@@ -166,7 +98,32 @@ const ProfileScreen = ({ route }) => {
 
 
 
->>>>>>> Stashed changes
+    // const loadPosts = async () => {
+    //     // if (props.userId == auth.CurrentUser.uid) {
+
+    //     firebase
+    //         .firestore()
+    //         .collection("users").doc(auth_id).collection("profilepicture").doc(auth_id)
+    //         .onSnapshot((querySnapshot) => {
+    //             let temp_posts = [];
+    //             querySnapshot.forEach((doc) => {
+    //                 temp_posts.push({
+    //                     id: doc.id,
+    //                     data: doc.data(),
+    //                 });
+    //             });
+    //             setimg(temp_posts)
+
+    //         })
+    //         .catch((error) => {
+    //             alert(error);
+    //         });
+    //     // }
+    // }
+
+    // useEffect(() => {
+    //     loadPosts()
+    // }, []);
 
 
     let postsButton = " ";
@@ -218,42 +175,6 @@ const ProfileScreen = ({ route }) => {
 
                     <ScrollView showsVerticalScrollIndicator={false}>
 
-<<<<<<< Updated upstream
-                        <Header
-                            backgroundColor="#fff"
-                            leftComponent={{
-                                icon: "menu",
-                                color: "black",
-                                size: 40,
-                                onPress: function () {
-                                    props.navigation.toggleDrawer();
-                                },
-                            }}
-                            //centerComponent={{ text: "The Office", style: { color: "#fff" } }}
-                            rightComponent={{
-                                icon: "lock-outline",
-                                color: "black",
-                                size: 30,
-                                onPress: function () {
-                                    console.log(auth.setisLoggedin())
-                                    firebase
-                                        .auth()
-                                        .signOut()
-                                        .then(() => {
-                                            auth.setisLoggedin(false);
-                                            auth.setCurrentUser({});
-                                        })
-                                        .catch((error) => {
-                                            alert(error);
-                                        })
-                                },
-                            }}
-                        />
-
-                        <View>
-                            <UploadImage props={props} />
-                            {/* <Text style={{ fontSize: 30, color: '#152a38', marginBottom: 20, marginTop:-60 }}> {auth.CurrentUser.name} </Text> */}
-=======
                         <HeaderComponent />
                         <SafeAreaView>
 
@@ -306,7 +227,6 @@ const ProfileScreen = ({ route }) => {
                             <View style={styles.add}>
                                 <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
                             </View>
->>>>>>> Stashed changes
                         </View>
 
                         <View style={styles.infoContainer}>
@@ -333,25 +253,18 @@ const ProfileScreen = ({ route }) => {
                             </View>
                         </View>
 
-
-                        <View >
-                            <View style={styles.stats2Container}>
-                                <MaterialIcons name="date-range" size={28} color="#52575D" />
-                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Born On {Birthdate}  </Text>
-                            </View>
-                            <View style={styles.stats2Container}>
-                                <FontAwesome name="home" size={28} color="#52575D" />
-                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Currently lives in {currentCity} </Text>
-                            </View>
-                            <View style={styles.stats2Container}>
-                                <Entypo name="suitcase" size={24} color="#52575D" />
-                                <Text style={styles.EditedTextStyle, { fontSize: 20, paddingLeft: 10, color: "#52575D", }}>Works at {workPlace} </Text>
-                            </View>
-
-                        </View>
-
                         <View style={styles.discoverWrapper}>
-
+                            {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                                <View style={styles.mediaImageContainer}>
+                                    <Image source={require("../../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
+                                </View>
+                            </ScrollView> */}
                             <View style={styles.discoverItemsWrapper} >
 
                                 <FlatList
@@ -368,67 +281,26 @@ const ProfileScreen = ({ route }) => {
                                 <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Posts</Text>
                             </View>
                         </View>
-
-                        <Card>
-                            <View style={styles.editWrapper}>
-                                <Text style={{ fontSize: 20, color: "#6b778d" }}> Edit Profile Details </Text>
-                                <Entypo name="edit" size={20} color="#6b778d" />
+                        <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
+                        <View style={{ alignItems: "center" }}>
+                            <View style={styles.recentItem}>
+                                <View style={styles.activityIndicator}></View>
+                                <View style={{ width: 250 }}>
+                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                        Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
+                                    </Text>
+                                </View>
                             </View>
-                            <Card.Divider />
-                            <Input leftIcon={<FontAwesome name="calendar" size={24} color="#DFD8C8" />}
-                                placeholder='Add Birth Date'
-                                onChangeText={function (currentInput) {
-                                    setBirthdate(currentInput);
-                                }}
-                            />
 
-                            <Input leftIcon={<FontAwesome name="address-card" size={24} color="#DFD8C8" />}
-                                placeholder='Add Current City'
-                                onChangeText={function (currentInput) {
-                                    setCurrentCity(currentInput);
-                                }}
-                            />
-                            <Input leftIcon={<Entypo name="suitcase" size={24} color="#DFD8C8" />}
-                                placeholder="Add Work Place"
-                                onChangeText={function (currentInput) {
-                                    setWorkPlace(currentInput);
-                                }}
-                            />
-                            <CurvedButtons
-                                title="Update"
-                                onPress={
-                                    function () {
-                                        firebase
-                                            .firestore()
-                                            .collection('users')
-                                            .doc(auth.CurrentUser.uid)
-                                            .set(
-                                                {
-                                                    birthdate: Birthdate,
-                                                    currentCity: currentCity,
-                                                    workPlace: workPlace
-
-                                                },
-                                                { merge: true }
-                                            )
-                                            .then(() => {
-                                                setIsLoading(false);
-                                            })
-                                            .catch((error) => {
-                                                setIsLoading(false);
-                                                alert(error);
-                                            })
-
-                                    }
-                                }
-                                color='white'
-                                bgcolor='#db5e40'
-                                widthpass={150}
-                                heightpass={40}
-                            />
-
-                        </Card>
-
+                            <View style={styles.recentItem}>
+                                <View style={styles.activityIndicator}></View>
+                                <View style={{ width: 250 }}>
+                                    <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                        Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
                     </ScrollView>
                 </SafeAreaView>
             )}
@@ -470,9 +342,9 @@ const styles = StyleSheet.create({
         fontWeight: "500"
     },
     profileImage: {
-        width: 300,
-        height: 300,
-        borderRadius: 200,
+        width: 200,
+        height: 200,
+        borderRadius: 100,
         overflow: "hidden"
     },
     dm: {
@@ -514,16 +386,7 @@ const styles = StyleSheet.create({
     statsContainer: {
         flexDirection: "row",
         alignSelf: "center",
-        marginTop: 32,
-        marginRight:30
-    },
-    stats2Container: {
-        flexDirection: "row",
-        alignSelf: "flex-start",
-        marginTop: 22,
-        marginLeft: 40
-
-
+        marginTop: 32
     },
     statsBox: {
         alignItems: "center",
@@ -610,20 +473,6 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginTop: 3,
         marginRight: 20
-    },
-    editedTextStyle: {
-        color: "#52575D",
-        marginLeft: 10,
-        fontSize: 20,
-        fontWeight: "100",
-        padding: 10
-    },
-    updateButton: {
-        height: 40,
-        borderRadius: 15,
-        width: 200,
-        alignItems: 'center',
-        justifyContent: 'center',
     }
 });
 

@@ -37,14 +37,7 @@ Entypo.loadFont();
 import BottomSheet from "react-native-gesture-bottom-sheet";
 import PostTaker from '../Reusable/PostTaker';
 import * as ImagePicker from 'expo-image-picker';
-<<<<<<< Updated upstream
 import TourGuide from './TourGuide';
-=======
-import HeaderComponent from '../Reusable/HeaderComponent';
-
-
-
->>>>>>> Stashed changes
 
 
 const HomePage = ({ navigation }) => {
@@ -145,13 +138,7 @@ const HomePage = ({ navigation }) => {
                                 })
 
                                 .then((docref) => {
-<<<<<<< Updated upstream
                                     Alert.alert("Posted Succesfully!");
-=======
-                                    bottomSheet.current.hide()
-
-                                    Alert.alert("Group Created");
->>>>>>> Stashed changes
                                     //alert(auth.CurrentUser.sid)
                                 })
                             //alert(auth.CurrentUser.sid)
@@ -281,7 +268,6 @@ const HomePage = ({ navigation }) => {
 
         return (
             <AuthContext.Consumer>
-<<<<<<< Updated upstream
                 {(auth) => (
 
                     <TouchableOpacity
@@ -305,67 +291,6 @@ const HomePage = ({ navigation }) => {
                         </ImageBackground>
                     </TouchableOpacity>
                 )}
-=======
-            {(auth) => (
-
-            <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate('Groups', {
-                        items: item,
-                        auth_id:auth.CurrentUser.uid
-
-                    })
-                }
-                
-                
-                onLongPress={() => {
-                    Alert.alert(
-                      "Delete The Group?",
-                      "Press ok to Delete",
-                      [
-                        {
-                          text: "Cancel",
-                          onPress: () => console.log("Cancel Pressed"),
-                          style: "cancel"
-                        },
-                        {
-                          text: "OK", onPress: () => {
-
-                            if (auth.CurrentUser.uid == item.data.groupOwner) {
-
-                              firebase
-                                .firestore()
-                                .collection("groups").doc(item.id).delete()
-                            }
-
-                            else {
-                              alert("You're not the owner of this group")
-                            }
-                          }
-
-
-
-                        }
-                      ],
-                      { cancelable: false }
-                    );
-                  }}
-                
-                >
-                <ImageBackground
-                    source={imagecover}
-                    style={[
-                        styles.learnMoreItem,
-                        {
-                            marginLeft: item.id === 'learnMore-1' ? 10 : 0,
-                        },
-                    ]}
-                    imageStyle={styles.learnMoreItemImage}>
-                    <Text style={styles.learnMoreItemText}>{item.data.groupname}</Text>
-                </ImageBackground>
-            </TouchableOpacity>
-            )}
->>>>>>> Stashed changes
             </AuthContext.Consumer>
         );
     };
@@ -384,7 +309,6 @@ const HomePage = ({ navigation }) => {
                     <View style={styles.container}>
                         <ScrollView>
                             {/* Header */}
-<<<<<<< Updated upstream
                             <SafeAreaView>
                                 <View style={styles.menuWrapper}>
                                     <Feather
@@ -399,9 +323,6 @@ const HomePage = ({ navigation }) => {
 
                                 </View>
                             </SafeAreaView>
-=======
-                          <HeaderComponent/>
->>>>>>> Stashed changes
 
                             {/* Discover */}
                             <View style={styles.discoverWrapper}>
@@ -618,7 +539,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: "#db5e40",
         height: 60,
-        width: 400,
+        width: 300,
     },
 
     menuWrapper: {

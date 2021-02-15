@@ -94,15 +94,7 @@ const TabNavigator = () => {
 
       <Tab.Screen
         name="Profile"
-<<<<<<< Updated upstream
         component={ProfileScreen}
-=======
-        component={ProfileStack}
-        
-
-
-        
->>>>>>> Stashed changes
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" size={32} color={color} />
@@ -114,44 +106,17 @@ const TabNavigator = () => {
     </AuthContext.Consumer>
   );
 };
-<<<<<<< Updated upstream
 // const ProfileStack = () => {
 //   return (
 //     <stack.Navigator initialRouteName="ProfileScreen">
-=======
-const ProfileStack = () => {
-  return (
-  
-    <AuthContext.Consumer>
-    {(auth) => (
-  
-  <stack.Navigator initialRouteName="ProfileScreen">
-
-
-
-      <stack.Screen name="ProfileScreen" 
-      
-      initialParams={{ auth_id: auth.CurrentUser.uid}}
-      component={ProfileScreen} options={{
-        headerShown: false
-      }} />
->>>>>>> Stashed changes
 
 //       <stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
 //         headerShown: false
 //       }} />
 
-<<<<<<< Updated upstream
 //     </stack.Navigator>
 //   )
 // }
-=======
-    </stack.Navigator>
-    )}
-    </AuthContext.Consumer>
-  )
-}
->>>>>>> Stashed changes
 const AddStack = () => {
   return (
 
